@@ -79,4 +79,4 @@ Visible no status disabled
 echo "reconfiguring yum database"
 signal-event yum-modify
 echo "Yum repositories updated."
-exit
+

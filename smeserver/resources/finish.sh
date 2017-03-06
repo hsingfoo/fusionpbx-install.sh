@@ -5,7 +5,6 @@ cd "$(dirname "$0")"
 
 #includes
 . ./colors.sh
-. ./arguments.sh
 
 #database details
 database_host=127.0.0.1
@@ -28,7 +27,7 @@ sed -i /etc/fusionpbx/config.php -e s:'{database_username}:fusionpbx:'
 sed -i /etc/fusionpbx/config.php -e s:"{database_password}:$database_password:"
 
 #add the database schema
-cd /var/www/fusionpbx && php /var/www/fusionpbx/core/upgrade/upgrade_schema.php > /dev/null 2>&1
+cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_schema.php > /dev/null 2>&1
 
 #get the server hostname
 #domain_name=$(hostname -f)
@@ -37,7 +36,7 @@ cd /var/www/fusionpbx && php /var/www/fusionpbx/core/upgrade/upgrade_schema.php 
 domain_name=$(hostname -I | cut -d ' ' -f1)
 
 #get a domain_uuid
-domain_uuid=$(php /var/www/fusionpbx/resources/uuid.php);
+domain_uuid=$(php /opt/fusionpbx/resources/uuid.php);
 
 #add the domain name
 psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
@@ -46,8 +45,8 @@ psql --host=$database_host --port=$database_port --username=$database_username -
 cd /var/www/fusionpbx && php /var/www/fusionpbx/core/upgrade/upgrade_domains.php
 
 #add the user
-user_uuid=$(/usr/bin/php /var/www/fusionpbx/resources/uuid.php);
-user_salt=$(/usr/bin/php /var/www/fusionpbx/resources/uuid.php);
+user_uuid=$(/usr/bin/php /opt/fusionpbx/resources/uuid.php);
+user_salt=$(/usr/bin/php /opt/fusionpbx/resources/uuid.php);
 user_name=admin
 user_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')
 password_hash=$(php -r "echo md5('$user_salt$user_password');");
@@ -58,7 +57,7 @@ group_uuid=$(psql --host=$database_host --port=$database_port --username=$databa
 group_uuid=$(echo $group_uuid | sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//')
 
 #add the user to the group
-group_user_uuid=$(/usr/bin/php /var/www/fusionpbx/resources/uuid.php);
+group_user_uuid=$(/usr/bin/php /opt/fusionpbx/resources/uuid.php);
 group_name=superadmin
 psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_group_users (group_user_uuid, domain_uuid, group_name, group_uuid, user_uuid) values('$group_user_uuid', '$domain_uuid', '$group_name', '$group_uuid', '$user_uuid');"
 
@@ -72,18 +71,10 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_user}:$xml_cdr
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr_password:"
 
 #app defaults
-cd /var/www/fusionpbx && php /var/www/fusionpbx/core/upgrade/upgrade_domains.php
+cd /opt/fusionpbx && php /var/www/fusionpbx/core/upgrade/upgrade_domains.php
 
-systemctl daemon-reload
-systemctl mask wpa_supplicant.service
-systemctl stop wpa_supplicant.service
-systemctl enable fail2ban
-systemctl enable ntpd
-systemctl enable php-fpm
-systemctl enable nginx
-systemctl enable freeswitch
-systemctl enable memcached
-systemctl enable postgresql-9.4
+# Setting fusionpbx db keys
+config set fusionpbx configuration DomainName $domain_name DBName fusionpbx DBUser $user_name DBPassword $user_password
 
 #welcome message
 echo ""
@@ -104,9 +95,11 @@ echo "   Additional information."
 echo "      https://fusionpbx.com/support.php"
 echo "      https://www.fusionpbx.com"
 echo "      http://docs.fusionpbx.com"
-warning "*------------------------------------------*"
-warning "* NOTE: Please save the above information. *"
-warning "* REBOOT YOUR SERVER TO COMPLETE INSTALL.  *"
-warning "*------------------------------------------*"
+warning "*----------------------------------------------- *"
+warning "*    NOTE: Please save the above information.    *"
+warning "*   REBOOT YOUR SME SERVER TO COMPLETE INSTALL.  *"
+warning "*    											  *"
+warning "* signal-event post-upgrade; signal-event reboot *"
+warning "*------------------------------------------------*"
 echo ""
 
