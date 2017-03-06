@@ -85,8 +85,9 @@ EnableGroups no \
 Name "Cert Forensics Tools Repository" \
 Visible no status disabled
 
-verbose "Configuring repositories, please wait..."
+verbose "Configuring and updating repositories, please wait..."
 signal-event yum-modify
-sleep 5
+sleep 10
+echo ""
 verbose "Yum repositories updated."
 echo ""
