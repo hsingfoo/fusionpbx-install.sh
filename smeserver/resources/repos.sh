@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Installing and configuring Repositories"
+echo ""
 #Define yum repository for 9.4
 echo "PostgreSQL 9.4"
 /sbin/e-smith/db yum_repositories set postgresql94 repository \
@@ -61,7 +63,7 @@ GPGKey http://repo.firewall-services.com/RPM-GPG-KEY \
 Visible no status disabled
 
 #Define IRONTEC repository
-echo “IRONTEC”
+echo "IRONTEC"
 /sbin/e-smith/db yum_repositories set irontec repository \
 BaseURL 'http://packages.irontec.com/centos/$releasever/$basearch/' \
 EnableGroups no GPGCheck yes \
@@ -69,7 +71,7 @@ Name "irontec" \
 Visible no status disabled
 
 #Define cert-forensics-tools repository
-echo “cert-forensics-tools”
+echo "cert-forensics-tools"
 /sbin/e-smith/db yum_repositories set forensics repository \
 BaseURL 'http://www.cert.org/forensics/repository/centos/cert/$releasever/$basearch' \
 EnableGroups no \

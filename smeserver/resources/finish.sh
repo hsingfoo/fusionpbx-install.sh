@@ -71,7 +71,7 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_user}:$xml_cdr
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr_password:"
 
 #app defaults
-cd /opt/fusionpbx && php /var/www/fusionpbx/core/upgrade/upgrade_domains.php
+cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_domains.php
 
 # Setting fusionpbx db keys
 config set fusionpbx configuration DomainName $domain_name DBName fusionpbx DBUser $user_name DBPassword $user_password
@@ -81,6 +81,7 @@ echo ""
 echo ""
 verbose "Installation has completed."
 error "Please note details below and reboot your system"
+error "  config show fusionpbx will show the details   "
 echo ""
 echo "   Use a web browser to login."
 echo "      domain name: https://$domain_name"
@@ -92,6 +93,7 @@ echo "   If you need to login to a different domain then use username@domain."
 echo "      username: $user_name@$domain_name";
 echo ""
 echo "   Additional information."
+echo "      https://contribs.org"
 echo "      https://fusionpbx.com/support.php"
 echo "      https://www.fusionpbx.com"
 echo "      http://docs.fusionpbx.com"
