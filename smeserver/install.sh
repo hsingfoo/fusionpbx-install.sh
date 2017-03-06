@@ -36,11 +36,10 @@ resources/switch/package-systemd.sh
 verbose "freeswitch configured"
 
 #Fail2ban
-resources/fail2ban.sh
+#resources/fail2ban.sh
 
 #restart services
 verbose "Restarting packages for final configuration"
-systemctl daemon-reload
 service freeswitch start
 service php-fpm
 service https-e-smith restart
