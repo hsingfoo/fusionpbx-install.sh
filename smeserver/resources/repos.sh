@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Installing and configuring Repositories"
+echo "${green}Installing and configuring Repositories${normal}"
 echo ""
 #Define yum repository for 9.4
 echo "PostgreSQL 9.4"
