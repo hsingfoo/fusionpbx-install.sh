@@ -26,6 +26,9 @@ cp fusionpbx/config.php /etc/fusionpbx
 sed -i /etc/fusionpbx/config.php -e s:'{database_username}:fusionpbx:'
 sed -i /etc/fusionpbx/config.php -e s:"{database_password}:$database_password:"
 
+# SME Server specific storage of PostgreSQL details
+config setprop postgreslq-9.4 DBname fusionpbx DBuser fusionpbx DBpass $database_password
+ 
 #add the database schema
 cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_schema.php > /dev/null 2>&1
 
@@ -99,9 +102,8 @@ echo "      https://www.fusionpbx.com"
 echo "      http://docs.fusionpbx.com"
 warning "*----------------------------------------------- *"
 warning "*    NOTE: Please save the above information.    *"
-warning "*   REBOOT YOUR SME SERVER TO COMPLETE INSTALL.  *"
+warning "* REBOOT YOUR SME SERVER TO COMPLETE THE INSTALL *"
 warning "*    											  *"
 warning "* signal-event post-upgrade; signal-event reboot *"
 warning "*------------------------------------------------*"
 echo ""
-
