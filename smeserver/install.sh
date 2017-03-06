@@ -34,7 +34,6 @@ resources/php.sh
 verbose "Configuring freeswitch"
 resources/switch/conf-copy.sh
 resources/switch/package-permissions.sh
-resources/switch/package-systemd.sh
 verbose "freeswitch configured"
 
 #Fail2ban
@@ -42,8 +41,8 @@ verbose "freeswitch configured"
 
 #restart services
 verbose "Restarting packages for final configuration"
-service freeswitch start
-service php-fpm
+service freeswitch restart
+service php-fpm restart
 service https-e-smith restart
 #fail2ban
 verbose "Restart of service complete"

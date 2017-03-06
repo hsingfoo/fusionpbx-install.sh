@@ -42,7 +42,7 @@ domain_uuid=$(php /opt/fusionpbx/resources/uuid.php);
 psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
 
 #app defaults
-cd /var/www/fusionpbx && php /var/www/fusionpbx/core/upgrade/upgrade_domains.php
+cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_domains.php
 
 #add the user
 user_uuid=$(/usr/bin/php /opt/fusionpbx/resources/uuid.php);

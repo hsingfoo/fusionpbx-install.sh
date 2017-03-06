@@ -19,7 +19,7 @@ chmod -Rf 700 /var/lib/php/session
 
 # Set ownership and permission
 
-chown -R freeswitch.daemon /etc/freeswitch /var/lib/freeswitch /var/log/freeswitch /usr/share/freeswitch /var/www/fusionpbx
+chown -R freeswitch.daemon /etc/freeswitch /var/lib/freeswitch /var/log/freeswitch /usr/share/freeswitch /opt/fusionpbx
 find /etc/freeswitch -type d -exec chmod 770 {} \;
 find /var/lib/freeswitch -type d -exec chmod 770 {} \;
 find /var/log/freeswitch -type d -exec chmod 770 {} \;
