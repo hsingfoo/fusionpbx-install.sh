@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 # Set ownership and permission
 
-chown -R www:www /etc/freeswitch /var/lib/freeswitch /var/log/freeswitch /usr/share/freeswitch /opt/freeswitch
+chown -R www:www /etc/freeswitch /var/lib/freeswitch /var/log/freeswitch /usr/share/freeswitch /opt/fusionpbx
 find /etc/freeswitch -type d -exec chmod 770 {} \;
 find /var/lib/freeswitch -type d -exec chmod 770 {} \;
 find /var/log/freeswitch -type d -exec chmod 770 {} \;
