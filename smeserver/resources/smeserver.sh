@@ -9,20 +9,20 @@ verbose "Installation of Freeswitch 1.6, FusionPBX 4.2, PostgreSQL 9.4, memcache
 
 #Install and configure Remi PHP versions
 echo ""
-verbose "Installing SCL php versions"
+verbose "Installing and configuring SCL php versions"
 yum -y install smeserver-php-scl php5*-php-pdo_pgsql --enablerepo=smecontribs,remi,epel
 config setprop php56 PhpModule enabled UploadMaxFilesize 80M PostMaxSize 80M
 signal-event php-update; config set UnsavedChanges no
 
 #Install memcached and php-fpm
 echo ""
-verbose "Installing memached"
+verbose "Installing and configuring memached"
 yum -y install memcached php-fpm
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98memcached
 config set memcached service
 /etc/rc.d/init.d/memcached start
 
-"Install php fpm
+"Installing and configuring php fpm"
 echo ""
 verbose "Installing php-fpm"
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98php-fpm
@@ -40,7 +40,7 @@ chmod -Rf 700 /var/lib/php/session
 
 #Install haveged"
 echo ""
-verbose "Installing haveged"
+verbose "Installing and configuring haveged"
 yum -y install haveged --enablerepo=epel
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98haveged
 config set haveged service
@@ -48,7 +48,7 @@ config set haveged service
 
 #Install and configure Aapche proxy ws_tunnel
 echo ""
-verbose "Installing mod proxy wstunnel"
+verbose "Installing and configuring mod proxy wstunnel"
 yum -y install mod_proxy_wstunnel* --enablerepo=fws
 mkdir -p /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf
 cat <<HERE1 > /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
