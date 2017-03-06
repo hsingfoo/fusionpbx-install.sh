@@ -20,7 +20,6 @@ verbose "Installing and configuring memached"
 yum -y install memcached php-fpm
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98memcached
 config set memcached service
-/etc/rc.d/init.d/memcached start
 
 "Installing and configuring php fpm"
 echo ""
@@ -36,7 +35,6 @@ mkdir -p /var/lib/php/session
 #user freeswitch does not exist yet.
 chown -R freeswitch:daemon /var/lib/php/session
 chmod -Rf 700 /var/lib/php/session
-/etc/rc.d/init.d/php-fpm start
 
 #Install haveged"
 echo ""
@@ -44,7 +42,6 @@ verbose "Installing and configuring haveged"
 yum -y install haveged --enablerepo=epel
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98haveged
 config set haveged service
-/etc/rc.d/init.d/haveged start
 
 #Install and configure Aapche proxy ws_tunnel
 echo ""
