@@ -41,8 +41,8 @@ sudo -u postgres psql -c "DROP SCHEMA public cascade;";
 sudo -u postgres psql -c "CREATE SCHEMA public;";
 sudo -u postgres psql -c "CREATE DATABASE fusionpbx";
 sudo -u postgres psql -c "CREATE DATABASE freeswitch";
-sudo -u postgres psql -c "CREATE ROLE fusionpbx WITH SUPERUSER LOGIN PASSWORD 'supersecret';"
-sudo -u postgres psql -c "CREATE ROLE freeswitch WITH SUPERUSER LOGIN PASSWORD 'supersecret';"
+sudo -u postgres psql -c "CREATE ROLE fusionpbx WITH SUPERUSER LOGIN PASSWORD '$password';"
+sudo -u postgres psql -c "CREATE ROLE freeswitch WITH SUPERUSER LOGIN PASSWORD '$password';"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE fusionpbx to fusionpbx;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to fusionpbx;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to freeswitch;"
