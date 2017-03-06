@@ -1,24 +1,31 @@
 fusionpbx-install.sh
 --------------------------------------
-!!! This is a modified version for usage with SME Server 9.x !!! This script will NOT work on any other distribution !!! Please see https://contribs.org
+!!! This is a modified version for usage with Koozali SME Server 9.x !!! This script will NOT work on any other distribution !!! Please see https://contribs.org
 
-This install script that has been designed to be an fast, simple, and modular way to to install FusionPBX. Start with a minimal install of Debian 8 with SSH enabled. Run the following commands under root. It installs FusionPBX, FreeSWITCH release package and its dependencies, IPTables, Fail2ban, NGINX, PHP FPM, and PostgresQL.
+This install script that has been designed to be an fast, simple, and modular way to to install FusionPBX on Koozali SME Server 9.x. 64 Bit *ONLY*
 
-```bash
-wget https://raw.githubusercontent.com/fusionpbx/fusionpbx-install.sh/master/install.sh -O install.sh && sh install.sh
-```
+It installs:
+* Koozali SME Server 9.x specific adjustements and custom templates
+* smeserver-php-scl contrib
+* smesever-webapps-common contrib
+* FusionPBX 4.2.x stable
+* FreeSWITCH 1.6.x and its dependencies
+* PostgresQL 9.4.x
+* PHP FPM
+* haveged
+* memcached
 
-At the end of the install it will instruct you to go to the ip address of the server in your web browser to finish the install. It will also provide a random database password for you to use during the web based phase of the install. The install script builds the fusionpbx database so you will not need to use the create database username and password on the last page of the web based install.
+It uses the following repositories:
+* EPEL
+* REMI
+* FWS
+* centos-sclo-rh
+* postgresql94
+* nodejs
+* irontec
+* okay
+* forensics
 
-After you have completed the install you can login with the username and password you chose during the install. After you login go to them menu then Advanced -> Upgrade select the checkbox for App defaults. 
-
-```bash
-systemctl daemon-reload
-systemctl restart freeswitch
-```
-
-Then go to Status -> SIP Status and start the SIP profiles, after this, go to Advanced -> Modules and find the module Memcached and click start.
-
-For additional information to get started go to http://docs.fusionpbx.com/en/latest/getting_started.html 
+The repository definitations are embedded in the script.
 
 
