@@ -49,4 +49,4 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to freeswi
 cd $cwd
 
 echo ""
-verbose PostgreSQL 9.4 installed
+verbose "PostgreSQL 9.4 installed"
