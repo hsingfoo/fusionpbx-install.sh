@@ -1,8 +1,4 @@
 #!/bin/sh
-# Exit codes
-#	1	general error
-#	2	unsupported OS
-#	3	unsupported CPU/OS bits
 
 verbose () {
 	echo "${green}$1${normal}"
@@ -43,7 +39,7 @@ fi
 #Make ourselves executable next time we are run
 chmod +x $0
 
-#Os/Distro Check
+#Architecture check
 if [ `getconf LONG_BIT` = "32" ]
 then
     echo "32-bit systems are not supported. Exiting."
