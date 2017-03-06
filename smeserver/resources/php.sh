@@ -5,6 +5,7 @@ cd "$(dirname "$0")"
 
 . ./colors.sh
 
+echo ""
 verbose "Configuring php/php-fpm and permissions"
 
 sed -ie "s|listen = 127.0.0.1:9000|listen = /var/run/php-fpm/php-fpm.sock|g" /etc/php-fpm.d/www.conf
@@ -30,4 +31,5 @@ find /var/log/freeswitch -type f -exec chmod 664 {} \;
 find /usr/share/freeswitch -type f -exec chmod 664 {} \;
 find /var/www/fusionpbx -type f -exec chmod 664 {} \;
 
+echo ""
 verbose "php/php-fpm and permissions configured"

@@ -5,8 +5,7 @@ cd "$(dirname "$0")"
 
 . ../colors.sh
 
-verbose "Installing FreeSWITCH"
-
+echo ""
 verbose "Install and configure Freeswitch 1.6, please wait..."
 yum -y install ffmpeg lame memcached ghostscript ilbc2 --enablerepo=okay,epel
 yum -y install *1.6.15-1* freeswitch-sounds-en-us-callie-all freeswitch-sounds-music --enablerepo=okay,epel,remi
@@ -31,4 +30,5 @@ signal-event remoteaccess-update
 #Add user freeswitch to the www group
 usermod -a -G www freeswitch
 
+echo ""
 verbose "FreeSWITCH installed"

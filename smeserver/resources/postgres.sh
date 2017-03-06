@@ -6,13 +6,13 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #send a message
+echo ""
 verbose "Installing PostgreSQL 9.4"
 
 #generate a random password
 password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64)
 
 #Install and configure PostgreSQL 9.4
-verbose Installing PostgreSQL 9.4
 yum -y install postgresql94-server postgresql94-contrib postgresql94 --enablerepo=postgresql94
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64postgresql-9.4
 config set postgresql-9.4 service 
@@ -23,6 +23,7 @@ config setprop postgresql-9.4 access private
 signal-event remoteaccess-update
 
 # Initialize PostgreSQL database
+echo ""
 verbose “Initialize PostgreSQL database”
 /etc/rc.d/init.d/postgresql-9.4 initdb
 
@@ -47,4 +48,5 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to fusionp
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to freeswitch;"
 cd $cwd
 
+echo ""
 verbose PostgreSQL 9.4 installed
