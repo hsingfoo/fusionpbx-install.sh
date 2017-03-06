@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "${green}Installing and configuring Repositories${normal}"
+verbose "${green}Installing and configuring Repositories${normal}"
 echo ""
 #Define yum repository for 9.4
 echo "PostgreSQL 9.4"
@@ -78,7 +78,8 @@ EnableGroups no \
 Name "Cert Forensics Tools Repository" \
 Visible no status disabled
 
-echo "reconfiguring yum database"
+verbose "Configuring repositories, please wait..."
 signal-event yum-modify
-echo "Yum repositories updated."
-
+sleep 5
+verbose "Yum repositories updated."
+echo ""
