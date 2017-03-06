@@ -73,7 +73,7 @@ Visible no status disabled
 verbose "IRONTEC"
 /sbin/e-smith/db yum_repositories set irontec repository \
 BaseURL 'http://packages.irontec.com/centos/$releasever/$basearch/' \
-EnableGroups no GPGCheck yes \
+EnableGroups no \
 Name "irontec" \
 Visible no status disabled
 

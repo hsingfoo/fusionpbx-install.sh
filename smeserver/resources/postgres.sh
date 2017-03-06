@@ -24,7 +24,7 @@ signal-event remoteaccess-update
 
 # Initialize PostgreSQL database
 echo ""
-verbose “Initialize PostgreSQL database”
+verbose "Initialize PostgreSQL database"
 /etc/rc.d/init.d/postgresql-9.4 initdb
 
 # Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to MD5 local users

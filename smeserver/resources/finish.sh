@@ -20,11 +20,11 @@ sudo -u postgres /usr/pgsql-9.4/bin/psql -c "ALTER USER fusionpbx WITH PASSWORD 
 sudo -u postgres /usr/pgsql-9.4/bin/psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';"
 
 #add the config.php
-mkdir -p /etc/fusionpbx
-chown -R freeswitch:daemon /etc/fusionpbx
-cp fusionpbx/config.php /etc/fusionpbx
-sed -i /etc/fusionpbx/config.php -e s:'{database_username}:fusionpbx:'
-sed -i /etc/fusionpbx/config.php -e s:"{database_password}:$database_password:"
+#mkdir -p /etc/fusionpbx
+#chown -R freeswitch:daemon /etc/fusionpbx
+cp fusionpbx/config.php /opt/fusionpbx/resources
+sed -i /opt/fusionpbx/resources/config.php -e s:'{database_username}:fusionpbx:'
+sed -i /opt/fusionpbx/resources/config.php -e s:"{database_password}:$database_password:"
 
 # SME Server specific storage of PostgreSQL details
 config setprop postgreslq-9.4 DBname fusionpbx DBuser fusionpbx DBpass $database_password
