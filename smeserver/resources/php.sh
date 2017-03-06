@@ -17,19 +17,5 @@ mkdir -p /var/lib/php/session
 chown -R freeswitch:daemon /var/lib/php/session
 chmod -Rf 700 /var/lib/php/session
 
-# Set ownership and permission
-
-chown -R freeswitch.daemon /etc/freeswitch /var/lib/freeswitch /var/log/freeswitch /usr/share/freeswitch /opt/fusionpbx
-find /etc/freeswitch -type d -exec chmod 770 {} \;
-find /var/lib/freeswitch -type d -exec chmod 770 {} \;
-find /var/log/freeswitch -type d -exec chmod 770 {} \;
-find /usr/share/freeswitch -type d -exec chmod 770 {} \;
-find /opt/fusionpbx -type d -exec chmod 770 {} \;
-find /etc/freeswitch -type f -exec chmod 664 {} \;
-find /var/lib/freeswitch -type f -exec chmod 664 {} \;
-find /var/log/freeswitch -type f -exec chmod 664 {} \;
-find /usr/share/freeswitch -type f -exec chmod 664 {} \;
-find /opt/fusionpbx -type f -exec chmod 664 {} \;
-
 echo ""
 verbose "php/php-fpm and permissions configured"

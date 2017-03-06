@@ -36,7 +36,7 @@ resources/php.sh
 # FusionPBX to FreeSWITCH configs
 verbose "Configuring freeswitch"
 resources/switch/conf-copy.sh
-resources/switch/package-permissions.sh
+resources/permissions.sh
 verbose "freeswitch configured"
 
 #Fail2ban
