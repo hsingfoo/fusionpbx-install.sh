@@ -42,8 +42,8 @@ verbose "freeswitch configured"
 #restart services
 verbose "Restarting packages for final configuration"
 service freeswitch restart
-service php-fpm restart
-service https-e-smith restart
+service php-fpm start
+service httpd-e-smith restart
 #fail2ban
 verbose "Restart of service complete"
 
