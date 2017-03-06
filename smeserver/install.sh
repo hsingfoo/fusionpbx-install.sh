@@ -18,8 +18,11 @@ resources/repos.sh
 # Installing SME Server specifics
 resources/smeserver.sh
 
+#Installing SME Server Sub-domain
+resources/smeserver-subdomain.sh
+
 #FreeSWITCH
-resources/switch/package-release.sh
+resources/switch/smeserver-freeswitch.sh
 
 #FusionPBX
 resources/fusionpbx.sh
