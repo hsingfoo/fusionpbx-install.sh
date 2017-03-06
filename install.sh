@@ -58,5 +58,5 @@ if [ -d /usr/src/fusionpbx-install.sh ]; then
 else
 	git clone https://github.com/hsingfoo/fusionpbx-install.sh
 fi
-
-#start script
+cd /usr/src/fusionpbx-install.sh/smeserver
+./install.sh $@
