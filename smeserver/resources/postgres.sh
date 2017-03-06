@@ -12,7 +12,7 @@ verbose "Installing PostgreSQL 9.4"
 password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64)
 
 #Install and configure PostgreSQL 9.4
-echo Installing PostgreSQL 9.4
+verbose Installing PostgreSQL 9.4
 yum -y install postgresql94-server postgresql94-contrib postgresql94 --enablerepo=postgresql94
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64postgresql-9.4
 config set postgresql-9.4 service 
@@ -23,7 +23,7 @@ config setprop postgresql-9.4 access private
 signal-event remoteaccess-update
 
 # Initialize PostgreSQL database
-echo “Initialize PostgreSQL database”
+verbose “Initialize PostgreSQL database”
 /etc/rc.d/init.d/postgresql-9.4 initdb
 
 # Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to MD5 local users
@@ -47,4 +47,4 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to fusionp
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to freeswitch;"
 cd $cwd
 
-echo PostgreSQL 9.4 installed
+verbose PostgreSQL 9.4 installed

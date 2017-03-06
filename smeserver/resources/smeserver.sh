@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#move to script directory so all relative paths work
+cd "$(dirname "$0")"
+
+#includes
+. ./colors.sh
+
 verbose "Installation of Freeswitch 1.6, FusionPBX 4.2, PostgreSQL 9.4, memcached, SCL php and php-fpm on SME Server 9.1"
 
 #Install and configure Remi PHP versions

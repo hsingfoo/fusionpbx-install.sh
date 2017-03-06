@@ -4,6 +4,8 @@
 
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
+
+#Includes
 . ./resources/colors.sh
 
 # Update SME Server 

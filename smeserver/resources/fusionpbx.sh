@@ -3,9 +3,12 @@
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
+#Includes
 . ./colors.sh
+
 #Install and configure FusionPBX
-echo Installing FusionPBX 4.2.x
+
+verbose Installing FusionPBX 4.2.x
 yum -y install git
 yum -y install sngrep --enablerepo=irontec
 git clone -b 4.2 https://github.com/fusionpbx/fusionpbx.git /opt/fusionpbx
