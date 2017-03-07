@@ -37,11 +37,11 @@ cd /opt/fusionpbx && php core/upgrade/upgrade_schema.php > /dev/null 2>&1
 echo ""
 verbose "Database schema successfully imported"
 
-#get the server hostname
-#domain_name=$(hostname -f)
+#get the server FQDN
+domain_name=$(hostname -d)
 
 #get the ip address
-domain_name=$(hostname -I | cut -d ' ' -f1)
+#domain_name=$(hostname -I | cut -d ' ' -f1)
 #get a domain_uuid
 domain_uuid=$(php /opt/fusionpbx/resources/uuid.php);
 
