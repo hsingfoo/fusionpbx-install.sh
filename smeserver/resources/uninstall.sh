@@ -39,4 +39,4 @@ service httpd-e-smith restart > /dev/null 2>&1
 rm -Rf /usr/src/fusionpbx-install.sh
 rm -Rf /usr/src/install.sh
 
-echo "All removed, please perform a 'signal-event post-upgrade; signal-event reboot'
+echo "All removed, please perform a 'signal-event post-upgrade; signal-event reboot"
