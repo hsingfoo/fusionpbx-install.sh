@@ -34,9 +34,9 @@ rm -f /etc/rc.d/rc7.d/S64postgresql-9.4
 rm -f /etc/rc.d/rc7.d/S98haveged
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/fusionpbx
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
-rm -Rf /usr/src/fusionpbx-install.sh
-rm -Rf /usr/src/install.sh
 expand-template /etc/httpd/conf/httpd.conf > /dev/null 2>&1
 service httpd-e-smith restart > /dev/null 2>&1
+rm -Rf /usr/src/fusionpbx-install.sh
+rm -Rf /usr/src/install.sh
 
 echo "All removed, please perform a 'signal-event post-upgrade; signal-event reboot'
