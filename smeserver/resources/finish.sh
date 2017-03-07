@@ -16,8 +16,8 @@ database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 
 export PGPASSWORD=$database_password
 
 #update the database password
-sudo -u postgres /usr/pgsql-9.4/bin/psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password';"
-sudo -u postgres /usr/pgsql-9.4/bin/psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';"
+sudo -u postgres psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password';"
+sudo -u postgres psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';"
 
 #add the config.php
 #mkdir -p /etc/fusionpbx
@@ -42,7 +42,7 @@ domain_name=$(hostname -I | cut -d ' ' -f1)
 domain_uuid=$(php /opt/fusionpbx/resources/uuid.php);
 
 #add the domain name
-psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
+sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
 
 #app defaults
 cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_domains.php
@@ -53,16 +53,16 @@ user_salt=$(/usr/bin/php /opt/fusionpbx/resources/uuid.php);
 user_name=admin
 user_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')
 password_hash=$(php -r "echo md5('$user_salt$user_password');");
-psql --host=$database_host --port=$database_port --username=$database_username -t -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');"
+sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');"
 
 #get the superadmin group_uuid
-group_uuid=$(psql --host=$database_host --port=$database_port --username=$database_username -t -c "select group_uuid from v_groups where group_name = 'superadmin';");
+group_uuid=$(sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "select group_uuid from v_groups where group_name = 'superadmin';");
 group_uuid=$(echo $group_uuid | sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//')
 
 #add the user to the group
 group_user_uuid=$(/usr/bin/php /opt/fusionpbx/resources/uuid.php);
 group_name=superadmin
-psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_group_users (group_user_uuid, domain_uuid, group_name, group_uuid, user_uuid) values('$group_user_uuid', '$domain_uuid', '$group_name', '$group_uuid', '$user_uuid');"
+sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_group_users (group_user_uuid, domain_uuid, group_name, group_uuid, user_uuid) values('$group_user_uuid', '$domain_uuid', '$group_name', '$group_uuid', '$user_uuid');"
 
 #update xml_cdr url, user and password
 xml_cdr_username=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')
@@ -77,14 +77,18 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr
 cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_domains.php
 
 # Setting fusionpbx db keys
-config set fusionpbx configuration DomainName $domain_name DBName fusionpbx DBUser $user_name DBPassword $user_password
+config set fusionpbx configuration DomainName $domain_name DBName fusionpbx DBUser $user_name DBPassword $user_password XMLCDRUser $xml_cdr_username XMLCDRPassword $xml_cdr_password
 
 #welcome message
 echo ""
 echo ""
 verbose "Installation has completed."
+echo ""
 error "Please note details below and reboot your system"
-error "  config show fusionpbx will show the details   "
+error "           'config show fusionpbx'             "
+error "                    and                        "
+error "        'config show prostgresql-9.4'          "
+error "            will show the details              "
 echo ""
 echo "   Use a web browser to login."
 echo "      domain name: https://$domain_name"
