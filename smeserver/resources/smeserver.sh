@@ -10,14 +10,14 @@ verbose "Installation of Freeswitch 1.6, FusionPBX 4.2, PostgreSQL 9.4, memcache
 #Install and configure Remi PHP versions
 echo ""
 verbose "Installing and configuring SCL php versions"
-yum -y install smeserver-php-scl php5*-php-pdo_pgsql --enablerepo=smecontribs,remi,epel
+yum -y -q install smeserver-php-scl php5*-php-pdo_pgsql --enablerepo=smecontribs,remi,epel
 config setprop php56 PhpModule enabled UploadMaxFilesize 80M PostMaxSize 80M
 signal-event php-update; config set UnsavedChanges no
 
 #Install memcached and php-fpm
 echo ""
 verbose "Installing and configuring memached"
-yum -y install memcached php-fpm
+yum -y -q install memcached php-fpm
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98memcached
 config set memcached service
 
@@ -39,14 +39,14 @@ chmod -Rf 700 /var/lib/php/session
 #Install haveged"
 echo ""
 verbose "Installing and configuring haveged"
-yum -y install haveged --enablerepo=epel
+yum -y -q install haveged --enablerepo=epel
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98haveged
 config set haveged service
 
 #Install and configure Apache proxy ws_tunnel
 echo ""
 verbose "Installing and configuring mod proxy wstunnel"
-yum -y install mod_proxy_wstunnel* --enablerepo=fws
+yum -y -q install mod_proxy_wstunnel* --enablerepo=fws
 mkdir -p /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf
 cat <<HERE1 > /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
 {

@@ -19,8 +19,8 @@ database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 
 export PGPASSWORD=$database_password
 
 #update the database password
-sudo -u postgres psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password';"
-sudo -u postgres psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';"
+sudo -u postgres psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password';" > /dev/null 2>&1
+sudo -u postgres psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';" > /dev/null 2>&1
 
 #add the config.php
 cp /usr/src/fusionpbx-install.sh/smeserver/resources/fusionpbx/config.php /opt/fusionpbx/resources
@@ -58,16 +58,13 @@ user_name=admin
 user_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g');
 password_hash=$(php -r "echo md5('$user_salt$user_password');");
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');" > /dev/null 2>&1
-verbose "end of add user"
 #get the superadmin group_uuid
 group_uuid=$(sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "select group_uuid from v_groups where group_name = 'superadmin';");
 group_uuid=$(echo $group_uuid | sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//')
-verbose "end of get superadmin group uuid"
 #add the user to the group
 group_user_uuid=$(php /opt/fusionpbx/resources/uuid.php);
 group_name=superadmin
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_group_users (group_user_uuid, domain_uuid, group_name, group_uuid, user_uuid) values('$group_user_uuid', '$domain_uuid', '$group_name', '$group_uuid', '$user_uuid');" > /dev/null 2>&1
-verbose "end of add user to group"
 #update xml_cdr url, user and password
 xml_cdr_username=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')
 xml_cdr_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')
@@ -76,7 +73,6 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{domain_name}:127
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_project_path}::"
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_user}:$xml_cdr_username:"
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr_password:"
-verbose "end of xml cdr"
 #app defaults
 cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_domains.php
 

@@ -7,13 +7,13 @@ cd "$(dirname "$0")"
 
 echo ""
 verbose "Install and configure Freeswitch 1.6, please wait..."
-yum -y install ffmpeg lame memcached ghostscript ilbc2 --enablerepo=okay,epel
-yum -y install *1.6.15-1* freeswitch-sounds-en-us-callie-all freeswitch-sounds-music --enablerepo=okay,epel,remi
+yum -y -q install ffmpeg lame memcached ghostscript ilbc2 --enablerepo=okay,epel
+yum -y -q install *1.6.15-1* freeswitch-sounds-en-us-callie-all freeswitch-sounds-music --enablerepo=okay,epel,remi
 
 #remove the music package to protect music on hold from package updates
 mkdir -p /usr/share/freeswitch/sounds/temp
 mv /usr/share/freeswitch/sounds/music/*000 /usr/share/freeswitch/sounds/temp
-yum -y remove freeswitch-sounds-music
+yum -y -q remove freeswitch-sounds-music
 mkdir -p /usr/share/freeswitch/sounds/music/default
 mv /usr/share/freeswitch/sounds/temp/* /usr/share/freeswitch/sounds/music/default
 rm -Rf /usr/share/freeswitch/sounds/temp

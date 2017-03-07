@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 
 # Update SME Server 
 verbose "Updating SME Server"
-yum -y update
+yum -y -q update
 
 # Installing repositories
 resources/repos.sh
