@@ -53,8 +53,8 @@ cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_domains.php
 user_uuid=$(php /opt/fusionpbx/resources/uuid.php);
 user_salt=$(php /opt/fusionpbx/resources/uuid.php);
 user_name=admin
-user_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')
-password_hash=$(php -r "echo md5('$user_salt$user_password');"');
+user_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g');
+password_hash=$(php -r "echo md5('$user_salt$user_password');");
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');"
 
 #get the superadmin group_uuid
