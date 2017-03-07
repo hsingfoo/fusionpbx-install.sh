@@ -1,5 +1,7 @@
 #!/bin/sh
 
+clear
+
 #Uninstall all Freeswitch and FusionPBX related files
 
 service freeswitch stop
