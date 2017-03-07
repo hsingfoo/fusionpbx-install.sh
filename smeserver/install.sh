@@ -53,4 +53,4 @@ service httpd-e-smith restart
 verbose "Restart of service complete"
 
 #add the database schema, user and groups
-resources/finish.sh
+#resources/finish.sh
