@@ -30,7 +30,6 @@ resources/fusionpbx.sh
 #Postgres
 resources/postgres.sh
 
-echo ""
 verbose "Copying config files and set system wide ownership and permissions"
 # FusionPBX to FreeSWITCH configs
 #verbose "Configuring freeswitch"
@@ -43,11 +42,11 @@ resources/permissions.sh
 
 #restart services
 verbose "Restarting packages for final configuration"
-service memcached start
-service postgresql-9.4 restart
-service freeswitch start
-service php-fpm start
-service httpd-e-smith restart
+service memcached start > /dev/null 2>&1
+service postgresql-9.4 restart > /dev/null 2>&1
+service freeswitch start > /dev/null 2>&1
+service php-fpm start > /dev/null 2>&1
+service httpd-e-smith restart > /dev/null 2>&1
 #fail2ban
 verbose "Restart of services complete"
 

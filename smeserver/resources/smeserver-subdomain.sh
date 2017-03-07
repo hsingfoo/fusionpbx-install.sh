@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 echo ""
 verbose "Creating Sub-domain"
 # How to set the correct domain via a variable???
-yum -y -q install smeserver-webapps-common --enablerepo=fws
+yum -y -q install smeserver-webapps-common --enablerepo=fws > /dev/null 2>&1
 db domains set pbx.sipking.com domain Description "FusionPBX" Content Primary Nameservers \
 internet TemplatePath WebAppVirtualHost DocumentRoot /opt/fusionpbx RequireSSL enabled
 signal-event domain-create pbx.sipking.com

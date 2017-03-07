@@ -57,7 +57,7 @@ cat <<HERE1 > /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModu
 HERE1
 
 expand-template /etc/httpd/conf/httpd.conf
-service httpd-e-smith restart
+service httpd-e-smith restart > /dev/null 2>&1
 
 echo ""
 verbose "Pre-configuration for SME Server done"
