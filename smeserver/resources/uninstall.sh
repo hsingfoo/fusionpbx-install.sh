@@ -21,6 +21,7 @@ yum -y remove haveged > /dev/null 2>&1
 
 rm -Rf /var/lib/pgsql/9.4
 rm -Rf /etc/freeswitch
+rm -Rf /etc/freeswitch/freeswitch.orig
 rm -Rf /opt/fusionpbx
 rm -Rf /var/lib/freeswitch
 rm -Rf /usr/lib/freeswitch
@@ -28,6 +29,7 @@ rm -f /etc/rc.d/rc7.d/S98memcached
 rm -f /etc/rc.d/rc7.d/S98php-fpm
 rm -f /etc/rc.d/rc7.d/S99freeswitch
 rm -f /etc/rc.d/rc7.d/S64postgresql-9.4
+rm -f /etc/rc.d/rc7.d/S98haveged
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/fusionpbx
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
 rm -Rf /usr/src/fusionpbx-install.sh

@@ -14,9 +14,9 @@ yum -y -q -d 0 -e 0 install *1.6.15-1* freeswitch-sounds-en-us-callie-all freesw
 mkdir -p /usr/share/freeswitch/sounds/temp
 mv /usr/share/freeswitch/sounds/music/*000 /usr/share/freeswitch/sounds/temp
 yum -y -q remove freeswitch-sounds-music > /dev/null 2>&1
-mkdir -p /usr/share/freeswitch/sounds/music/default
-mv /usr/share/freeswitch/sounds/temp/* /usr/share/freeswitch/sounds/music/default
-rm -Rf /usr/share/freeswitch/sounds/temp
+mkdir -p /usr/share/freeswitch/sounds/music/default  > /dev/null 2>&1
+mv /usr/share/freeswitch/sounds/temp/* /usr/share/freeswitch/sounds/music/default  > /dev/null 2>&1
+rm -Rf /usr/share/freeswitch/sounds/temp  > /dev/null 2>&1
 
 #create SME Server service
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S99freeswitch

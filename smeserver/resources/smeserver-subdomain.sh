@@ -39,6 +39,6 @@ HERE2
 
 #Expand httpd.conf and restart httpd-e-smith
 expand-template /etc/httpd/conf/httpd.conf
-service httpd-e-smith restart
+service httpd-e-smith restart > /dev/null 2>&1
 echo ""
 verbose "Sub-domain created"
