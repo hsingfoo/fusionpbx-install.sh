@@ -94,6 +94,7 @@ Name "Mirror de Labrusse" \
 GPGKey http://mirror.de-labrusse.fr/RPM-GPG-KEY \
 Visible no status disabled
 
+echo ""
 verbose "Configuring and updating repositories, please wait..."
 signal-event yum-modify
 sleep 10
