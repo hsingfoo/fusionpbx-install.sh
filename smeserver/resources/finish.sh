@@ -33,7 +33,7 @@ config setprop postgreslq-9.4 FusionpbxDBname fusionpbx FusionpbxDBuser fusionpb
 #add the database schema
 echo ""
 verbose "Importing database schema"
-cd /opt/fusionpbx && php core/upgrade/upgrade_schema.php
+cd /opt/fusionpbx && php core/upgrade/upgrade_schema.php > /dev/null 2>&1
 echo ""
 verbose "Database schema successfully imported"
 
@@ -46,7 +46,7 @@ domain_name=$(hostname -I | cut -d ' ' -f1)
 domain_uuid=$(php /opt/fusionpbx/resources/uuid.php);
 
 #add the domain name
-sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
+sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');" > /dev/null 2>&1
 
 #app defaults
 cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_domains.php
@@ -57,7 +57,7 @@ user_salt=$(php /opt/fusionpbx/resources/uuid.php);
 user_name=admin
 user_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g');
 password_hash=$(php -r "echo md5('$user_salt$user_password');");
-sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');"
+sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');" > /dev/null 2>&1
 verbose "end of add user"
 #get the superadmin group_uuid
 group_uuid=$(sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "select group_uuid from v_groups where group_name = 'superadmin';");
@@ -66,7 +66,7 @@ verbose "end of get superadmin group uuid"
 #add the user to the group
 group_user_uuid=$(php /opt/fusionpbx/resources/uuid.php);
 group_name=superadmin
-sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_group_users (group_user_uuid, domain_uuid, group_name, group_uuid, user_uuid) values('$group_user_uuid', '$domain_uuid', '$group_name', '$group_uuid', '$user_uuid');"
+sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_group_users (group_user_uuid, domain_uuid, group_name, group_uuid, user_uuid) values('$group_user_uuid', '$domain_uuid', '$group_name', '$group_uuid', '$user_uuid');" > /dev/null 2>&1
 verbose "end of add user to group"
 #update xml_cdr url, user and password
 xml_cdr_username=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')
