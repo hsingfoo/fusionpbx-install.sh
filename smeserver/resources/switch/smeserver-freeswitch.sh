@@ -31,4 +31,4 @@ signal-event remoteaccess-update
 usermod -a -G www freeswitch
 
 echo ""
-verbose "FreeSWITCH installed"
+verbose "FreeSWITCH has been installed"

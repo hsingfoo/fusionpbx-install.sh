@@ -1,5 +1,5 @@
 #!/bin/sh
-
+clear
 # SME Server 9 64-bit install
 
 #move to script directory so all relative paths work
@@ -44,6 +44,8 @@ verbose "freeswitch configured"
 
 #restart services
 verbose "Restarting packages for final configuration"
+service memcached restart
+service postgresql-9.4 restart
 service freeswitch restart
 service php-fpm start
 service httpd-e-smith restart

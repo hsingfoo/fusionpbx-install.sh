@@ -11,7 +11,6 @@ verbose "Installing PostgreSQL 9.4"
 
 #generate a random password
 password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64)
-
 #Install and configure PostgreSQL 9.4
 yum -y install postgresql94-server postgresql94-contrib postgresql94 --enablerepo=postgresql94
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64postgresql-9.4
@@ -20,6 +19,8 @@ config setprop postgresql-9.4 status enabled
 config setprop postgresql-9.4 TCPPort 5432
 config setprop postgresql-9.4 UDPPort 5432
 config setprop postgresql-9.4 access private
+config setprop postgresql-9.4 FusionDBPassword $password
+config setprop postgresql-9.4 FreeswitchDBPassword $password
 signal-event remoteaccess-update
 
 # Initialize PostgreSQL database
@@ -49,4 +50,4 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to freeswi
 cd $cwd
 
 echo ""
-verbose "PostgreSQL 9.4 installed"
+verbose "PostgreSQL 9.4 has been installed"
