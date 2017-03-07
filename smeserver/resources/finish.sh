@@ -20,17 +20,16 @@ sudo -u postgres psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password
 sudo -u postgres psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';"
 
 #add the config.php
-#mkdir -p /etc/fusionpbx
-#chown -R freeswitch:daemon /etc/fusionpbx
 cp /usr/src/fusionpbx-install.sh/smeserver/resources/fusionpbx/config.php /opt/fusionpbx/resources
 sed -i /opt/fusionpbx/resources/config.php -e s:'{database_username}:fusionpbx:'
 sed -i /opt/fusionpbx/resources/config.php -e s:"{database_password}:$database_password:"
 
 # SME Server specific storage of PostgreSQL details
-config setprop postgreslq-9.4 DBname fusionpbx DBuser fusionpbx DBpass $database_password
+config setprop postgreslq-9.4 FusionpbxDBname fusionpbx FusionpbxDBuser fusionpbx FusionDBpass $database_password \
+FreeswitchDBname fusionpbx FreeswitchDBuser fusionpbx FreeswitchDBpass $database_password
  
 #add the database schema
-cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_schema.php > /dev/null 2>&1
+cd /opt/fusionpbx && scl enable php56 'php core/upgrade/upgrade_schema.php'
 
 #get the server hostname
 #domain_name=$(hostname -f)
@@ -39,20 +38,20 @@ cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_schema.php > /dev/n
 domain_name=$(hostname -I | cut -d ' ' -f1)
 
 #get a domain_uuid
-domain_uuid=$(php /opt/fusionpbx/resources/uuid.php);
+domain_uuid=$(scl enable php56 '/opt/fusionpbx/resources/uuid.php');
 
 #add the domain name
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
 
 #app defaults
-cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_domains.php
+cd /opt/fusionpbx && scl enable php56 '/opt/fusionpbx/core/upgrade/upgrade_domains.php'
 
 #add the user
-user_uuid=$(/usr/bin/php /opt/fusionpbx/resources/uuid.php);
-user_salt=$(/usr/bin/php /opt/fusionpbx/resources/uuid.php);
+user_uuid=$(scl enable php56 '/opt/fusionpbx/resources/uuid.php');
+user_salt=$(scl enable php56 '/opt/fusionpbx/resources/uuid.php');
 user_name=admin
 user_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')
-password_hash=$(php -r "echo md5('$user_salt$user_password');");
+password_hash=$(scl enable php56 '-r "echo md5('$user_salt$user_password');"');
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');"
 
 #get the superadmin group_uuid
@@ -74,7 +73,7 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_user}:$xml_cdr
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr_password:"
 
 #app defaults
-cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_domains.php
+cd /opt/fusionpbx && scl enable php56 '/opt/fusionpbx/core/upgrade/upgrade_domains.php'
 
 # Setting fusionpbx db keys
 config set fusionpbx configuration DomainName $domain_name DBName fusionpbx DBUser $user_name DBPassword $user_password XMLCDRUser $xml_cdr_username XMLCDRPassword $xml_cdr_password

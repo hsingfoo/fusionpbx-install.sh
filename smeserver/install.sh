@@ -30,14 +30,11 @@ resources/fusionpbx.sh
 #Postgres
 resources/postgres.sh
 
-#PHP/PHP-FPM
-resources/php.sh
-
 # FusionPBX to FreeSWITCH configs
-verbose "Configuring freeswitch"
+#verbose "Configuring freeswitch"
 resources/switch/conf-copy.sh
 resources/permissions.sh
-verbose "freeswitch configured"
+#verbose "freeswitch configured"
 
 #Fail2ban
 #resources/fail2ban.sh
@@ -53,4 +50,4 @@ service httpd-e-smith restart
 verbose "Restart of service complete"
 
 #add the database schema, user and groups
-#resources/finish.sh
+resources/finish.sh
