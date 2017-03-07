@@ -19,7 +19,7 @@ yum -y remove freeswitch > /dev/null 2>&1
 yum -y remove postgresql > /dev/null 2>&1
 yum -y remove haveged > /dev/null 2>&1
 
-rm -Rf/var/lib/pgsql/9.4
+rm -Rf /var/lib/pgsql/9.4
 rm -Rf /etc/freeswitch
 rm -Rf /opt/fusionpbx
 rm -Rf /var/lib/freeswitch

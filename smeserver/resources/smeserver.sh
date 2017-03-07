@@ -20,6 +20,7 @@ verbose "Installing and configuring memached"
 yum -y -q install memcached php-fpm > /dev/null 2>&1
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98memcached
 config set memcached service
+/etc/rc.d/init.d/haveged start > /dev/null 2>&1
 
 verbose "Installing and configuring php fpm"
 echo ""
@@ -42,6 +43,7 @@ verbose "Installing and configuring haveged"
 yum -y -q install haveged --enablerepo=epel > /dev/null 2>&1
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98haveged
 config set haveged service
+/etc/rc.d/init.d/haveged start > /dev/null 2>&1
 
 #Install and configure Apache proxy ws_tunnel
 echo ""
