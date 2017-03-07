@@ -86,12 +86,13 @@ Name "Cert Forensics Tools Repository" \
 Visible no status disabled
 
 #Define stephdl repository
+verbose "stephdl repository"
 db yum_repositories set stephdl repository \
 BaseURL http://mirror.de-labrusse.fr/smeserver/\$releasever \
 EnableGroups no GPGCheck yes \
 Name "Mirror de Labrusse" \
 GPGKey http://mirror.de-labrusse.fr/RPM-GPG-KEY \
-Visible yes status disabled
+Visible no status disabled
 
 verbose "Configuring and updating repositories, please wait..."
 signal-event yum-modify

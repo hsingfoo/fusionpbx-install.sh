@@ -1,4 +1,6 @@
-fusionpbx-install.sh for SME Server 9. A WIP !!! Not functional yet.
+fusionpbx-install.sh for SME Server 9. A WIP !!! Not functional yet. 
+
+Disclaimer: Use at your own risk!
 --------------------------------------
 !!! This is a modified version for usage with Koozali SME Server 9.x !!! This script will NOT work on any other distribution !!! Please see https://contribs.org
 
