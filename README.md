@@ -37,4 +37,6 @@ After you have completed the install you can login with the username and passwor
 Then go to Status -> SIP Status and start the SIP profiles, after this, go to Advanced -> Modules and find the module Memcached and click start.
 
 How to use:
+```bash
 wget https://raw.githubusercontent.com/hsingfoo/fusionpbx-install.sh/master/install.sh -O install.sh && sh install.sh
+```
