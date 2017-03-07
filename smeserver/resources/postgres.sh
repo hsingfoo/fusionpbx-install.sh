@@ -29,8 +29,8 @@ verbose "Initialize PostgreSQL database"
 /etc/rc.d/init.d/postgresql-9.4 initdb
 
 # Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to MD5 local users
-sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
-sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
+sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1trust/' /var/lib/pgsql/9.4/data/pg_hba.conf
+sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/9.4/data/pg_hba.conf
 
 # Start Postgresql
 /etc/rc.d/init.d/postgresql-9.4 start
