@@ -32,6 +32,9 @@ verbose "Initialize PostgreSQL database"
 sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1trust/' /var/lib/pgsql/9.4/data/pg_hba.conf
 sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/9.4/data/pg_hba.conf
 
+#Add user postgres to the www group
+usermod -a -G www postgres
+
 # Start Postgresql
 /etc/rc.d/init.d/postgresql-9.4 start
 
