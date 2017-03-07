@@ -51,5 +51,11 @@ service httpd-e-smith restart
 #fail2ban
 verbose "Restart of service complete"
 
+#Switch to PHP56 from Software collections for this final part
+scl enable php56 'bash'
+
 #add the database schema, user and groups
 resources/finish.sh
+
+#Switch back out of SCL to the original shell
+exit

@@ -1,10 +1,13 @@
 #!/bin/sh
 
+#Note: ** Please be aware that this part of the script is executed in a new shell where php56 is active **
+
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
 #includes
 . ./colors.sh
+
 
 #database details
 database_host=127.0.0.1
@@ -30,7 +33,7 @@ config setprop postgreslq-9.4 FusionpbxDBname fusionpbx FusionpbxDBuser fusionpb
 #add the database schema
 echo ""
 verbose "Importing database schema"
-cd /opt/fusionpbx && scl enable php56 'php core/upgrade/upgrade_schema.php'
+cd /opt/fusionpbx && php core/upgrade/upgrade_schema.php
 echo ""
 verbose "Database schema successfully imported"
 
