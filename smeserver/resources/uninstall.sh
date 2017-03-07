@@ -23,3 +23,5 @@ rm -Rf /opt/fusionpbx
 rm -Rf /var/lib/freeswitch
 rm -Rf /usr/lib/freeswitch
 rm -f /etc/rc.d/rc7.d/*haveged *memcached *freeswitch *php-fpm *postgres*
+rm -Rf /usr/src/fusionpbx-install.sh
+rm -Rf /usr/src/install.sh
