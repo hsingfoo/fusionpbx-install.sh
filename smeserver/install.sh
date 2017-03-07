@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 
 # Update SME Server 
 verbose "Updating SME Server"
-yum -y -q update
+yum -y -q update > /dev/null 2>&1
 
 # Installing repositories
 resources/repos.sh
@@ -43,13 +43,13 @@ resources/permissions.sh
 
 #restart services
 verbose "Restarting packages for final configuration"
-service memcached restart
+service memcached start
 service postgresql-9.4 restart
-service freeswitch restart
+service freeswitch start
 service php-fpm start
 service httpd-e-smith restart
 #fail2ban
-verbose "Restart of service complete"
+verbose "Restart of services complete"
 
 #Execute in a new shell with php56 via SCL enabled
 scl enable php56 'bash resources/finish.sh && exit'

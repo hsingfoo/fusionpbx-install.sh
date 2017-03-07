@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#Note: ** Please be aware that this part of the script is executed in a new shell where php56 is active **
+#Note: ** Please be aware that this part of the script is executed in a new shell where php56 is active. see install.sh **
 
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
