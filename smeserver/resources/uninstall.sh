@@ -3,7 +3,7 @@
 clear
 
 #Uninstall all Freeswitch and FusionPBX related files
-
+Echo "Stopping all related services..."
 service freeswitch stop
 service postgresql-9.4 stop
 service memcached stop
@@ -23,10 +23,13 @@ yum -y remove haveged > /dev/null 2>&1
 
 rm -Rf /var/lib/pgsql/9.4
 rm -Rf /etc/freeswitch
-rm -Rf /etc/freeswitch/freeswitch.orig
+rm -Rf /etc/freeswitch.orig
 rm -Rf /opt/fusionpbx
 rm -Rf /var/lib/freeswitch
-rm -Rf /usr/lib/freeswitch
+rm -Rf /usr/share/freeswitch
+rm -Rf /usr/share/lib64/freeswitch
+rm -Rf /usr/lib64/freeswitch
+rm -Rf /var/run/freeswitch
 rm -f /etc/rc.d/rc7.d/S98memcached
 rm -f /etc/rc.d/rc7.d/S98php-fpm
 rm -f /etc/rc.d/rc7.d/S99freeswitch

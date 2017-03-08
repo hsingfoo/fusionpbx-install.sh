@@ -30,7 +30,6 @@ resources/fusionpbx.sh
 #Postgres
 resources/postgres.sh
 
-verbose "Copying config files and set system wide ownership and permissions"
 # FusionPBX to FreeSWITCH configs
 #verbose "Configuring freeswitch"
 resources/switch/conf-copy.sh

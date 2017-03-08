@@ -22,7 +22,6 @@ ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98memcached
 config set memcached service
 /etc/rc.d/init.d/memcached start > /dev/null 2>&1
 
-verbose "Installing and configuring php fpm"
 echo ""
 verbose "Installing php-fpm"
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98php-fpm
@@ -34,7 +33,7 @@ sed -ie 's/user = apache/user = freeswitch/g' /etc/php-fpm.d/www.conf
 sed -ie 's/group = apache/group = daemon/g' /etc/php-fpm.d/www.conf
 mkdir -p /var/lib/php/session
 #user freeswitch does not exist yet.
-chown -R freeswitch:daemon /var/lib/php/session
+#chown -R freeswitch:daemon /var/lib/php/session
 chmod -Rf 700 /var/lib/php/session
 
 #Install haveged"
@@ -63,4 +62,4 @@ service httpd-e-smith restart > /dev/null 2>&1
 
 echo ""
 verbose "Pre-configuration for SME Server done"
-echo ""
+
