@@ -7,8 +7,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #Configure the new 'fusionpbx' ibay
-next_id=$(config get MinUid)
-let "new_next_id = next_id + 1"
+next_id=$(config get MinUid) && let "new_next_id = next_id + 1"
 db configuration set MinUid $new_next_id
 
 #Populate the accounts db with the new ibay details
@@ -21,7 +20,8 @@ SSL enabled PublicAccess global \
 signal-event ibay-create fusionpbx
 
 #Get the FQDN
-dommain_name={hostname -d}
+domain_name={hostname -d}
+#!!!!! Form here it is broken
 
 #Configure the subdomain
 db domains set pbx.sipking.com domain Description "FusionPBX" Content Primary Nameservers \
