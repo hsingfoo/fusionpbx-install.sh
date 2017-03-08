@@ -9,16 +9,22 @@ cd "$(dirname "$0")"
 #Create custom template !!! for virtual host and alias fusionpbx
 echo ""
 verbose "Creating Sub-domain"
+
 # How to set the correct domain via a variable???
 yum -y -q install smeserver-webapps-common --enablerepo=fws > /dev/null 2>&1
+
+#Configure the subdomain
 db domains set pbx.sipking.com domain Description "FusionPBX" Content Primary Nameservers \
 internet TemplatePath WebAppVirtualHost DocumentRoot /opt/fusionpbx RequireSSL enabled
+
+#Create the domain
 signal-event domain-create pbx.sipking.com
 signal-event webapps-update
 
 
 mkdir -p /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf
 cat <<HERE2 > /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/fusionpbx
+
 <Directory /opt/fusionpbx>
     SSLRequireSSL
     AddType application/x-httpd-php .php

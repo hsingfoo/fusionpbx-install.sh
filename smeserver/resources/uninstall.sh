@@ -15,7 +15,8 @@ echo "all services stopped, removing all related files, please wait..."
 db domains delete pbx.sipking.com
 yum -y remove smeserver-webapps-common > /dev/null 2>&1
 yum -y remove scl-util > /dev/null 2>&1
-yum -y remove smeserver-php-scl php5* > /dev/null 2>&1
+yum -y remove smeserver-php-scl php54-* php55-* php56-* > /dev/null 2>&1
+yum -y remove php56-php-fpm > /dev/null 2>&1
 yum -y remove sngrep > /dev/null 2>&1
 yum -y remove memcached > /dev/null 2>&1
 yum -y remove freeswitch > /dev/null 2>&1

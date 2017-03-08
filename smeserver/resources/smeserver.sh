@@ -9,10 +9,11 @@ cd "$(dirname "$0")"
 echo ""
 verbose "Installing and configuring SCL php versions"
 yum -y -q install smeserver-php-scl php5*-php-pdo_pgsql --enablerepo=smecontribs,remi,epel > /dev/null 2>&1
-config setprop php56 PhpModule enabled UploadMaxFilesize 80M PostMaxSize 80M
+yum -y -q install php56-php-fpm --enablerepo=remi
+config setprop php56 PhpModule enabled UploadMaxFilesize 120M PostMaxSize 120M
 signal-event php-update; config set UnsavedChanges no
 
-#Install memcached and php-fpm
+#Install memcached
 echo ""
 verbose "Installing and configuring memached"
 yum -y -q install memcached php-fpm > /dev/null 2>&1
@@ -20,19 +21,17 @@ ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98memcached
 config set memcached service
 /etc/rc.d/init.d/memcached start > /dev/null 2>&1
 
+#Install php56-php-fpm (from remi repo for SCL environment)
 echo ""
 verbose "Installing and configuring php-fpm"
-ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98php-fpm
-config set php-fpm service status enabled
-sed -ie "s|listen = 127.0.0.1:9000|listen = /var/run/php-fpm/php-fpm.sock|g" /etc/php-fpm.d/www.conf
-sed -ie 's/;listen.owner = nobody/listen.owner = nobody/g' /etc/php-fpm.d/www.conf
-sed -ie 's/;listen.group = nobody/listen.group = nobody/g' /etc/php-fpm.d/www.conf
-sed -ie 's/user = apache/user = freeswitch/g' /etc/php-fpm.d/www.conf
-sed -ie 's/group = apache/group = daemon/g' /etc/php-fpm.d/www.conf
-mkdir -p /var/lib/php/session
-#user freeswitch does not exist yet.
-#chown -R freeswitch:daemon /var/lib/php/session
-chmod -Rf 700 /var/lib/php/session
+ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98php56-php-fpm
+config set php56-php-fpm service TCPPort 9000 status enabled
+sed -ie "s|listen = 127.0.0.1:9000|listen = /var/run/php-fpm/php-fpm.sock|g" /opt/remi/php56/root/etc/php-fpm.d/www.conf
+sed -ie 's/;listen.owner = nobody/listen.owner = nobody/g' /opt/remi/php56/root/etc/php-fpm.d/www.conf
+sed -ie 's/;listen.group = nobody/listen.group = nobody/g' /opt/remi/php56/root/etc/php-fpm.d/www.conf
+sed -ie 's/user = apache/user = freeswitch/g' /opt/remi/php56/root/etc/php-fpm.d/www.conf
+sed -ie 's/group = apache/group = daemon/g' /opt/remi/php56/root/etc/php-fpm.d/www.conf
+/etc/rc.d/init.d/php56-php-fpm start > /dev/null 2>&1
 
 #Install haveged"
 echo ""

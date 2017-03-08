@@ -33,11 +33,12 @@ config setprop postgreslq-9.4 FusionpbxDBname fusionpbx FusionpbxDBuser fusionpb
 #add the database schema
 cd /opt/fusionpbx && php core/upgrade/upgrade_schema.php > /dev/null 2>&1
 
-#get the server FQDN
+#get the server FQDN which is used for the default FusionPBX domain and initial admin login
 domain_name=$(hostname -d)
 
 #get the ip address
 #domain_name=$(hostname -I | cut -d ' ' -f1)
+
 #get a domain_uuid
 domain_uuid=$(php /opt/fusionpbx/resources/uuid.php);
 
@@ -72,7 +73,7 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr
 #app defaults
 cd /opt/fusionpbx && php /opt/fusionpbx/core/upgrade/upgrade_domains.php
 
-# Setting fusionpbx db keys
+# Setting fusionpbx SME Server db keys
 config set fusionpbx configuration DomainName $domain_name DBName fusionpbx DBUser $user_name DBPassword $user_password XMLCDRUser $xml_cdr_username XMLCDRPassword $xml_cdr_password
 
 #welcome message
