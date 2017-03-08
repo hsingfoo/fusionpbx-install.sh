@@ -10,6 +10,7 @@ service memcached stop
 service php-fpm stop
 service haveged stop
 
+echo ""
 echo "all services stopped, removing all related files, please wait..."
 db domains delete pbx.sipking.com
 yum -y remove smeserver-webapps-common > /dev/null 2>&1
@@ -42,4 +43,5 @@ service httpd-e-smith restart > /dev/null 2>&1
 rm -Rf /usr/src/fusionpbx-install.sh
 rm -Rf /usr/src/install.sh
 
+echo ""
 echo "All removed, please perform a 'signal-event post-upgrade; signal-event reboot'"
