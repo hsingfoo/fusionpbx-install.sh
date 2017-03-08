@@ -8,7 +8,7 @@ cd "$(dirname "$0")"
 
 #Install and configure FusionPBX
 echo ""
-verbose "Installing FusionPBX 4.2.x"
+verbose "Installing and configuring FusionPBX 4.2.x"
 yum -y -q install git > /dev/null 2>&1
 yum -y -q install sngrep --enablerepo=irontec > /dev/null 2>&1
 git clone -b 4.2 https://github.com/fusionpbx/fusionpbx.git /opt/fusionpbx > /dev/null 2>&1

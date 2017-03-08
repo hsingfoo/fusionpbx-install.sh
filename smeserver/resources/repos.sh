@@ -98,6 +98,5 @@ echo ""
 verbose "Configuring and updating repositories, please wait..."
 signal-event yum-modify
 sleep 10
-echo ""
-verbose "Yum repositories updated."
+
 echo ""

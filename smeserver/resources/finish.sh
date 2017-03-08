@@ -31,11 +31,7 @@ sed -i /opt/fusionpbx/resources/config.php -e s:"{database_password}:$database_p
 config setprop postgreslq-9.4 FusionpbxDBname fusionpbx FusionpbxDBuser fusionpbx FusionDBpass $database_password FreeswitchDBname fusionpbx FreeswitchDBuser fusionpbx FreeswitchDBpass $database_password
  
 #add the database schema
-echo ""
-verbose "Importing database schema"
 cd /opt/fusionpbx && php core/upgrade/upgrade_schema.php > /dev/null 2>&1
-echo ""
-verbose "Database schema successfully imported"
 
 #get the server FQDN
 domain_name=$(hostname -d)

@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 
 #send a message
 echo ""
-verbose "Installing PostgreSQL 9.4"
+verbose "Installing and configuring PostgreSQL 9.4"
 
 #generate a random password
 password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64)
@@ -24,8 +24,6 @@ config setprop postgresql-9.4 FreeswitchDBPassword $password
 signal-event remoteaccess-update
 
 # Initialize PostgreSQL database
-echo ""
-verbose "Initialize PostgreSQL database"
 /etc/rc.d/init.d/postgresql-9.4 initdb > /dev/null 2>&1
 
 # Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to MD5 local users
@@ -52,5 +50,3 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to fusionp
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to freeswitch;" > /dev/null 2>&1
 cd $cwd
 
-echo ""
-verbose "PostgreSQL 9.4 has been installed"

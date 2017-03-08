@@ -5,8 +5,6 @@ cd "$(dirname "$0")"
 #includes
 . ./colors.sh
 
-verbose "Installation of Freeswitch 1.6, FusionPBX 4.2, PostgreSQL 9.4, memcached, SCL and php-fpm on SME Server 9.1"
-
 #Install and configure Remi PHP versions
 echo ""
 verbose "Installing and configuring SCL php versions"
@@ -23,7 +21,7 @@ config set memcached service
 /etc/rc.d/init.d/memcached start > /dev/null 2>&1
 
 echo ""
-verbose "Installing php-fpm"
+verbose "Installing and configuring php-fpm"
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98php-fpm
 config set php-fpm service status enabled
 sed -ie "s|listen = 127.0.0.1:9000|listen = /var/run/php-fpm/php-fpm.sock|g" /etc/php-fpm.d/www.conf
@@ -59,7 +57,4 @@ HERE1
 
 expand-template /etc/httpd/conf/httpd.conf
 service httpd-e-smith restart > /dev/null 2>&1
-
-echo ""
-verbose "Pre-configuration for SME Server done"
 

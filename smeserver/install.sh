@@ -1,6 +1,8 @@
 #!/bin/sh
 clear
+
 # SME Server 9 64-bit install
+verbose "Installation of Freeswitch 1.6, FusionPBX 4.2, PostgreSQL 9.4, memcached, SCL and php-fpm on SME Server 9.1"
 
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
@@ -40,6 +42,7 @@ resources/permissions.sh
 #resources/fail2ban.sh
 
 #restart services
+echo ""
 verbose "Restarting packages for final configuration"
 service memcached start > /dev/null 2>&1
 service postgresql-9.4 restart > /dev/null 2>&1
@@ -47,7 +50,6 @@ service freeswitch start > /dev/null 2>&1
 service php-fpm start > /dev/null 2>&1
 service httpd-e-smith restart > /dev/null 2>&1
 #fail2ban
-verbose "Restart of services complete"
 
 #Execute in a new shell with php56 via SCL enabled
 scl enable php56 'bash resources/finish.sh && exit'
