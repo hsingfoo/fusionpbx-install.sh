@@ -14,8 +14,9 @@ database_port=5432
 database_username=fusionpbx
 database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
 
-#Set www_path again for this script is running SCL in a new shell, so previous exported values are not available
+#Set some paths again for this script is running SCL in a new shell, so previous exported values are not available
 export www_path=/home/e-smith/files/ibays/fusionpbx/html
+export sub_domain=tel
 
 #allow the script to use the new password
 export PGPASSWORD=$database_password
@@ -36,7 +37,7 @@ config setprop postgreslq-9.4 FusionpbxDBname fusionpbx FusionpbxDBuser fusionpb
 cd $www_path && php core/upgrade/upgrade_schema.php > /dev/null 2>&1
 
 #get the server FQDN which is used for the default FusionPBX domain and initial admin login
-domain_name=$(hostname -d)
+domain_name=$sub_domain.$(hostname -d)
 
 #get the ip address
 #domain_name=$(hostname -I | cut -d ' ' -f1)
@@ -45,7 +46,7 @@ domain_name=$(hostname -d)
 domain_uuid=$(php $www_path/resources/uuid.php);
 
 #add the domain name
-sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');" > /dev/null 2>&1
+sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
 
 #app defaults
 cd $www_path && php $www_path/core/upgrade/upgrade_domains.php
@@ -56,7 +57,7 @@ user_salt=$(php $www_path/resources/uuid.php);
 user_name=admin
 user_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g');
 password_hash=$(php -r "echo md5('$user_salt$user_password');");
-sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');" > /dev/null 2>&1
+sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');"
 
 #get the superadmin group_uuid
 group_uuid=$(sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "select group_uuid from v_groups where group_name = 'superadmin';");
@@ -65,7 +66,7 @@ group_uuid=$(echo $group_uuid | sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//')
 #add the user to the group
 group_user_uuid=$(php $www_path/resources/uuid.php);
 group_name=superadmin
-sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_group_users (group_user_uuid, domain_uuid, group_name, group_uuid, user_uuid) values('$group_user_uuid', '$domain_uuid', '$group_name', '$group_uuid', '$user_uuid');" > /dev/null 2>&1
+sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_group_users (group_user_uuid, domain_uuid, group_name, group_uuid, user_uuid) values('$group_user_uuid', '$domain_uuid', '$group_name', '$group_uuid', '$user_uuid');"
 
 #update xml_cdr url, user and password
 xml_cdr_username=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')

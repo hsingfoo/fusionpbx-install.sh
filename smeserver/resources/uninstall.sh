@@ -6,13 +6,16 @@ clear
 echo "Stopping all related services..."
 service freeswitch stop
 service postgresql-9.4 stop
-service memcached stop
 service php56-php-fpm stop
-service haveged stop
 
 echo ""
 echo "all services stopped, removing all related files, please wait..."
-db domains delete tel.sipking.com
+
+#Delete ibay and domain
+signal-event domain-delete tel.sipking.com
+signal-event ibay-delete fusionpbx
+
+#Remove packages
 yum -y remove freeswitch
 yum -y remove smeserver-webapps-common
 yum -y remove scl-util
@@ -29,7 +32,7 @@ yum -y remove ilbc2
 yum -y remove freeswitch-cli
 yum -y remove mod_proxy_wstunnel
 
-#remove directories
+#remove directories, files and symlinks
 rm -Rf /var/lib/pgsql/9.4
 rm -Rf /etc/freeswitch
 rm -Rf /etc/freeswitch.orig
