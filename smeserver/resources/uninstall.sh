@@ -3,7 +3,7 @@
 clear
 
 #Uninstall all Freeswitch and FusionPBX related files
-Echo "Stopping all related services..."
+echo "Stopping all related services..."
 service freeswitch stop
 service postgresql-9.4 stop
 service memcached stop
