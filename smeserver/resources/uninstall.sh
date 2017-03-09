@@ -13,13 +13,13 @@ service haveged stop
 echo ""
 echo "all services stopped, removing all related files, please wait..."
 db domains delete tel.sipking.com
+yum -y remove freeswitch
 yum -y remove smeserver-webapps-common
 yum -y remove scl-util
 yum -y remove smeserver-php-scl php54-* php55-* php56-*
 yum -y remove php56-php-fpm
 yum -y remove sngrep
 yum -y remove memcached
-yum -y remove freeswitch
 yum -y remove postgresql
 yum -y remove haveged
 yum -y remove ffmpeg
