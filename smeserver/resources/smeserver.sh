@@ -16,13 +16,13 @@ signal-event php-update; config set UnsavedChanges no
 #Install memcached
 echo ""
 verbose "Installing and configuring memached"
-yum -y -q install memcached php-fpm
+yum -y -q install memcached
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98memcached
 config set memcached service
 
 #Install php56-php-fpm (from remi repo for SCL environment)
 echo ""
-verbose "Installing and configuring php-fpm"
+verbose "Installing and configuring php56-php-fpm"
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98php56-php-fpm
 config set php56-php-fpm service TCPPort 9000 status enabled
 sed -ie "s|listen = 127.0.0.1:9000|listen = /var/run/php-fpm/php-fpm.sock|g" /opt/remi/php56/root/etc/php-fpm.d/www.conf

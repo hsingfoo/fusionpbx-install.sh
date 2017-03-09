@@ -27,6 +27,7 @@ yum -y remove lame
 yum -y remove ghostscript
 yum -y remove ilbc2
 yum -y remove freeswitch-cli
+yum -y remove mod_proxy_wstunnel
 
 #remove directories
 rm -Rf /var/lib/pgsql/9.4
