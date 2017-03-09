@@ -21,8 +21,8 @@ export www_path=/home/e-smith/files/ibays/fusionpbx/html
 export PGPASSWORD=$database_password
 
 #update the database password
-sudo -u postgres psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password';"
-sudo -u postgres psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';"
+sudo -u postgres psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password';" > /dev/null 2>&1
+sudo -u postgres psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';" > /dev/null 2>&1
 
 #add the config.php
 cp /usr/src/fusionpbx-install.sh/smeserver/resources/fusionpbx/config.php $www_path/resources
