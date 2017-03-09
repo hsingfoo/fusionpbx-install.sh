@@ -54,9 +54,9 @@ cd /usr/src
 verbose "Fetching Installer"
 if [ -d /usr/src/fusionpbx-install.sh ]; then
 	cd /usr/src/fusionpbx-install.sh
-	git pull  > /dev/null 2>&1
+	git pull
 else
-	git clone https://github.com/hsingfoo/fusionpbx-install.sh
+	git clone https://github.com/hsingfoo/fusionpbx-install.sh > /dev/null 2>&1
 fi
 cd /usr/src/fusionpbx-install.sh/smeserver
 ./install.sh $@

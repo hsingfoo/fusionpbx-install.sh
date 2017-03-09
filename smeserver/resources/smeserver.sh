@@ -19,7 +19,6 @@ verbose "Installing and configuring memached"
 yum -y -q install memcached php-fpm
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98memcached
 config set memcached service
-/etc/rc.d/init.d/memcached start
 
 #Install php56-php-fpm (from remi repo for SCL environment)
 echo ""
@@ -31,7 +30,6 @@ sed -ie 's/;listen.owner = nobody/listen.owner = nobody/g' /opt/remi/php56/root/
 sed -ie 's/;listen.group = nobody/listen.group = nobody/g' /opt/remi/php56/root/etc/php-fpm.d/www.conf
 sed -ie 's/user = apache/user = freeswitch/g' /opt/remi/php56/root/etc/php-fpm.d/www.conf
 sed -ie 's/group = apache/group = daemon/g' /opt/remi/php56/root/etc/php-fpm.d/www.conf
-/etc/rc.d/init.d/php56-php-fpm start
 
 #Install haveged"
 echo ""
@@ -39,7 +37,6 @@ verbose "Installing and configuring haveged"
 yum -y -q install haveged --enablerepo=epel
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98haveged
 config set haveged service
-/etc/rc.d/init.d/haveged start
 
 #Install git and sngrep
 echo ""
@@ -62,4 +59,3 @@ HERE1
 
 expand-template /etc/httpd/conf/httpd.conf
 service httpd-e-smith restart
-

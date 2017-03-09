@@ -22,6 +22,11 @@ yum -y remove memcached
 yum -y remove freeswitch
 yum -y remove postgresql
 yum -y remove haveged
+yum -y remove ffmpeg
+yum -y remove lame
+yum -y remove ghostscript
+yum -y remove ilbc2
+yum -y remove freeswitch-cli
 
 #remove directories
 rm -Rf /var/lib/pgsql/9.4
@@ -46,7 +51,5 @@ rm -Rf /usr/src/fusionpbx-install.sh
 rm -Rf /usr/src/install.sh
 
 #remove user freeswitch and remove from www group
-gpasswd -d freeswitch www
-userdel freeswitch
 echo ""
 echo "All removed, please perform a 'signal-event post-upgrade; signal-event reboot'"

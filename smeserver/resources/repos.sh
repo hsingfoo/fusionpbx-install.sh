@@ -85,6 +85,3 @@ GPGKey http://mirror.de-labrusse.fr/RPM-GPG-KEY \
 Visible no status disabled
 
 signal-event yum-modify
-sleep 15
-
-echo ""

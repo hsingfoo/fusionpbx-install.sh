@@ -1,16 +1,17 @@
 #!/bin/sh
 clear
 
-# SME Server 9 64-bit install
-verbose "Installation of Freeswitch 1.6, FusionPBX 4.2, PostgreSQL 9.4, memcached, SCL and php-fpm on SME Server 9.1"
-
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
 #Includes
 . ./resources/colors.sh
 
+# SME Server 9 64-bit install
+verbose "Installation of Freeswitch 1.6, FusionPBX 4.2, PostgreSQL 9.4, memcached, SCL and php-fpm on SME Server 9.1"
+
 # Update SME Server 
+echo ""
 verbose "Updating SME Server"
 yum -y -q update
 
@@ -44,7 +45,7 @@ verbose "Restarting packages for final configuration"
 service memcached start
 service postgresql-9.4 restart
 service freeswitch start
-service php-fpm start
+service php56-php-fpm start
 service httpd-e-smith restart
 #fail2ban
 

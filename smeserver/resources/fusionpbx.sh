@@ -43,5 +43,3 @@ chown -R www:www $www_path/*
 
 # Adjust some Debian assumptions to Generic/CentOS
 sed -i 's/= "localhost"/= "127.0.0.1"/g' $www_path/core/install/resources/classes/install_fusionpbx.php
-echo ""
-verbose "FusionPBX installed"
