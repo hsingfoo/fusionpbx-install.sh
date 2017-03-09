@@ -47,8 +47,6 @@ rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/fusionpbx
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
 expand-template /etc/httpd/conf/httpd.conf
 service httpd-e-smith restart
-rm -Rf /usr/src/fusionpbx-install.sh
-rm -Rf /usr/src/install.sh
 
 #remove user freeswitch and remove from www group
 echo ""
