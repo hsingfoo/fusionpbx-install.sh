@@ -13,15 +13,15 @@ service haveged stop
 echo ""
 echo "all services stopped, removing all related files, please wait..."
 db domains delete tel.sipking.com
-yum -y remove smeserver-webapps-common > /dev/null 2>&1
-yum -y remove scl-util > /dev/null 2>&1
-yum -y remove smeserver-php-scl php54-* php55-* php56-* > /dev/null 2>&1
-yum -y remove php56-php-fpm > /dev/null 2>&1
-yum -y remove sngrep > /dev/null 2>&1
-yum -y remove memcached > /dev/null 2>&1
-yum -y remove freeswitch > /dev/null 2>&1
-yum -y remove postgresql > /dev/null 2>&1
-yum -y remove haveged > /dev/null 2>&1
+yum -y remove smeserver-webapps-common
+yum -y remove scl-util
+yum -y remove smeserver-php-scl php54-* php55-* php56-*
+yum -y remove php56-php-fpm
+yum -y remove sngrep
+yum -y remove memcached
+yum -y remove freeswitch
+yum -y remove postgresql
+yum -y remove haveged
 
 #remove directories
 rm -Rf /var/lib/pgsql/9.4
@@ -40,8 +40,8 @@ rm -f /etc/rc.d/rc7.d/S64postgresql-9.4
 rm -f /etc/rc.d/rc7.d/S98haveged
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/fusionpbx
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
-expand-template /etc/httpd/conf/httpd.conf > /dev/null 2>&1
-service httpd-e-smith restart > /dev/null 2>&1
+expand-template /etc/httpd/conf/httpd.conf
+service httpd-e-smith restart
 rm -Rf /usr/src/fusionpbx-install.sh
 rm -Rf /usr/src/install.sh
 

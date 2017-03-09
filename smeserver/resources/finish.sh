@@ -19,8 +19,8 @@ database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 
 export PGPASSWORD=$database_password
 
 #update the database password
-sudo -u postgres psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password';" > /dev/null 2>&1
-sudo -u postgres psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';" > /dev/null 2>&1
+sudo -u postgres psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password';"
+sudo -u postgres psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';"
 
 #add the config.php
 cp /usr/src/fusionpbx-install.sh/smeserver/resources/fusionpbx/config.php /opt/fusionpbx/resources

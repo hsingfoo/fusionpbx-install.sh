@@ -7,15 +7,15 @@ cd "$(dirname "$0")"
 
 echo ""
 verbose "Installing and configuring Freeswitch 1.6, please wait..."
-yum -y -q -d 0 -e 0 install ffmpeg lame memcached ghostscript ilbc2 --enablerepo=okay,epel > /dev/null 2>&1
-yum -y -q -d 0 -e 0 install *1.6.15-1* freeswitch-sounds-en-us-callie-all freeswitch-sounds-music --enablerepo=okay,epel,remi > /dev/null 2>&1
+yum -y -q -d 0 -e 0 install ffmpeg lame memcached ghostscript ilbc2 --enablerepo=okay,epe
+yum -y -q -d 0 -e 0 install *1.6.15-1* freeswitch-sounds-en-us-callie-all freeswitch-sounds-music --enablerepo=okay,epel,remi
 
 #remove the music package to protect music on hold from package updates
 mkdir -p /usr/share/freeswitch/sounds/temp
 mv /usr/share/freeswitch/sounds/music/*000 /usr/share/freeswitch/sounds/temp
-yum -y -q remove freeswitch-sounds-music > /dev/null 2>&1
-mkdir -p /usr/share/freeswitch/sounds/music/default  > /dev/null 2>&1
-mv /usr/share/freeswitch/sounds/temp/* /usr/share/freeswitch/sounds/music/default  > /dev/null 2>&1
+yum -y -q remove freeswitch-sounds-music
+mkdir -p /usr/share/freeswitch/sounds/music/default
+mv /usr/share/freeswitch/sounds/temp/* /usr/share/freeswitch/sounds/music/default
 rm -Rf /usr/share/freeswitch/sounds/temp  > /dev/null 2>&1
 
 #create SME Server service

@@ -11,7 +11,7 @@ echo ""
 verbose "Creating Sub-domain"
 
 # How to set the correct domain via a variable???
-yum -y -q install smeserver-webapps-common --enablerepo=fws > /dev/null 2>&1
+yum -y -q install smeserver-webapps-common --enablerepo=fws
 
 #Configure the subdomain
 db domains set pbx.sipking.com domain Description "FusionPBX" Content Primary Nameservers \
@@ -45,4 +45,4 @@ HERE2
 
 #Expand httpd.conf and restart httpd-e-smith
 expand-template /etc/httpd/conf/httpd.conf
-service httpd-e-smith restart > /dev/null 2>&1
+service httpd-e-smith restart
