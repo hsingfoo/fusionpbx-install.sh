@@ -25,7 +25,7 @@ echo ""
 verbose "Installing and configuring php56-php-fpm"
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98php56-php-fpm
 config set php56-php-fpm service TCPPort 9000 status enabled
-sed -ie "s|listen = 127.0.0.1:9000|listen = /var/run/php-fpm/php-fpm.sock|g" /opt/remi/php56/root/etc/php-fpm.d/www.conf
+sed -ie "s|listen = 127.0.0.1:9000|listen = /opt/remi/php56/root/var/run/php-fpm/php-fpm.sock|g" /opt/remi/php56/root/etc/php-fpm.d/www.conf
 sed -ie 's/;listen.owner = nobody/listen.owner = nobody/g' /opt/remi/php56/root/etc/php-fpm.d/www.conf
 sed -ie 's/;listen.group = nobody/listen.group = nobody/g' /opt/remi/php56/root/etc/php-fpm.d/www.conf
 sed -ie 's/user = apache/user = freeswitch/g' /opt/remi/php56/root/etc/php-fpm.d/www.conf

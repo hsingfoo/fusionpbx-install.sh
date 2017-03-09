@@ -16,6 +16,7 @@ export fusion_version=4.2
 #Populate the accounts db with the new ibay details
 db accounts set $ibay_name ibay Name fusionpbx Group admin UserAccess wr-group-rd-everyone \
 Uid $uid Gid $uid CgiBin enabled PasswordSet no SSL enabled PublicAccess global \
+PHPBaseDir=/ \
 
 #Create the fusionpbx ibay
 signal-event ibay-create $ibay_name
