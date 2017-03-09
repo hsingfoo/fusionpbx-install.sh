@@ -14,6 +14,9 @@ database_port=5432
 database_username=fusionpbx
 database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
 
+#Set www_path again for this script is running SCL in a new shell, so previous exported values are not available
+export www_path=/home/e-smith/files/ibays/fusionpbx/html
+
 #allow the script to use the new password
 export PGPASSWORD=$database_password
 
