@@ -7,7 +7,7 @@ echo "Stopping all related services..."
 service freeswitch stop
 service postgresql-9.4 stop
 service memcached stop
-service php-fpm stop
+service php56-php-fpm stop
 service haveged stop
 
 echo ""
