@@ -6,40 +6,42 @@ cd "$(dirname "$0")"
 #Includes
 . ./colors.sh
 
-#Configure the new 'fusionpbx' ibay
-next_id=$(config get MinUid) && let "new_next_id = next_id + 1"
-db configuration set MinUid $new_next_id
+#Set parameters for the new 'fusionpbx' ibay
+uid=`perl -Mesmith::AccountsDB -e 'my  $accountdb = esmith::AccountsDB->open(); print $accountdb->get_next_uid();'`
+ibay_name=fusionpbx
+www_path=/home/e-smith/files/ibays/$ibay_name/html
+sub_domain=tel
+fusion_version=4.2
 
 #Populate the accounts db with the new ibay details
-db accounts set fusionpbx ibay Name fusionpbx \
-Group admin UserAccess wr-group-rd-everyone \
-Uid $next_id Gid $next_id CgiBin enabled PasswordSet no \
-SSL enabled PublicAccess global \
+db accounts set $ibay_name ibay Name fusionpbx Group admin UserAccess wr-group-rd-everyone \
+Uid $uid Gid $uid CgiBin enabled PasswordSet no SSL enabled PublicAccess global \
 
 #Create the fusionpbx ibay
-signal-event ibay-create fusionpbx
+signal-event ibay-create $ibay_name
 
 #Get the FQDN
-domain_name={hostname -d}
-#!!!!! Form here it is broken
+domain_name=$(hostname -d)
 
-#Configure the subdomain
-db domains set pbx.sipking.com domain Description "FusionPBX" Content Primary Nameservers \
-internet TemplatePath WebAppVirtualHost DocumentRoot /opt/fusionpbx RequireSSL enabled
+#Configure the subdomain and point to above ibay
+db domains set tel.$domain_name domain Description "FusionPBX" Content $ibay_name Nameservers internet
 
 #Create the domain
-signal-event domain-create pbx.$domain_name
-signal-event webapps-update
+signal-event domain-create $sub_domain.$domain_name
 
 #Install and configure FusionPBX
 echo ""
 verbose "Installing and configuring FusionPBX 4.2.x"
-yum -y -q install git > /dev/null 2>&1
-yum -y -q install sngrep --enablerepo=irontec > /dev/null 2>&1
-git clone -b 4.2 https://github.com/fusionpbx/fusionpbx.git /opt/fusionpbx > /dev/null 2>&1
+
+#Provide a little time for previous processes are finished and/or closed, otherwise git will fail!
+sleep 1
+
+rm -Rf $www_path/*
+git clone -b $fusion_version https://github.com/fusionpbx/fusionpbx.git $www_path
+chown admin:shared $www_path
+chown -R www:www $www_path/*
 
 # Adjust some Debian assumptions to Generic/CentOS
-sed -i 's/= "localhost"/= "127.0.0.1"/g' /opt/fusionpbx/core/install/resources/classes/install_fusionpbx.php
-chown -R www:www /opt/fusionpbx
+sed -i 's/= "localhost"/= "127.0.0.1"/g' $www_path/core/install/resources/classes/install_fusionpbx.php
 echo ""
 verbose "FusionPBX installed"

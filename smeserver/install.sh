@@ -12,16 +12,13 @@ cd "$(dirname "$0")"
 
 # Update SME Server 
 verbose "Updating SME Server"
-yum -y -q update > /dev/null 2>&1
+yum -y -q update
 
 # Installing repositories
 resources/repos.sh
 
 # Installing SME Server specifics
 resources/smeserver.sh
-
-#Installing SME Server Sub-domain
-resources/smeserver-subdomain.sh
 
 #FreeSWITCH
 resources/switch/smeserver-freeswitch.sh
@@ -44,11 +41,11 @@ resources/permissions.sh
 #restart services
 echo ""
 verbose "Restarting packages for final configuration"
-service memcached start > /dev/null 2>&1
-service postgresql-9.4 restart > /dev/null 2>&1
-service freeswitch start > /dev/null 2>&1
-service php-fpm start > /dev/null 2>&1
-service httpd-e-smith restart > /dev/null 2>&1
+service memcached start
+service postgresql-9.4 restart
+service freeswitch start
+service php-fpm start
+service httpd-e-smith restart
 #fail2ban
 
 #Execute in a new shell with php56 via SCL enabled

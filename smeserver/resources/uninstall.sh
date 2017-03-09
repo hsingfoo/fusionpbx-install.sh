@@ -12,7 +12,7 @@ service haveged stop
 
 echo ""
 echo "all services stopped, removing all related files, please wait..."
-db domains delete pbx.sipking.com
+db domains delete tel.sipking.com
 yum -y remove smeserver-webapps-common > /dev/null 2>&1
 yum -y remove scl-util > /dev/null 2>&1
 yum -y remove smeserver-php-scl php54-* php55-* php56-* > /dev/null 2>&1
@@ -23,6 +23,7 @@ yum -y remove freeswitch > /dev/null 2>&1
 yum -y remove postgresql > /dev/null 2>&1
 yum -y remove haveged > /dev/null 2>&1
 
+#remove directories
 rm -Rf /var/lib/pgsql/9.4
 rm -Rf /etc/freeswitch
 rm -Rf /etc/freeswitch.orig
@@ -44,5 +45,8 @@ service httpd-e-smith restart > /dev/null 2>&1
 rm -Rf /usr/src/fusionpbx-install.sh
 rm -Rf /usr/src/install.sh
 
+#remove user freeswitch and remove from www group
+gpasswd -d freeswitch www
+userdel freeswitch
 echo ""
 echo "All removed, please perform a 'signal-event post-upgrade; signal-event reboot'"

@@ -41,6 +41,12 @@ ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98haveged
 config set haveged service
 /etc/rc.d/init.d/haveged start > /dev/null 2>&1
 
+#Install git and sngrep
+echo ""
+verbose "Installing and configuring git and sngrep"
+yum -y -q install git > /dev/null 2>&1
+yum -y -q install sngrep --enablerepo=irontec > /dev/null 2>&1
+
 #Install and configure Apache proxy ws_tunnel
 echo ""
 verbose "Installing and configuring mod proxy wstunnel"
