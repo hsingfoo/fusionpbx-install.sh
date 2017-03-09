@@ -48,6 +48,8 @@ rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
 expand-template /etc/httpd/conf/httpd.conf
 service httpd-e-smith restart
 
-#remove user freeswitch and remove from www group
+#remove users
+userdel postgres
+
 echo ""
 echo "All removed, please perform a 'signal-event post-upgrade; signal-event reboot'"
