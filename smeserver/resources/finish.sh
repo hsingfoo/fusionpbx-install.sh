@@ -36,7 +36,7 @@ config setprop postgreslq-9.4 FusionpbxDBname fusionpbx FusionpbxDBuser fusionpb
  
 #add the database schema
 php -v
-cd $www_path && php core/upgrade/upgrade_schema.php
+cd $www_path && php core/upgrade/upgrade_schema.php > /dev/null 2>&1
 
 #get the server FQDN which is used for the default FusionPBX domain and initial admin login
 domain_name=$sub_domain.$(hostname -d)
