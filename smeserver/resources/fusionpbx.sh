@@ -38,7 +38,8 @@ verbose "Installing and configuring FusionPBX 4.2.x"
 sleep 1
 
 rm -Rf $www_path/*
-git clone -b $fusion_version https://github.com/fusionpbx/fusionpbx.git $www_path
+#git clone -b $fusion_version https://github.com/fusionpbx/fusionpbx.git $www_path
+git clone https://github.com/fusionpbx/fusionpbx.git $www_path
 chown admin:shared $www_path
 chown -R www:www $www_path/*
 
