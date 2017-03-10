@@ -14,4 +14,4 @@ find /usr/share/freeswitch -type d -exec chmod 770 {} \;
 find /etc/freeswitch -type f -exec chmod 664 {} \;
 find /var/lib/freeswitch -type f -exec chmod 664 {} \;
 find /var/log/freeswitch -type f -exec chmod 664 {} \;
-find /usr/share/freeswitch -type f -exec chmod 664 {} \;
+find /usr/share/freeswitch -type f -exec chmod 770 {} \;

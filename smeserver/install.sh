@@ -33,7 +33,6 @@ resources/postgres.sh
 # FusionPBX to FreeSWITCH configs
 #verbose "Configuring freeswitch"
 resources/switch/conf-copy.sh
-resources/permissions.sh
 #verbose "freeswitch configured"
 
 #Fail2ban
@@ -51,3 +50,4 @@ service httpd-e-smith restart
 
 #Execute in a new shell with php56 via SCL enabled
 scl enable php56 'bash resources/finish.sh && exit'
+resources/permissions.sh

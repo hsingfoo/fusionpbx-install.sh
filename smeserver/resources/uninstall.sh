@@ -41,11 +41,11 @@ rm -Rf /usr/share/freeswitch
 rm -Rf /usr/share/lib64/freeswitch
 rm -Rf /usr/lib64/freeswitch
 rm -Rf /var/run/freeswitch
-rm -f /etc/rc.d/rc7.d/S98memcached
+rm -f /etc/rc.d/rc7.d/S90memcached
 rm -f /etc/rc.d/rc7.d/S98php56-php-fpm
 rm -f /etc/rc.d/rc7.d/S99freeswitch
 rm -f /etc/rc.d/rc7.d/S64postgresql-9.4
-rm -f /etc/rc.d/rc7.d/S98haveged
+rm -f /etc/rc.d/rc7.d/S90haveged
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/fusionpbx
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
 expand-template /etc/httpd/conf/httpd.conf
