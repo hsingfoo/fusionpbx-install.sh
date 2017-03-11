@@ -28,9 +28,9 @@ signal-event remoteaccess-update
 /etc/rc.d/init.d/postgresql-9.4 initdb
 
 # Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to MD5 local users
-sed -i 's/\(local  *all  *all    *\)peer/\1trust/' /var/lib/pgsql/9.4/data/pg_hba.conf
-sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1trust/' /var/lib/pgsql/9.4/data/pg_hba.conf
-sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/9.4/data/pg_hba.conf
+#sed -i 's/\(local  *all  *all    *\)peer/\1trust/' /var/lib/pgsql/9.4/data/pg_hba.conf
+sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
+sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
 
 #Add user postgres to the www group
 usermod -a -G www postgres
@@ -41,8 +41,8 @@ usermod -a -G www postgres
 # Move to /tmp to prevent a red herring error when running sudo with psql
 cwd=$(pwd)
 cd /tmp
-sudo -u postgres psql -c "DROP SCHEMA public cascade;";
-sudo -u postgres psql -c "CREATE SCHEMA public;";
+sudo -u postgres psql -d fusionpbx -c "DROP SCHEMA public cascade;";
+sudo -u postgres psql -d fusionpbx -c "CREATE SCHEMA public;";
 sudo -u postgres psql -c "CREATE DATABASE fusionpbx";
 sudo -u postgres psql -c "CREATE DATABASE freeswitch";
 sudo -u postgres psql -c "CREATE ROLE fusionpbx WITH SUPERUSER LOGIN PASSWORD '$password';"

@@ -79,6 +79,9 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_project_path}:
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_user}:$xml_cdr_username:"
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr_password:"
 
+#Store xml_cdr_conf username and password in the Freeswitch db key
+config setprop freeswitch XML_CDR_User $xml_cdr_username XML_CDR_Password $xml_cdr_password
+
 #app defaults
 cd $www_path && php $www_path/core/upgrade/upgrade_domains.php
 
@@ -94,6 +97,8 @@ error "Please note details below and reboot your system"
 error "           'config show fusionpbx'             "
 error "                    and                        "
 error "        'config show prostgresql-9.4'          "
+error "                    and                        "
+error "           'config show freeswitch             "
 error "            will show the details              "
 echo ""
 echo "   Use a web browser to login."
