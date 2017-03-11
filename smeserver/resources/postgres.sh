@@ -10,8 +10,8 @@ echo ""
 verbose "Installing and configuring PostgreSQL 9.4"
 
 #generate a random password
-#password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64)
-password=supersecret
+password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64)
+#password=supersecret
 #Install and configure PostgreSQL 9.4
 yum -y -q install postgresql94-server postgresql94-contrib postgresql94 --enablerepo=postgresql94
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64postgresql-9.4
