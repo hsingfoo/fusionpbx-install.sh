@@ -12,12 +12,15 @@ cd "$(dirname "$0")"
 database_host=127.0.0.1
 database_port=5432
 database_username=fusionpbx
-database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
-#database_password=supersecret
+#database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
+database_password=supersecret
+
+#Save final db password
+config setprop postgresql-9.4 PostgresqlPassword $database_password
 
 #Set some paths again for this script is running SCL in a new shell, so previous exported values are not available
-export www_path=/home/e-smith/files/ibays/fusionpbx/html
-export sub_domain=tel
+#export www_path=/home/e-smith/files/ibays/fusionpbx/html
+#export sub_domain=tel
 
 #allow the script to use the new password
 export PGPASSWORD=$database_password
