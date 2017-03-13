@@ -57,5 +57,6 @@ cat <<HERE1 > /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModu
 }
 HERE1
 
+#Restart Apache
 expand-template /etc/httpd/conf/httpd.conf
 service httpd-e-smith restart

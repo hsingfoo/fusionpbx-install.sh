@@ -59,5 +59,5 @@ else
 	git clone https://github.com/hsingfoo/fusionpbx-install.sh
 fi
 cd /usr/src/fusionpbx-install.sh/smeserver
-./install.sh $@
+./install_smeserver.sh $@
 
