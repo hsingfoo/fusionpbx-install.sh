@@ -22,4 +22,4 @@ resources/repos.sh
 resources/smeserver.sh
 
 # switch to SCL enabled environment
-scl enable php56 'bash resources/install_scl_enabled.sh && exit'
+scl enable php56 'bash install_scl_enabled.sh && exit'
