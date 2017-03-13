@@ -52,7 +52,7 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to fusionp
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to freeswitch;"
 
 # Setting back postgresql authentication to md5
-sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
+#sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
 
 cd $cwd
 
