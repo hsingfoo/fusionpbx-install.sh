@@ -17,7 +17,6 @@ signal-event ibay-delete fusionpbx
 
 #Remove packages
 yum -y remove freeswitch
-yum -y remove smeserver-webapps-common
 yum -y remove scl-util
 yum -y remove smeserver-php-scl php54-* php55-* php56-*
 yum -y remove php56-php-fpm

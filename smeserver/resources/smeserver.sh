@@ -44,8 +44,7 @@ config set haveged service status enabled
 
 #Install git and sngrep
 echo ""
-verbose "Installing and configuring git and sngrep"
-yum -y -q install git
+verbose "Installing and configuring sngrep"
 yum -y -q install sngrep --enablerepo=irontec
 
 #Install and configure Apache proxy ws_tunnel
