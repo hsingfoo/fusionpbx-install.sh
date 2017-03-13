@@ -5,6 +5,10 @@ cd "$(dirname "$0")"
 #includes
 . ./colors.sh
 
+#set variables
+export www_path=/home/e-smith/files/ibays/$ibay_name/html
+export sub_domain=tel
+
 #Install and configure Remi PHP versions
 echo ""
 verbose "Installing and configuring SCL php versions"

@@ -9,8 +9,6 @@ cd "$(dirname "$0")"
 #Set parameters for the new 'fusionpbx' ibay
 uid=`perl -Mesmith::AccountsDB -e 'my  $accountdb = esmith::AccountsDB->open(); print $accountdb->get_next_uid();'`
 export ibay_name=fusionpbx
-export www_path=/home/e-smith/files/ibays/$ibay_name/html
-export sub_domain=tel
 export fusion_version=4.2
 
 #Populate the accounts db with the new ibay details

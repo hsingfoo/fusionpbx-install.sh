@@ -54,7 +54,6 @@ cd /tmp
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
 #sudo -u postgres psql -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
 
-
 #app defaults
 cd $www_path && php $www_path/core/upgrade/upgrade_domains.php
 
@@ -82,7 +81,6 @@ sed -i 's/\(local  *all  *all    *\)trust/\1peer/' /var/lib/pgsql/9.4/data/pg_hb
 sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
 sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/9.4/data/pg_hba.conf
 
-
 #update xml_cdr url, user and password
 xml_cdr_username=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')
 xml_cdr_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')
@@ -91,9 +89,6 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{domain_name}:127
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_project_path}::"
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_user}:$xml_cdr_username:"
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr_password:"
-
-#Store xml_cdr_conf username and password in the Freeswitch db key
-config setprop freeswitch XML_CDR_User $xml_cdr_username XML_CDR_Password $xml_cdr_password
 
 #app defaults
 cd $www_path && php $www_path/core/upgrade/upgrade_domains.php
