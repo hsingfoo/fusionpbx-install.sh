@@ -10,6 +10,8 @@ cd "$(dirname "$0")"
 uid=`perl -Mesmith::AccountsDB -e 'my  $accountdb = esmith::AccountsDB->open(); print $accountdb->get_next_uid();'`
 export ibay_name=fusionpbx
 export fusion_version=4.2
+export www_path=/home/e-smith/files/ibays/$ibay_name/html
+export sub_domain=tel
 
 #Populate the accounts db with the new ibay details
 db accounts set $ibay_name ibay Name fusionpbx Group admin UserAccess wr-group-rd-everyone \
@@ -23,7 +25,7 @@ signal-event ibay-create $ibay_name
 domain_name=$(hostname -d)
 
 #Configure the subdomain and point to above ibay
-db domains set tel.$domain_name domain Description "FusionPBX" Content $ibay_name Nameservers internet
+db domains set $sub_domain.$domain_name domain Description "FusionPBX" Content $ibay_name Nameservers internet
 
 #Create the domain
 signal-event domain-create $sub_domain.$domain_name
