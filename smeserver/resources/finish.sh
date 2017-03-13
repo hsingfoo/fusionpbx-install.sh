@@ -50,6 +50,7 @@ domain_name=$sub_domain.$(hostname -d)
 domain_uuid=$(php $www_path/resources/uuid.php);
 
 #add the domain name
+cd /tmp
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
 #sudo -u postgres psql -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
 
