@@ -59,6 +59,7 @@ if [ -d /usr/src/fusionpbx-install.sh ]; then
 else
 	git clone https://github.com/hsingfoo/fusionpbx-install.sh
 fi
+chmod -R 755 /usr/src/fusionpbx-install.sh
 cd /usr/src/fusionpbx-install.sh/smeserver
 ./install_smeserver.sh $@
 
