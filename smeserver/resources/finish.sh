@@ -19,8 +19,8 @@ database_password=supersecret
 config setprop postgresql-9.4 PostgresqlPassword $database_password
 
 #Set some paths again for this script is running SCL in a new shell, so previous exported values are not available
-export www_path=/home/e-smith/files/ibays/fusionpbx/html
-export sub_domain=tel
+www_path=/home/e-smith/files/ibays/fusionpbx/html
+sub_domain=tel
 
 #allow the script to use the new password
 export PGPASSWORD=$database_password

@@ -17,7 +17,7 @@ chmod -Rf 700 /var/lib/php/session
 chown -R freeswitch:daemon /etc/freeswitch
 chown -R freeswitch:daemon /var/lib/freeswitch
 chown -R freeswitch:daemon /usr/share/freeswitch
-chown -R freeswitch:daemon /var/log/freeswitch
+chown -R www:www /var/log/freeswitch
 chown -R freeswitch:daemon /var/run/freeswitch
 
 find /etc/freeswitch -type d -exec chmod 770 {} \;
