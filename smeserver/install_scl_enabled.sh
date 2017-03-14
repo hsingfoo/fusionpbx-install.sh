@@ -29,7 +29,7 @@ resources/switch/conf-copy.sh
 echo ""
 verbose "Restarting packages for final configuration"
 service memcached start
-service postgresql-$database_version restart
+service postgresql-9.6 restart
 service freeswitch start
 service php56-php-fpm start
 service httpd-e-smith restart
