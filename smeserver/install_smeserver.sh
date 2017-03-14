@@ -5,6 +5,7 @@ clear
 cd "$(dirname "$0")"
 
 #Includes
+. ./resources/config.sh
 . ./resources/colors.sh
 
 # SME Server 9 64-bit install

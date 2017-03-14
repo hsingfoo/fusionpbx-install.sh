@@ -3,11 +3,8 @@
 cd "$(dirname "$0")"
 
 #includes
+. ./config.sh
 . ./colors.sh
-
-#set variables
-export www_path=/home/e-smith/files/ibays/$ibay_name/html
-export sub_domain=tel
 
 #Install and configure Remi PHP versions
 echo ""

@@ -3,6 +3,8 @@
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
+#Includes
+. ../config.sh
 . ../colors.sh
 
 echo ""

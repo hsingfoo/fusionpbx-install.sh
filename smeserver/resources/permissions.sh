@@ -3,9 +3,11 @@
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
+#Includes
+. ./config.sh
 . ./colors.sh
-# Set ownership and permission
 
+# Set ownership and permission
 mkdir -p /var/lib/php/session
 chown -R freeswitch:daemon /var/lib/php/session
 chmod -Rf 700 /var/lib/php/session

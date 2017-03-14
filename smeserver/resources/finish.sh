@@ -6,21 +6,11 @@
 cd "$(dirname "$0")"
 
 #includes
+. ./config.sh
 . ./colors.sh
 
-#database details
-database_host=127.0.0.1
-database_port=5432
-database_username=fusionpbx
 #database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
-database_password=supersecret
-
-#Save final db password
-config setprop postgresql-9.4 PostgresqlPassword $database_password
-
-#Set some paths again for this script is running SCL in a new shell, so previous exported values are not available
-www_path=/home/e-smith/files/ibays/fusionpbx/html
-sub_domain=tel
+database_password=supersecret #debugging
 
 #allow the script to use the new password
 export PGPASSWORD=$database_password
@@ -62,7 +52,7 @@ user_uuid=$(php $www_path/resources/uuid.php);
 user_salt=$(php $www_path/resources/uuid.php);
 user_name=admin
 #user_password=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g');
-user_password=supersecret
+user_password=supersecret #Debugging
 password_hash=$(php -r "echo md5('$user_salt$user_password');");
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -t -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');"
 #sudo -u postgres psql -c "insert into v_users (user_uuid, domain_uuid, username, password, salt, user_enabled) values('$user_uuid', '$domain_uuid', '$user_name', '$password_hash', '$user_salt', 'true');"
@@ -96,6 +86,9 @@ cd $www_path && php $www_path/core/upgrade/upgrade_domains.php
 
 # Setting fusionpbx SME Server db keys
 config set fusionpbx configuration DomainName $domain_name DBName fusionpbx DBUser $user_name DBPassword $user_password XMLCDRUser $xml_cdr_username XMLCDRPassword $xml_cdr_password
+
+# Restart freeswitch with new settings
+service freeswitch restart
 
 #welcome message
 echo ""
