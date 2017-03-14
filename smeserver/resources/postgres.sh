@@ -23,7 +23,7 @@ if [ .$database_version = ."9.4" ]; then
 else
 	service_name=postgresql-9.6 ; version=96 ; dbbin_name=postgresql96
 fi
-yum -y -q install $dbbin_name-server $dbbin_name-contrib $dbbin_name --enablerepo=$dbbin_name
+yum -y -q install $dbbin_name-server $dbbin_name-contrib $dbbin_name luapgsql --enablerepo=$dbbin_name
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64$service_name
 config set $service_name service 
 config setprop $service_name status enabled
