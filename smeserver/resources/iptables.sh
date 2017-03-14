@@ -12,7 +12,6 @@ verbose "Configuring IPTables"
 
 #Create custom template fragment
 mkdir -p /etc/e-smith/templates-custom/etc/rc.d/init.d/masq/
-nano -w /etc/e-smith/templates-custom/etc/rc.d/init.d/masq/40Freeswitch
 cat <<HERE2 > /etc/e-smith/templates-custom/etc/rc.d/init.d/masq/40Freeswitch
 iptables -A INPUT -j DROP -p udp --dport 5060:5061 -m string --string "friendly-scanner" --algo bm
 iptables -A INPUT -j DROP -p udp --dport 5060:5061 -m string --string "sipcli/" --algo bm

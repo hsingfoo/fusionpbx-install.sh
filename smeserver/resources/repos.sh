@@ -15,6 +15,12 @@ Name "PostgreSQL 9.4" \
 BaseURL 'https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-$releasever-$basearch' \
 Visable no status disabled
 
+#Define yum repository for 9.6
+/sbin/e-smith/db yum_repositories set postgresql94 repository \
+Name "PostgreSQL 9.6" \
+BaseURL 'https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-$releasever-$basearch' \
+Visable no status disabled
+
 #define yum repository for Freeswitch 6.x
 /sbin/e-smith/db yum_repositories set okay repository \
 BaseURL 'http://repo.okay.com.mx/centos/$releasever/$basearch/release'/ \
