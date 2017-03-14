@@ -17,12 +17,12 @@ password=supersecret
 
 #Install and configure PostgreSQL
 if [ $database_version="94" ]; then
-	service_name=postgresql-9.4 ; version=94
+	service_name=postgresql-9.4 ; version=94 ; dbbin_name=postgresql94
 else
-	service_name=postgresql-9.4 ; version=96
+	service_name=postgresql-9.4 ; version=96 ; dbbin_name=postgresql96
 fi
 	
-yum -y -q install $servicename-server $service_name-contrib $service_name --enablerepo=$service_name
+yum -y -q install $dbbin_name-server $dbbin_name-contrib $dbbin_name --enablerepo=$dbbin_name
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64$service_name
 config set $service_name service 
 config setprop $service_name status enabled
