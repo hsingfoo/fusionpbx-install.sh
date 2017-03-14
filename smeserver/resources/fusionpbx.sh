@@ -34,16 +34,6 @@ signal-event domain-create $sub_domain.$domain_name
 #Install and configure FusionPBX
 echo ""
 verbose "Installing and configuring FusionPBX"
-if [ $system_branch = "master" ]; then
-	verbose "Using master"
-	branch=""
-else
-	system_major=$(git ls-remote --heads https://github.com/fusionpbx/fusionpbx.git | cut -d/ -f 3 | grep -P '^\d+\.\d+' | sort | tail -n 1 | cut -d. -f1)
-	system_minor=$(git ls-remote --tags https://github.com/fusionpbx/fusionpbx.git $system_major.* | cut -d/ -f3 |  grep -P '^\d+\.\d+' | sort | tail -n 1 | cut -d. -f2)
-	system_version=$system_major.$system_minor
-	verbose "Using version $system_version"
-	branch="-b $system_version"
-fi
 
 #Provide a little time for previous processes are finished and/or closed, otherwise git will fail!
 sleep 1

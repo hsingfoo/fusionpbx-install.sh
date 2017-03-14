@@ -16,23 +16,23 @@ verbose "Installing and configuring PostgreSQL $database_version"
 password=supersecret
 
 #Install and configure PostgreSQL
-if $database_version="94"; then
-	version=9.4
+if [ $database_version="94" ]; then
+	service_name=postgresql-9.4 ; version=94
 else
-	version=9.6
+	service_name=postgresql-9.4 ; version=96
 fi
 	
-yum -y -q install postgresql$database_version-server postgresql$database_version-contrib postgresql$database_version --enablerepo=postgresql$database-version
-ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64postgresql-$version
-config set postgresql-$version service 
-config setprop postgresql-$version status enabled
-config setprop postgresql-$version TCPPort 5432
-config setprop postgresql-$version UDPPort 5432
-config setprop postgresql-$version access private
+yum -y -q install $servicename-server $service_name-contrib $service_name --enablerepo=$service_name
+ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64$service_name
+config set $service_name service 
+config setprop $service_name status enabled
+config setprop $service_name TCPPort 5432
+config setprop $service_name UDPPort 5432
+config setprop $service_name access private
 signal-event remoteaccess-update
 
 # Initialize PostgreSQL database
-/etc/rc.d/init.d/postgresql-$version initdb
+/etc/rc.d/init.d/$service_name initdb
 
 # Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to MD5 local users
 #sed -i 's/\(local  *all  *all    *\)peer/\1md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
@@ -43,7 +43,7 @@ sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1md5/' /var/lib/pgsql/$versio
 # usermod -a -G www postgres
 
 # Start Postgresql
-/etc/rc.d/init.d/postgresql-$version start
+/etc/rc.d/init.d/$service_name start
 
 # Move to /tmp to prevent a red herring error when running sudo with psql
 cwd=$(pwd)
