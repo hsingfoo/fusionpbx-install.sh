@@ -16,7 +16,7 @@ verbose "Installing and configuring PostgreSQL $database_version"
 password=supersecret
 
 #Install and configure PostgreSQL
-if .$database_version="94"; then
+if $database_version="94"; then
 	version=9.4
 else
 	version=9.6

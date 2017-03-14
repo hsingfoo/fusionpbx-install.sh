@@ -34,7 +34,7 @@ signal-event domain-create $sub_domain.$domain_name
 #Install and configure FusionPBX
 echo ""
 verbose "Installing and configuring FusionPBX"
-if [ .$system_branch = "master" ]; then
+if [ $system_branch = "master" ]; then
 	verbose "Using master"
 	branch=""
 else
