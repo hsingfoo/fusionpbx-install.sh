@@ -1,5 +1,5 @@
 # FusionPBX Settings
-system_branch=stable            					# master, stable
+system_branch=master            					# master, stable
 
 # FreeSWITCH Settings
 switch_branch=master            					# master, stable

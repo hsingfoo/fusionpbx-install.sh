@@ -17,7 +17,7 @@ password=supersecret
 
 #Install and configure PostgreSQL
 echo $database_version
-if [ $database_version="94" ]; then
+if [ .$database_version = ."94" ]; then
 	service_name=postgresql-9.4 ; version=94 ; dbbin_name=postgresql94
 else
 	service_name=postgresql-9.6 ; version=96 ; dbbin_name=postgresql96
