@@ -68,9 +68,9 @@ sudo -u postgres psql --host=$database_host --port=$database_port --username=$da
 #sudo -u postgres psql -c "insert into v_group_users (group_user_uuid, domain_uuid, group_name, group_uuid, user_uuid) values('$group_user_uuid', '$domain_uuid', '$group_name', '$group_uuid', '$user_uuid');"
 
 # Setting back postgresql authentication from trust to md5
-#sed -i 's/\(local  *all  *all    *\)trust/\1peer/' /var/lib/pgsql/9.4/data/pg_hba.conf
-#sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
-#sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/9.4/data/pg_hba.conf
+sed -i 's/\(local  *all  *all    *\)peer/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
+sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)trust/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
+sed -i 's/\(host  *all  *all  *::1\/128  *\)trust/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 
 #update xml_cdr url, user and password
 xml_cdr_username=$(dd if=/dev/urandom bs=1 count=12 2>/dev/null | base64 | sed 's/[=\+//]//g')

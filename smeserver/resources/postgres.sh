@@ -35,7 +35,7 @@ signal-event remoteaccess-update
 /etc/rc.d/init.d/$service_name initdb
 
 # Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to md5 and trust
-sed -i 's/\(local  *all  *all    *\)peer/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
+#sed -i 's/\(local  *all  *all    *\)peer/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1trust/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 
@@ -58,9 +58,5 @@ sudo -u postgres psql -c "CREATE ROLE freeswitch WITH SUPERUSER LOGIN PASSWORD '
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE fusionpbx to fusionpbx;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to fusionpbx;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to freeswitch;"
-
-#set back pg_hba.conf authentication method, leaving the existing md5 alone
-sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
-sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 
 cd $cwd
