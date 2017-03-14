@@ -21,6 +21,8 @@ resources/repos.sh
 
 # Installing SME Server specifics
 resources/smeserver.sh
+# Adjusting IP Tables
+resources/iptables.sh
 
 # switch to SCL enabled environment
 scl enable php56 'bash install_scl_enabled.sh && exit'
