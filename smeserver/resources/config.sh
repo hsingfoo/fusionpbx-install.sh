@@ -2,7 +2,7 @@
 system_branch=master            					# master, stable
 
 # FreeSWITCH Settings
-switch_version=1.6.15-1            					# full version
+switch_version=1.6.14-3            					# full version
 
 # General Settings
 php_version=5                   					# PHP version 5 or 7

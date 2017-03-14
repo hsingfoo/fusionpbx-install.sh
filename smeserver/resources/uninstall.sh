@@ -32,7 +32,7 @@ yum -y remove freeswitch-cli
 yum -y remove mod_proxy_wstunnel
 
 #remove directories, files and symlinks
-rm -Rf /var/lib/pgsql/9.4
+rm -Rf /var/lib/pgsql
 rm -Rf /etc/freeswitch
 rm -Rf /etc/freeswitch.orig
 rm -Rf /var/lib/freeswitch
@@ -43,7 +43,7 @@ rm -Rf /var/run/freeswitch
 rm -f /etc/rc.d/rc7.d/S90memcached
 rm -f /etc/rc.d/rc7.d/S98php56-php-fpm
 rm -f /etc/rc.d/rc7.d/S99freeswitch
-rm -f /etc/rc.d/rc7.d/S64postgresql-9.4
+rm -f /etc/rc.d/rc7.d/S64postgresql-*
 rm -f /etc/rc.d/rc7.d/S90haveged
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/fusionpbx
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
