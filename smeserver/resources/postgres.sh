@@ -16,12 +16,14 @@ verbose "Installing and configuring PostgreSQL $database_version"
 password=supersecret
 
 #Install and configure PostgreSQL
+echo $database_version
 if [ $database_version="94" ]; then
 	service_name=postgresql-9.4 ; version=94 ; dbbin_name=postgresql94
 else
 	service_name=postgresql-9.6 ; version=96 ; dbbin_name=postgresql96
 fi
-echo $dbbin_name	
+echo $service_name and $dbbin_name	
+echo $dbbin_name-server
 yum -y -q install $dbbin_name-server $dbbin_name-contrib $dbbin_name --enablerepo=$dbbin_name
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64$service_name
 config set $service_name service 
