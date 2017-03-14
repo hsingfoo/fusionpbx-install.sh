@@ -15,9 +15,11 @@ verbose "Installing and configuring PostgreSQL $database_version"
 #password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64)
 password=supersecret
 
+#echo $version | sed 's/[.,]//g'
+
 #Install and configure PostgreSQL
 echo $database_version
-if [ .$database_version = ."94" ]; then
+if [ .$database_version = ."9.4" ]; then
 	service_name=postgresql-9.4 ; version=94 ; dbbin_name=postgresql94
 else
 	service_name=postgresql-9.6 ; version=96 ; dbbin_name=postgresql96
@@ -38,8 +40,8 @@ signal-event remoteaccess-update
 
 # Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to MD5 local users
 #sed -i 's/\(local  *all  *all    *\)peer/\1md5/' /var/lib/pgsql/9.4/data/pg_hba.conf
-sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1trust/' /var/lib/pgsql/$version/data/pg_hba.conf
-sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/$version/data/pg_hba.conf
+sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1trust/' /var/lib/pgsql/$database_verion/data/pg_hba.conf
+sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 
 #Add user postgres to the www group
 # usermod -a -G www postgres
