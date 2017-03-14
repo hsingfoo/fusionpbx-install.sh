@@ -18,27 +18,23 @@ password=supersecret
 #echo $version | sed 's/[.,]//g'
 
 #Install and configure PostgreSQL
-echo $database_version
 if [ .$database_version = ."9.4" ]; then
 	service_name=postgresql-9.4 ; version=94 ; dbbin_name=postgresql94
 else
 	service_name=postgresql-9.6 ; version=96 ; dbbin_name=postgresql96
 fi
-echo $service_name and $dbbin_name	
-echo $dbbin_name-server
 yum -y -q install $dbbin_name-server $dbbin_name-contrib $dbbin_name --enablerepo=$dbbin_name
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64$service_name
 config set $service_name service 
 config setprop $service_name status enabled
 config setprop $service_name TCPPort 5432
-config setprop $service_name UDPPort 5432
 config setprop $service_name access private
 signal-event remoteaccess-update
 
 # Initialize PostgreSQL database
 /etc/rc.d/init.d/$service_name initdb
 
-# Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to MD5 local users
+# Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to md5 and trust
 sed -i 's/\(local  *all  *all    *\)peer/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1trust/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/$database_version/data/pg_hba.conf
@@ -63,7 +59,7 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE fusionpbx to fusionpb
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to fusionpbx;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to freeswitch;"
 
-#set back pg_hba.conf authentication method
+#set back pg_hba.conf authentication method, leaving the existing md5 alone
 sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 
