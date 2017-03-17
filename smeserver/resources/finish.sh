@@ -10,14 +10,14 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
-database_password=supersecret #debugging
+#database_password=supersecret #debugging
 
 #allow the script to use the new password
 export PGPASSWORD=$database_password
 
 #update the database password
-sudo -u postgres psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password';"
-sudo -u postgres psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';"
+#sudo -u postgres psql -c "ALTER USER fusionpbx WITH PASSWORD '$database_password';"
+#sudo -u postgres psql -c "ALTER USER freeswitch WITH PASSWORD '$database_password';"
 
 #add the config.php
 cp /usr/src/fusionpbx-install.sh/smeserver/resources/fusionpbx/config.php $www_path/resources

@@ -11,10 +11,6 @@ cd "$(dirname "$0")"
 echo ""
 verbose "Installing and configuring PostgreSQL $database_version"
 
-#generate a random password
-#password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64)
-password=supersecret
-
 #echo $version | sed 's/[.,]//g'
 
 #Install and configure PostgreSQL
@@ -50,11 +46,11 @@ cwd=$(pwd)
 cd /tmp
 #sudo -u postgres psql -d fusionpbx -c "DROP SCHEMA public cascade;";
 #sudo -u postgres psql -d fusionpbx -c "CREATE SCHEMA public;";
-sudo -u postgres psql -c "CREATE ROLE root WITH SUPERUSER LOGIN";
+#sudo -u postgres psql -c "CREATE ROLE root WITH SUPERUSER LOGIN";
 sudo -u postgres psql -c "CREATE DATABASE fusionpbx";
 sudo -u postgres psql -c "CREATE DATABASE freeswitch";
-sudo -u postgres psql -c "CREATE ROLE fusionpbx WITH SUPERUSER LOGIN PASSWORD '$password';"
-sudo -u postgres psql -c "CREATE ROLE freeswitch WITH SUPERUSER LOGIN PASSWORD '$password';"
+sudo -u postgres psql -c "CREATE ROLE fusionpbx WITH SUPERUSER LOGIN PASSWORD '$database_password';"
+sudo -u postgres psql -c "CREATE ROLE freeswitch WITH SUPERUSER LOGIN PASSWORD '$database_password';"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE fusionpbx to fusionpbx;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to fusionpbx;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE freeswitch to freeswitch;"

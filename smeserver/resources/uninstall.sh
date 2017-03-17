@@ -50,6 +50,13 @@ rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
 expand-template /etc/httpd/conf/httpd.conf
 service httpd-e-smith restart
 
+config delete php54
+config delete php55
+config delete php56
+config delete memcached
+config delete haveged
+config delete php56-php-fpm
+
 #remove users
 userdel postgres
 

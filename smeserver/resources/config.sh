@@ -2,7 +2,7 @@
 system_branch=master            					# master, stable
 
 # FreeSWITCH Settings
-switch_version=1.6.14-3            					# full version
+switch_version=1.6.15-1            					# full version
 
 # General Settings
 php_version=5                   					# PHP version 5 or 7
@@ -15,6 +15,7 @@ database_version=9.6									# 9.4, 9.6
 database_host=127.0.0.1
 database_port=5432
 database_username=fusionpbx
+database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
 
 # SME Server settings
 sme_version=9										# 9, 10
