@@ -36,7 +36,9 @@ sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1trust/' /var/lib/pgsql/
 sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 
 # set the path for the lock file
-sed -i 's/'/tmp'/= '/var/run/postgresql'/g' /var/lib/pgsql/$database_version/data/postgresql.conf
+sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"'/tmp':'/var/run/postgresql':"
+sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"#unix_socket_directories:unix_socket_directories:"
+
 
 #Add user postgres to the www group
 # usermod -a -G www postgres
