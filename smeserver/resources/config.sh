@@ -1,4 +1,4 @@
-# Copyright H.F. Wang - hsingfoo@gmailcom
+# Copyright H.F. Wang - hsingfoo@gmail.com
 
 # FusionPBX Settings
 system_branch=master            					# master, stable

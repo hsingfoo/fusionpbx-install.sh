@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright H.F. Wang - hsingfoo@gmailcom
+# Copyright H.F. Wang - hsingfoo@gmail.com
 
 #Note: ** Please be aware that this part of the script is executed in a new shell where php56 is active. see install.sh **
 

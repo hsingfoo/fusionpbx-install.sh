@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright H.F. Wang - hsingfoo@gmailcom
+# Copyright H.F. Wang - hsingfoo@gmail.com
 
 verbose () {
 	echo "${green}$1${normal}"
