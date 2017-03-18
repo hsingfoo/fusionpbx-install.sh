@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Copyright H.F. Wang - hsingfoo@gmailcom
+
 verbose () {
 	echo "${green}$1${normal}"
 }

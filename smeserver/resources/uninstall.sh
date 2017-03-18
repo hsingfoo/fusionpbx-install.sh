@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Copyright H.F. Wang - hsingfoo@gmailcom
+
 clear
 
 #Uninstall all Freeswitch and FusionPBX related files

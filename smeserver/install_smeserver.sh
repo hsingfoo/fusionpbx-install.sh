@@ -1,4 +1,7 @@
 #!/bin/sh
+
+# Copyright H.F. Wang - hsingfoo@gmailcom
+
 clear
 
 #move to script directory so all relative paths work

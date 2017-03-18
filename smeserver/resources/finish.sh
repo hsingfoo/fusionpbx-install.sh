@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Copyright H.F. Wang - hsingfoo@gmailcom
+
 #Note: ** Please be aware that this part of the script is executed in a new shell where php56 is active. see install.sh **
 
 #move to script directory so all relative paths work
@@ -98,7 +100,7 @@ echo ""
 error "Please note details below and reboot your system"
 error "           'config show fusionpbx'             "
 error "                    and                        "
-error "        'config show prostgresql-9.4'          "
+error "        'config show postgresql-9.4'          "
 error "                    and                        "
 error "           'config show freeswitch             "
 error "            will show the details              "

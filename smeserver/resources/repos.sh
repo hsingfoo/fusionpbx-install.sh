@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Copyright H.F. Wang - hsingfoo@gmailcom
+
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
