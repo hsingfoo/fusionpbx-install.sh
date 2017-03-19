@@ -17,8 +17,8 @@ database_version=9.6								# 9.4, 9.6
 database_host=127.0.0.1
 database_port=5432
 database_username=fusionpbx
-#database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
-database_password=supersecret
+database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
+#database_password=supersecret # for debugging, all passwords the same
 
 # SME Server settings
 sme_version=9										# 9, 10

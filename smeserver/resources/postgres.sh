@@ -27,7 +27,6 @@ config set $service_name service
 config setprop $service_name status enabled
 config setprop $service_name TCPPort 5432
 config setprop $service_name access private
-config setprop $service_name DBPassword $database_password
 signal-event remoteaccess-update
 
 # Initialize PostgreSQL database
