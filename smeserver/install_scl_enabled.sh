@@ -32,12 +32,11 @@ resources/switch/conf-copy.sh
 echo ""
 verbose "Restarting packages for final configuration"
 service memcached start
-service postgresql-9.6 restart
+service postgresql-$database_version restart
 service freeswitch start
 service php56-php-fpm start
 service httpd-e-smith restart
 #fail2ban
 
-#Execute in a new shell with php56 via SCL enabled
 resources/finish.sh
 resources/permissions.sh

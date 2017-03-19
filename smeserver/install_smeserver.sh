@@ -12,7 +12,7 @@ cd "$(dirname "$0")"
 . ./resources/colors.sh
 
 # SME Server 9 64-bit install
-verbose "Installation of Freeswitch 1.6, FusionPBX 4.2, PostgreSQL 9.4, memcached, SCL and php-fpm on SME Server 9.1"
+verbose "Installation of Freeswitch, FusionPBX, PostgreSQL, memcached, SCL and php-fpm on SME Server 9.1"
 
 # Update SME Server 
 echo ""

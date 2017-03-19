@@ -27,6 +27,7 @@ config set $service_name service
 config setprop $service_name status enabled
 config setprop $service_name TCPPort 5432
 config setprop $service_name access private
+config setprop $service_name DBPassword $database_password
 signal-event remoteaccess-update
 
 # Initialize PostgreSQL database
@@ -46,7 +47,7 @@ export PATH=$PATH:/usr/pgsql-$database_version/bin/
 export LD_LIBRARY_PATH=/usr/pgsql-$database_version/lib/
 
 #Add user postgres to the www group
-# usermod -a -G www postgres
+usermod -a -G www postgres
 
 # Start Postgresql
 /etc/rc.d/init.d/$service_name start

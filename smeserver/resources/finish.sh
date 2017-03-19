@@ -2,7 +2,7 @@
 
 # Copyright H.F. Wang - hsingfoo@gmail.com
 
-#Note: ** Please be aware that this part of the script is executed in a new shell where php56 is active. see install.sh **
+#Note: ** Please be aware that this part of the script is executed in a new shell where php56 is active. **
 
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
@@ -100,7 +100,7 @@ echo ""
 error "Please note details below and reboot your system"
 error "           'config show fusionpbx'             "
 error "                    and                        "
-error "        'config show postgresql-9.4'          "
+error "        'config show postgresql-$database_version'          "
 error "                    and                        "
 error "           'config show freeswitch             "
 error "            will show the details              "
