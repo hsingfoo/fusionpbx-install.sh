@@ -41,6 +41,9 @@ sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/$data
 sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"'/tmp':'/var/run/postgresql':"
 sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"#unix_socket_directories:unix_socket_directories:"
 
+# Set environment variables
+export PATH=$PATH:/usr/pgsql-$database_version/bin/
+export LD_LIBRARY_PATH=/usr/pgsql-$database_version/lib/
 
 #Add user postgres to the www group
 # usermod -a -G www postgres

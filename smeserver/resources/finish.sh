@@ -27,7 +27,7 @@ sed -i $www_path/resources/config.php -e s:'{database_username}:fusionpbx:'
 sed -i $www_path/resources/config.php -e s:"{database_password}:$database_password:"
 
 # SME Server specific storage of PostgreSQL details
-config setprop postgreslq-9.4 FusionpbxDBname fusionpbx FusionpbxDBuser fusionpbx FusionDBpass $database_password FreeswitchDBname fusionpbx FreeswitchDBuser fusionpbx FreeswitchDBpass $database_password
+config setprop postgreslq-$database_version FusionpbxDBname fusionpbx FusionpbxDBuser fusionpbx FusionDBpass $database_password FreeswitchDBname fusionpbx FreeswitchDBuser fusionpbx FreeswitchDBpass $database_password
  
 #add the database schema
 cd $www_path && php core/upgrade/upgrade_schema.php > /dev/null 2>&1

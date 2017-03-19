@@ -44,7 +44,7 @@ sleep 1
 rm -Rf /home/e-smith/files/ibays/$ibay_name/html/*
 
 #git clone -b $fusion_version https://github.com/fusionpbx/fusionpbx.git $www_path
-git clone https://github.com/fusionpbx/fusionpbx.git $www_path
+git clone -b $system_branch https://github.com/fusionpbx/fusionpbx.git $www_path
 chown admin:shared $www_path
 chown -R www:www $www_path/*
 chmod -R 755 $www_path/secure
