@@ -4,18 +4,22 @@
 
 clear
 
+#includes
+. ./config.sh
+. ./colors.sh
+
 #Uninstall all Freeswitch and FusionPBX related files
 echo "Stopping all related services..."
 service freeswitch stop
-service postgresql-9.4 stop
+service postgresql-$database_version stop
 service php56-php-fpm stop
 
 echo ""
 echo "all services stopped, removing all related files, please wait..."
 
 #Delete ibay and domain
-signal-event domain-delete tel.sipking.com
-signal-event ibay-delete fusionpbx
+signal-event domain-delete $sub_domain.$domain_name
+signal-event ibay-delete $ibay_name
 
 #Remove packages
 yum -y remove freeswitch
@@ -58,6 +62,7 @@ config delete php56
 config delete memcached
 config delete haveged
 config delete php56-php-fpm
+config delete postgresql-$database_version
 
 #remove users
 userdel postgres

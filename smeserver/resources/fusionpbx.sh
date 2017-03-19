@@ -20,9 +20,6 @@ PHPBaseDir / \
 #Create the fusionpbx ibay
 signal-event ibay-create $ibay_name
 
-#Get the FQDN
-domain_name=$(hostname -d)
-
 #Configure the subdomain and point to above ibay
 db domains set $sub_domain.$domain_name domain Description "FusionPBX" Content $ibay_name Nameservers internet
 
