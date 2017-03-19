@@ -63,6 +63,7 @@ config delete memcached
 config delete haveged
 config delete php56-php-fpm
 config delete postgresql-$database_version
+config delete fusionpbx
 
 #remove users
 userdel postgres
