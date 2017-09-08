@@ -13,7 +13,6 @@ cd "$(dirname "$0")"
 echo ""
 verbose "Installing and configuring SCL php versions"
 yum -y -q install smeserver-php-scl php5*-php-pdo_pgsql --enablerepo=smecontribs,remi-safe,epel
-yum -y -q install php56-php-fpm --enablerepo=remi
 config setprop php56 PhpModule enabled UploadMaxFilesize 120M PostMaxSize 120M
 signal-event php-update; config set UnsavedChanges no
 
