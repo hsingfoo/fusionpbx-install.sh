@@ -23,7 +23,7 @@ else
 fi
 yum -y -q install $dbbin_name-server $dbbin_name-contrib $dbbin_name luapgsql --enablerepo=$dbbin_name
 if [ .$database_version = ."9.4" ]; then
-	mkdir -P /var/run/postgresql; chown postgres:postgres /var/run/postgresql
+	mkdir -p /var/run/postgresql; chown postgres:postgres /var/run/postgresql
 fi
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64$service_name
 config set $service_name service 
