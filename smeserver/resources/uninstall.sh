@@ -24,7 +24,7 @@ signal-event ibay-delete $ibay_name
 #Remove packages
 yum -y remove freeswitch
 yum -y remove scl-util
-yum -y remove smeserver-php-scl php54-* php55-* php56-*
+yum -y remove smeserver-php-scl php54-* php55-* php56-* php70-* php71-*
 yum -y remove php56-php-fpm
 yum -y remove sngrep
 yum -y remove memcached
@@ -59,6 +59,8 @@ service httpd-e-smith restart
 config delete php54
 config delete php55
 config delete php56
+config delete php70
+config delete php71
 config delete memcached
 config delete haveged
 config delete php56-php-fpm
