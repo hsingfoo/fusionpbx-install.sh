@@ -36,6 +36,7 @@ yum -y remove ghostscript
 yum -y remove ilbc2
 yum -y remove freeswitch-cli
 yum -y remove mod_proxy_wstunnel
+yum -y remove git
 
 #remove directories, files and symlinks
 rm -Rf /var/lib/pgsql
