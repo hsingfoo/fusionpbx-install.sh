@@ -55,6 +55,7 @@ rm -f /etc/rc.d/rc7.d/S64postgresql-*
 rm -f /etc/rc.d/rc7.d/S90haveged
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/fusionpbx
 rm -f /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
+rm -f /etc/e-smith/templates-custom/etc/rc.d/init.d/masq/40Freeswitch
 expand-template /etc/httpd/conf/httpd.conf
 service httpd-e-smith restart
 
