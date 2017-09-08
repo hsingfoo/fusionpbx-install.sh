@@ -15,19 +15,23 @@ verbose "Configuring and updating repositories, please wait..."
 /sbin/e-smith/db yum_repositories set postgresql94 repository \
 Name "PostgreSQL 9.4" \
 BaseURL 'https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-$releasever-$basearch' \
-Visable no status disabled
+Visable no \
+status disabled
 
 #Define yum repository for 9.6
 /sbin/e-smith/db yum_repositories set postgresql96 repository \
 Name "PostgreSQL 9.6" \
 BaseURL 'https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-$releasever-$basearch' \
-Visable no status disabled
+Visable no \
+status disabled
 
 #define yum repository for Freeswitch 6.x
 /sbin/e-smith/db yum_repositories set okay repository \
 BaseURL 'http://repo.okay.com.mx/centos/$releasever/$basearch/release'/ \
 Name 'Extra OKay Packages for Enterprise Linux' \
-EnableGroups no Visible no status disabled
+EnableGroups no \
+Visible no \
+status disabled
 
 #Define yum repository for EPEL
 /sbin/e-smith/db yum_repositories set epel repository \
@@ -38,7 +42,8 @@ EnableGroups no \
 GPGCheck yes \
 GPGKey http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL \
 Exclude perl-Razor-Agent \
-Visible no status disabled
+Visible no \
+status disabled
 
 #Define yum repository for REMI
 /sbin/e-smith/db yum_repositories set remi-safe repository \
@@ -47,7 +52,7 @@ BaseURL 'http://rpms.famillecollet.com/enterprise/$releasever/safe/$basearch/' \
 EnableGroups no \
 GPGCheck yes \
 GPGKey http://rpms.famillecollet.com/RPM-GPG-KEY-remi \
-Visible yes \
+Visible no \
 status disabled
 
 #Define Centos SCL repository
@@ -55,13 +60,17 @@ status disabled
 Name 'Centos - RH Software Collections' \
 BaseURL 'http://mirror.centos.org/centos/$releasever/sclo/$basearch/rh/' \
 EnableGroups no \
-Visible no status disabled
+Visible no \
+status disabled
 
 #Define NodeJS repository
 /sbin/e-smith/db yum_repositories set nodejs \
 repository Name 'Node JS 4' \
 BaseURL https://rpm.nodesource.com/pub_4.x/el/6/x86_64 \
-EnableGroups no GPGCheck no Visible yes status disabled
+EnableGroups no \
+GPGCheck no \
+Visible yes \
+status disabled
 
 #Define FWS repository
 /sbin/e-smith/db yum_repositories set fws repository \
@@ -69,21 +78,24 @@ BaseURL http://repo.firewall-services.com/centos/\$releasever \
 EnableGroups no GPGCheck yes \
 Name "Firewall Services" \
 GPGKey http://repo.firewall-services.com/RPM-GPG-KEY \
-Visible no status disabled
+Visible no \
+status disabled
 
 #Define IRONTEC repository
 /sbin/e-smith/db yum_repositories set irontec repository \
 BaseURL 'http://packages.irontec.com/centos/$releasever/$basearch/' \
 EnableGroups no \
 Name "irontec" \
-Visible no status disabled
+Visible no \
+status disabled
 
 #Define cert-forensics-tools repository
 /sbin/e-smith/db yum_repositories set forensics repository \
 BaseURL 'http://www.cert.org/forensics/repository/centos/cert/$releasever/$basearch' \
 EnableGroups no \
 Name "Cert Forensics Tools Repository" \
-Visible no status disabled
+Visible no \
+status disabled
 
 #Define stephdl repository
 db yum_repositories set stephdl repository \
@@ -91,6 +103,7 @@ BaseURL http://mirror.de-labrusse.fr/smeserver/\$releasever \
 EnableGroups no GPGCheck yes \
 Name "Mirror de Labrusse" \
 GPGKey http://mirror.de-labrusse.fr/RPM-GPG-KEY \
-Visible no status disabled
+Visible no \
+status disabled
 
 signal-event yum-modify
