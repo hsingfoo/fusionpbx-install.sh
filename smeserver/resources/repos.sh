@@ -41,14 +41,14 @@ Exclude perl-Razor-Agent \
 Visible no status disabled
 
 #Define yum repository for REMI
-/sbin/e-smith/db yum_repositories set remi repository \
-Name 'Remi - EL6' \
-BaseURL 'http://rpms.famillecollet.com/enterprise/6/remi/$basearch/' \
+/sbin/e-smith/db yum_repositories set remi-safe repository \
+Name 'Remi - safe' \
+BaseURL 'http://rpms.famillecollet.com/enterprise/$releasever/safe/$basearch/' \
 EnableGroups no \
 GPGCheck yes \
 GPGKey http://rpms.famillecollet.com/RPM-GPG-KEY-remi \
 Visible yes \
-Exclude mysql*,php-*,phpMyAdmin status disabled
+status disabled
 
 #Define Centos SCL repository
 /sbin/e-smith/db yum_repositories set centos-sclo-rh repository \
