@@ -12,7 +12,7 @@ cd "$(dirname "$0")"
 #Install and configure Remi PHP versions
 echo ""
 verbose "Installing and configuring SCL php versions"
-yum -y -q install smeserver-php-scl php5*-php-pdo_pgsql --enablerepo=smecontribs,remi,epel
+yum -y -q install smeserver-php-scl php5*-php-pdo_pgsql --enablerepo=smecontribs,remi-safe,epel
 yum -y -q install php56-php-fpm --enablerepo=remi
 config setprop php56 PhpModule enabled UploadMaxFilesize 120M PostMaxSize 120M
 signal-event php-update; config set UnsavedChanges no
@@ -27,7 +27,7 @@ config set memcached service status enabled
 #Install php56-php-fpm (from remi repo for SCL environment)
 echo ""
 verbose "Installing and configuring php56-php-fpm"
-yum -y -q install php56-php-fpm --enablerepo=remi
+yum -y -q install php56-php-fpm --enablerepo=remi-safe
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S98php56-php-fpm
 config set php56-php-fpm service TCPPort 9000 status enabled
 sed -ie "s|listen = 127.0.0.1:9000|listen = /opt/remi/php56/root/var/run/php-fpm/php-fpm.sock|g" /opt/remi/php56/root/etc/php-fpm.d/www.conf
