@@ -46,6 +46,7 @@ rm -Rf /usr/share/freeswitch
 rm -Rf /usr/share/lib64/freeswitch
 rm -Rf /usr/lib64/freeswitch
 rm -Rf /var/run/freeswitch
+rm -Rf /var/run/postgresql
 rm -f /etc/rc.d/rc7.d/S90memcached
 rm -f /etc/rc.d/rc7.d/S98php56-php-fpm
 rm -f /etc/rc.d/rc7.d/S99freeswitch
