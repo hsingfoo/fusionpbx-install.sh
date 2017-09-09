@@ -30,6 +30,7 @@ sed -i $www_path/resources/config.php -e s:"{database_password}:$database_passwo
 config setprop postgresql-$database_version FusionpbxDBname fusionpbx FusionpbxDBuser fusionpbx FusionDBpass $database_password FreeswitchDBname freeswitch FreeswitchDBuser freeswitch FreeswitchDBpass $database_password
 
 #add the database schema
+verbose "Populating FusionPBX database"
 #cd $www_path && php core/upgrade/upgrade_schema.php > /dev/null 2>&1
 cd $www_path && php core/upgrade/upgrade_schema.php
 
@@ -43,6 +44,7 @@ domain_name=$sub_domain.$(hostname -d)
 domain_uuid=$(php $www_path/resources/uuid.php);
 
 #add the domain name
+verbose "Setting FsionPBX domain name"
 cd /tmp
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
 
@@ -50,6 +52,7 @@ sudo -u postgres psql --host=$database_host --port=$database_port --username=$da
 cd $www_path && php $www_path/core/upgrade/upgrade_domains.php
 
 #add the user
+verbose "Adding FusionPBX admin user"
 user_uuid=$(php $www_path/resources/uuid.php);
 user_salt=$(php $www_path/resources/uuid.php);
 user_name=admin
