@@ -54,7 +54,7 @@ if [ ! -d /usr/src ]; then
 fi
 cd /usr/src
 verbose "Fetching Installer"
-yum -y -q install git
+yum -y install git
 if [ -d /usr/src/fusionpbx-install.sh ]; then
 	cd /usr/src/fusionpbx-install.sh
 	git pull

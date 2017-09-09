@@ -11,7 +11,7 @@ echo ""
 verbose "Creating Sub-domain"
 
 # How to set the correct domain via a variable???
-yum -y -q install smeserver-webapps-common --enablerepo=fws
+yum -y install smeserver-webapps-common --enablerepo=fws
 
 #Configure the subdomain
 db domains set pbx.sipking.com domain Description "FusionPBX" Content Primary Nameservers \
