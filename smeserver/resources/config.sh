@@ -13,7 +13,7 @@ database_backup=false           					# true or false
 web_server_name=apache          					# nginx, apache
 
 # PostgreSQL details
-database_version=9.4								# 9.4, 9.6
+database_version=9.6								# 9.4, 9.6
 database_host=127.0.0.1
 database_port=5432
 database_username=fusionpbx
