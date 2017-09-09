@@ -18,13 +18,11 @@ verbose "Installing and configuring PostgreSQL $database_version"
 #Install and configure PostgreSQL
 if [ .$database_version = ."9.4" ]; then
 	service_name=postgresql-9.4 ; version=94 ; dbbin_name=postgresql94
+	mkdir -p /var/run/postgresql; chown postgres:postgres /var/run/postgresql
 else
 	service_name=postgresql-9.6 ; version=96 ; dbbin_name=postgresql96
 fi
 yum -y -q install $dbbin_name-server $dbbin_name-contrib $dbbin_name luapgsql --enablerepo=$dbbin_name
-if [ .$database_version = ."9.4" ]; then
-	mkdir -p /var/run/postgresql; chown postgres:postgres /var/run/postgresql
-fi
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64$service_name
 config set $service_name service 
 config setprop $service_name status enabled
@@ -41,9 +39,6 @@ sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1trust/' /var/lib/pgsql/
 sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 
 # set the path for the lock file
-if [ .$database_version = ."9.4" ]; then
-	mkdir -F /var/run/postgresql
-fi
 sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"'/tmp':'/var/run/postgresql':"
 sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"#unix_socket_directories:unix_socket_directories:"
 
