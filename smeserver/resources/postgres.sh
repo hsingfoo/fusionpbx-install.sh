@@ -47,9 +47,9 @@ sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/$data
 
 
 # set the path for the lock file
-verbose "Setting socket location"
-sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"'/tmp':'/var/run/postgresql':"
-sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"#unix_socket_directories:unix_socket_directories:"
+verbose "Setting socket location, watch it, it defaults to /tmp. Need to find out why!!!"
+#sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"'/tmp':'/var/run/postgresql':"
+#sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"#unix_socket_directories:unix_socket_directories:"
 
 # Set environment variables
 export PATH=$PATH:/usr/pgsql-$database_version/bin/
