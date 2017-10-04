@@ -14,14 +14,14 @@ verbose "Configuring and updating repositories, please wait..."
 #Define yum repository for 9.4
 /sbin/e-smith/db yum_repositories set postgresql94 repository \
 Name "PostgreSQL 9.4" \
-BaseURL 'https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-$releasever-$basearch' \
+BaseURL 'http://yum.postgresql.org/9.4/redhat/rhel-$releasever-$basearch' \
 Visable no \
 status disabled
 
 #Define yum repository for 9.6
 /sbin/e-smith/db yum_repositories set postgresql96 repository \
 Name "PostgreSQL 9.6" \
-BaseURL 'https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-$releasever-$basearch' \
+BaseURL 'http://yum.postgresql.org/9.6/redhat/rhel-$releasever-$basearch' \
 Visable no \
 status disabled
 

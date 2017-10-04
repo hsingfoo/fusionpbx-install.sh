@@ -30,6 +30,7 @@ ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64$service_name
 config set $service_name service 
 config setprop $service_name status enabled
 config setprop $service_name TCPPort 5432
+config setprop $service_name UDPPort 5432
 config setprop $service_name access private
 signal-event remoteaccess-update
 

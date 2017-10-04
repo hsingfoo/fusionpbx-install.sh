@@ -17,7 +17,7 @@ verbose "Installation of Freeswitch, FusionPBX, PostgreSQL, memcached, SCL and p
 # Update SME Server 
 echo ""
 verbose "Updating SME Server"
-yum update
+yum -y update
 
 # Installing repositories
 resources/repos.sh
