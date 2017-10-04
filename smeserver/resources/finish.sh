@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
-database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
+#database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
 #database_password=supersecret #debugging
 
 #allow the script to use the new password

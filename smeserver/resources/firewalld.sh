@@ -1,10 +1,11 @@
 #!/bin/sh
 
-#move to script directory so all relative paths work
-cd "$(dirname "$0")"
+# Copyright H.F. Wang - hsingfoo@gmail.com
 
+#move to script directory so all relative paths work
+#includes
+. ./config.sh
 . ./colors.sh
-. ./arguments.sh
 
 verbose "Configuring FirewallD"
 #ssh should be on by default
