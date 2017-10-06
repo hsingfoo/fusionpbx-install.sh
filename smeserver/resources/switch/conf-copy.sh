@@ -1,9 +1,13 @@
+#!/bin/sh
+
+# Copyright H.F. Wang - hsingfoo@gmail.com
+
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
-#includes
-. ./config.sh
+#Includes
 . ./colors.sh
+. ./config.sh
 
 mv /etc/freeswitch /etc/freeswitch.orig
 mkdir /etc/freeswitch
