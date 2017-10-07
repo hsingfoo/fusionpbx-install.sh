@@ -6,7 +6,7 @@
 cd "$(dirname "$0")"
 
 #Includes
-. ./colors.sh
+. ./resources/colors.sh
 . ./config.sh
 
 mv /etc/freeswitch /etc/freeswitch.orig

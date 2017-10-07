@@ -8,8 +8,8 @@
 cd "$(dirname "$0")"
 
 #Includes
-. ./config.sh
-. ./colors.sh
+. ./resources/config.sh
+. ./resources/colors.sh
 
 #FreeSWITCH
 resources/switch/smeserver-freeswitch.sh
