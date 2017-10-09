@@ -6,9 +6,10 @@
 cd "$(dirname "$0")"
 
 #Includes
-. ./resources/colors.sh
+. ./colors.sh
 . ./config.sh
 
+verbose "Copying default configuration"
 mv /etc/freeswitch /etc/freeswitch.orig
 mkdir /etc/freeswitch
 cp -R $www_path/resources/templates/conf/* /etc/freeswitch
