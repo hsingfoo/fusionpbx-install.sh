@@ -6,8 +6,8 @@
 cd "$(dirname "$0")"
 
 #Includes
-#. ./colors.sh
-#. ./config.sh
+. ./resources/config.sh
+. ./resources/colors.sh
 
 verbose "Copying default configuration"
 mv /etc/freeswitch /etc/freeswitch.orig
