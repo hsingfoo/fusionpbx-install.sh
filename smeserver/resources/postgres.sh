@@ -26,6 +26,7 @@ yum -y install $dbbin_name-server $dbbin_name-contrib $dbbin_name luapgsql --ena
 if [ .$database_version = "9.4" ]; then
 	mkdir -p /var/run/postgresql; chown postgres:postgres /var/run/postgresql
 fi
+export PGHOST="/var/run/postgresql"
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S64$service_name
 config set $service_name service 
 config setprop $service_name status enabled
@@ -38,23 +39,22 @@ signal-event remoteaccess-update
 /etc/rc.d/init.d/$service_name initdb
 verbose "Postgresql version: $database_version"
 
-verbose "Setting ident authentication to trust"
+verbose "Setting ident authentication to trust during installation"
 # Adjust /var/lib/pgsql/9.4/data/pg_hba.conf to md5 and trust
-#sed -i 's/\(local  *all  *all    *\)peer/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1trust/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1trust/' /var/lib/pgsql/$database_version/data/pg_hba.conf
-#sed -i 's/\(host  *all  *all  *127.0.0.1\/32  *\)ident/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
-#sed -i 's/\(host  *all  *all  *::1\/128  *\)ident/\1md5/' /var/lib/pgsql/$database_version/data/pg_hba.conf
 
 
 # set the path for the lock file
 verbose "Setting socket location, watch it, it defaults to /tmp. Need to find out why!!!"
-#sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"'/tmp':'/var/run/postgresql':"
-#sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"#unix_socket_directories:unix_socket_directories:"
+sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"'/tmp':'/var/run/postgresql':"
+sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"#unix_socket_directories:unix_socket_directories:"
+sed -i  /var/lib/pgsql/$database_version/data/postgresql.conf -e s:"#port = 5432:port = 5432:"
 
 # Set environment variables
 export PATH=$PATH:/usr/pgsql-$database_version/bin/
 export LD_LIBRARY_PATH=/usr/pgsql-$database_version/lib/
+export PGHOST=localhost
 
 #Add user postgres to the www group
 usermod -a -G www postgres

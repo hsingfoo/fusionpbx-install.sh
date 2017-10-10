@@ -96,7 +96,7 @@ service freeswitch restart
 #welcome message
 echo ""
 echo ""
-verbose "Installation has completed."
+verbose "        Installation has completed."
 echo ""
 error "Please note details below and reboot your system"
 error "           'config show fusionpbx'             "
@@ -115,11 +115,6 @@ echo "   The domain name in the browser is used by default as part of the authen
 echo "   If you need to login to a different domain then use username@domain."
 echo "      username: $user_name@yourdomain.com";
 echo ""
-echo "   Additional information."
-echo "      https://contribs.org"
-echo "      https://fusionpbx.com/support.php"
-echo "      https://www.fusionpbx.com"
-echo "      http://docs.fusionpbx.com"
 warning "*----------------------------------------------- *"
 warning "*    NOTE: Please save the above information.    *"
 warning "* REBOOT YOUR SME SERVER TO COMPLETE THE INSTALL *"

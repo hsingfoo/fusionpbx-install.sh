@@ -29,4 +29,5 @@ scl_enabled=true									# true or false
 www_path=/home/e-smith/files/ibays/$ibay_name/html	# full path to ibay html directory
 #Get the FQDN
 domain_name=$(hostname -d)
+
  

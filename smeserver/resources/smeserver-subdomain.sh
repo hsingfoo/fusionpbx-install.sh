@@ -5,6 +5,7 @@ cd "$(dirname "$0")"
 
 #includes
 . ./colors.sh
+. ./config.sh
 
 #Create custom template !!! for virtual host and alias fusionpbx
 echo ""
@@ -14,11 +15,11 @@ verbose "Creating Sub-domain"
 yum -y install smeserver-webapps-common --enablerepo=fws
 
 #Configure the subdomain
-db domains set pbx.sipking.com domain Description "FusionPBX" Content Primary Nameservers \
+db domains set $sub_domain.$domain domain Description "FusionPBX" Content Primary Nameservers \
 internet TemplatePath WebAppVirtualHost DocumentRoot /opt/fusionpbx RequireSSL enabled
 
 #Create the domain
-signal-event domain-create pbx.sipking.com
+signal-event domain-create $sub_domain.$domain
 signal-event webapps-update
 
 

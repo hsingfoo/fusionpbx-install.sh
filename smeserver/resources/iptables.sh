@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #send a message
-verbose "Configuring IPTables"
+verbose "Configuring IPTables template"
 
 #Create custom template fragment
 mkdir -p /etc/e-smith/templates-custom/etc/rc.d/init.d/masq/
