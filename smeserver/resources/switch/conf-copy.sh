@@ -2,6 +2,10 @@
 
 # Copyright H.F. Wang - hsingfoo@gmail.com
 
+#Includes
+. ./colors.sh
+. ./config.sh
+
 verbose "Copying default FusionPBX configuration"
 mv /etc/freeswitch /etc/freeswitch.orig
 mkdir /etc/freeswitch
