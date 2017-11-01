@@ -13,7 +13,7 @@ cd "$(dirname "$0")"
 uid=`perl -Mesmith::AccountsDB -e 'my  $accountdb = esmith::AccountsDB->open(); print $accountdb->get_next_uid();'`
 
 #Populate the accounts db with the new ibay details (access public, cgi enabled no password, SSL enabled)
-db accounts set $ibay_name ibay Name fusionpbx Group admin UserAccess wr-group-rd-everyone \
+db accounts set $ibay_name ibay Name $ibay_name Group admin UserAccess wr-group-rd-everyone \
 Uid $uid Gid $uid CgiBin enabled PasswordSet no SSL enabled PublicAccess global \
 PHPBaseDir / \
 

@@ -2,6 +2,9 @@
 
 # Copyright H.F. Wang - hsingfoo@gmail.com
 
+#move to script directory so all relative paths work
+cd "$(dirname "$0")"
+
 #Includes
 . ./colors.sh
 . ./config.sh
