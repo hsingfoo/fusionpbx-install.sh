@@ -12,15 +12,15 @@ echo ""
 verbose "Creating Sub-domain"
 
 # How to set the correct domain via a variable???
-yum -y install smeserver-webapps-common --enablerepo=fws
+#yum -y install smeserver-webapps-common --enablerepo=fws
 
 #Configure the subdomain
-db domains set $sub_domain.$domain domain Description "$ibay_name" Content Primary Nameservers \
-internet TemplatePath WebAppVirtualHost DocumentRoot $www_path RequireSSL enabled
+#db domains set $sub_domain.$domain domain Description "$ibay_name" Content Primary Nameservers \
+#internet TemplatePath WebAppVirtualHost DocumentRoot $www_path RequireSSL enabled
 
 #Create the domain
-signal-event domain-create $sub_domain.$domain
-signal-event webapps-update
+#signal-event domain-create $sub_domain.$domain
+#signal-event webapps-update
 
 #mkdir -p /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf
 #cat <<HERE2 > /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/fusionpbx
