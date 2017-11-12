@@ -39,6 +39,6 @@ find /var/log/freeswitch -type f -exec chmod 664 {} \;
 find /usr/share/freeswitch -type f -exec chmod 664 {} \;
 find $wwww_path -type f -exec chmod 664 {} \;
 
-#Remove application_name
+#Remove application_name /usr/share/freeswitch/scripts/resources/config.lua
 #Check CDR
 #Set correct permissions on recordings, voicemail
