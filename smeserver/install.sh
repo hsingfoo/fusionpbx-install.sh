@@ -1,7 +1,7 @@
 #!/bin/sh
 clear
 
-#move to script directory so all relative paths work
+#move to script directory so all relative paths work.
 cd "$(dirname "$0")"
 
 #Includes
