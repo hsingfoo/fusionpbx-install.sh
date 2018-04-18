@@ -1,11 +1,13 @@
-#!/bin/bash
+#!/bin/sh
+
+# Copyright H.F. Wang - hsingfoo@gmail.com
 
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
-#includes
-. ./colors.sh
+#Includes
 . ./config.sh
+. ./colors.sh
 
 #Create custom template !!! for virtual host and alias fusionpbx
 echo ""
