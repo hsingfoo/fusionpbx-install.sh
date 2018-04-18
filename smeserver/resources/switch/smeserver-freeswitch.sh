@@ -13,7 +13,7 @@ echo ""
 verbose "Installing and configuring Freeswitch 1.6, please wait..."
 #yum -y -d 0 -e 0 install ffmpeg lame ghostscript ilbc2 --enablerepo=okay,epel
 #yum -y -d 0 -e 0 install *$switch_version* freeswitch-sounds-en-us-callie-all freeswitch-sounds-music --enablerepo=okay,epel,remi-safe
-#yum -y install ffmpeg lame ghostscript ilbc2 --enablerepo=okay,epel
+yum -y install ffmpeg lame ghostscript ilbc2 --enablerepo=okay,epel
 yum -y install *$switch_version* freeswitch-sounds-en-us-callie-all freeswitch-sounds-music --enablerepo=okay,epel,remi-safe
 
 

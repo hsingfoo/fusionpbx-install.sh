@@ -36,19 +36,6 @@ echo ""
 verbose "Installing and configuring sngrep"
 yum -y install sngrep --enablerepo=irontec
 
-#Install and configure Apache proxy ws_tunnel
-echo ""
-verbose "Installing and configuring mod proxy wstunnel"
-yum -y install mod_proxy_wstunnel* --enablerepo=fws
-mkdir -p /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf
-cat <<HERE1 > /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/20LoadModule60
-{
-   load_modules(qw(
-   proxy_wstunnel
-   ));
-}
-HERE1
-
 #Restart Apache
 expand-template /etc/httpd/conf/httpd.conf
 service httpd-e-smith restart
