@@ -28,4 +28,4 @@ resources/smeserver.sh
 resources/iptables.sh
 
 # switch to SCL enabled environment
-scl enable php71 'bash install_scl_enabled.sh && exit'
+scl enable php56 'bash install_scl_enabled.sh && exit'
