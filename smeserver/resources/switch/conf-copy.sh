@@ -6,8 +6,8 @@
 cd "$(dirname "$0")"
 
 #Includes
-. ./config.sh
-. ./colors.sh
+. ../config.sh
+. ../colors.sh
 
 verbose "Copying default FusionPBX configuration"
 mv /etc/freeswitch /etc/freeswitch.orig

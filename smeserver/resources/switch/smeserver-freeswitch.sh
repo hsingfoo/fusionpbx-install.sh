@@ -6,8 +6,8 @@
 cd "$(dirname "$0")"
 
 #Includes
-. ./config.sh
-. ./colors.sh
+. ../config.sh
+. ../colors.sh
 
 echo ""
 verbose "Installing and configuring Freeswitch 1.6, please wait..."
