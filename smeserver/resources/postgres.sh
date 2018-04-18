@@ -18,7 +18,6 @@ verbose "Installing and configuring PostgreSQL $database_version"
 #Install and configure PostgreSQL
 if [ $database_version = "9.4" ]; then
 	service_name=postgresql-9.4 ; version=94 ; dbbin_name=postgresql94
-	mkdir -p /var/run/postgresql; chown postgres:postgres /var/run/postgresql
 else
 	service_name=postgresql-9.6 ; version=96 ; dbbin_name=postgresql96
 fi
