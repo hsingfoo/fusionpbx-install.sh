@@ -20,13 +20,14 @@ cd "$(dirname "$0")"
 #Populate the accounts db with the new share details 
 db accounts set $share_name share Name $share_name DynamicContent enabled Encryption disabled \
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited \
-RequiresSSL enabled WebDav disabled httpAccess global smbAccess none PHPBaseDir / \
+RequireSSL enabled WebDav disabled httpAccess global smbAccess none PHPVersion 56 \
 
 #Create the fusionpbx share
 signal-event share-create $share_name
 
 #Configure the subdomain and point to above ibay
-db domains set $sub_domain.$domain_name domain Description "FusionPBX" Content $share_name Nameservers internet
+db domains set $sub_domain.$domain_name domain Description "FusionPBX" Content $share_name Nameservers internet \
+DocumentRoot / Removable no \
 
 #Create the domain
 signal-event domain-create $sub_domain.$domain_name
