@@ -9,24 +9,19 @@ cd "$(dirname "$0")"
 . ./colors.sh
 . ./config.sh
 
-#Set parameters UID for the new 'fusionpbx' ibay
-#uid=`perl -Mesmith::AccountsDB -e 'my  $accountdb = esmith::AccountsDB->open(); print $accountdb->get_next_uid();'`
+#Set parameters for the new 'fusionpbx' ibay
+uid=`perl -Mesmith::AccountsDB -e 'my  $accountdb = esmith::AccountsDB->open(); print $accountdb->get_next_uid();'`
 
-#Populate the accounts db with the new iBay details (access public, cgi enabled no password, SSL enabled)
-#db accounts set $ibay_name ibay Name $ibay_name Group admin UserAccess wr-group-rd-everyone \
-#Uid $uid Gid $uid CgiBin enabled PasswordSet no SSL enabled PublicAccess global \
-#PHPBaseDir / \
+#Populate the accounts db with the new ibay details (access public, cgi enabled no password, SSL enabled)
+db accounts set $ibay_name ibay Name $ibay_name Group admin UserAccess wr-group-rd-everyone \
+Uid $uid Gid $uid CgiBin enabled PasswordSet no SSL enabled PublicAccess global \
+PHPBaseDir / \
 
-#Populate the accounts db with the new share details 
-db accounts set $share_name share Name $share_name DynamicContent enabled Encryption disabled \
-Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited \
-RequiresSSL enabled WebDav disabled httpAccess global smbAccess none PHPBaseDir / \
-
-#Create the fusionpbx share
-signal-event share-create $share_name
+#Create the fusionpbx ibay
+signal-event ibay-create $ibay_name
 
 #Configure the subdomain and point to above ibay
-db domains set $sub_domain.$domain_name domain Description "FusionPBX" Content $share_name Nameservers internet
+db domains set $sub_domain.$domain_name domain Description "FusionPBX" Content $ibay_name Nameservers internet
 
 #Create the domain
 signal-event domain-create $sub_domain.$domain_name
@@ -39,7 +34,7 @@ verbose "Installing and configuring FusionPBX"
 sleep 1
 
 #Use full system path for if www_path is empty, rm -Rf / will delete the whole server (been there, got the T-shirt ;) ) 
-rm -Rf /home/e-smith/files/shares/$share_name/*
+rm -Rf /home/e-smith/files/ibays/$ibay_name/html/*
 
 #git clone -b $fusion_version https://github.com/fusionpbx/fusionpbx.git $www_path
 git clone -b $system_branch https://github.com/fusionpbx/fusionpbx.git $www_path

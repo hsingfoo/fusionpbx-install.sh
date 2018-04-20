@@ -21,11 +21,11 @@ database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 
 
 # SME Server settings
 sme_version=9										# 9, 10
-ibay_name=fusionpbx									# fusionpbx
+share_name=fusionpbx								# fusionpbx
 fusion_version=4.2
 sub_domain=tel										# tel
 scl_enabled=true									# true or false
-www_path=/home/e-smith/files/ibays/$ibay_name/html	# full path to ibay html directory
+www_path=/home/e-smith/files/shares/$share_name	# full path to ibay html directory
 #Get the FQDN
 domain_name=$(hostname -d)
 

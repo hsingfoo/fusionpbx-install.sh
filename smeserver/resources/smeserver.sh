@@ -13,8 +13,8 @@ cd "$(dirname "$0")"
 echo ""
 verbose "Installing and configuring SCL php versions"
 yum -y install smeserver-webapps-common *pdo_pgsql --enablerepo=smecontribs,fws,epel,remi-safe
-config setprop php56 PhpModule enabled UploadMaxFilesize 120M PostMaxSize 120M
-signal-event php-update; config set UnsavedChanges no
+#config setprop php56 PhpModule enabled UploadMaxFilesize 120M PostMaxSize 120M
+#signal-event php-update; config set UnsavedChanges no
 verbose "Relaxing to allow Yum to settle down..."
 sleep 4
 #Install memcached
@@ -35,6 +35,10 @@ config set haveged service status enabled
 echo ""
 verbose "Installing and configuring sngrep"
 yum -y install sngrep --enablerepo=irontec
+
+#Install SharedFolders
+yum -y --enablerepo=smecontribs install smeserver-shared-folders
+yum -y --enablerepo=smecontribs --enablerepo=epel install fuse-encfs
 
 #Restart Apache
 expand-template /etc/httpd/conf/httpd.conf
