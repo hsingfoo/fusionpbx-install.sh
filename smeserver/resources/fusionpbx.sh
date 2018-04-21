@@ -19,7 +19,7 @@ signal-event share-create $share_name
 
 #Configure the subdomain and point to above shared folder
 db domains set $sub_domain.$domain_name domain Description "FusionPBX" Content $share_name Nameservers localhost \
-DocumentRoot /home-esmith/files/share/$share_name/files Removable no TemplatePath WebAppVirtualHost \
+DocumentRoot /home/e-smith/files/share/$share_name/files Removable no TemplatePath WebAppVirtualHost \
 
 #Create the domain
 signal-event domain-create $sub_domain.$domain_name
