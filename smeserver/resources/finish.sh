@@ -2,7 +2,7 @@
 
 # Copyright H.F. Wang - hsingfoo@gmail.com
 
-#Note: ** Please be aware that this part of the script is executed in a new shell where php71 is active. **
+#Note: ** Please be aware that this part of the script is executed in a new shell where SCL php is active. **
 
 #move to script directory so all relative paths work
 cd "$(dirname "$0")"
@@ -32,9 +32,6 @@ cd $www_path && php core/upgrade/upgrade_schema.php > /dev/null 2>&1
 
 #get the server FQDN which is used for the default FusionPBX domain and initial admin login
 domain_name=$sub_domain.$(hostname -d)
-
-#get the ip address
-#domain_name=$(hostname -I | cut -d ' ' -f1)
 
 #get a domain_uuid
 domain_uuid=$(php $www_path/resources/uuid.php);

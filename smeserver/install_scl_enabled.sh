@@ -21,9 +21,7 @@ resources/fusionpbx.sh
 resources/postgres.sh
 
 # FusionPBX to FreeSWITCH configs
-#verbose "Configuring freeswitch"
 resources/switch/conf-copy.sh
-#verbose "freeswitch configured"
 
 #Fail2ban
 #resources/fail2ban.sh
@@ -34,7 +32,7 @@ verbose "Restarting packages for final configuration"
 service memcached start
 service postgresql-$database_version restart
 service freeswitch start
-service php56-php-fpm start
+service php$php_version-php-fpm start
 service httpd-e-smith restart
 #fail2ban
 
