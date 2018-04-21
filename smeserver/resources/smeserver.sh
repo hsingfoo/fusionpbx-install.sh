@@ -11,10 +11,8 @@ cd "$(dirname "$0")"
 
 #Install and configure Remi PHP versions
 echo ""
-verbose "Installing and configuring SCL php versions"
+verbose "Installing and configuring php-fpm and SCL php versions"
 yum -y install smeserver-webapps-common *pdo_pgsql --enablerepo=smecontribs,fws,epel,remi-safe
-#config setprop php56 PhpModule enabled UploadMaxFilesize 120M PostMaxSize 120M
-#signal-event php-update; config set UnsavedChanges no
 verbose "Relaxing to allow Yum to settle down..."
 sleep 4
 #Install memcached

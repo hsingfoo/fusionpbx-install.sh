@@ -64,9 +64,6 @@ usermod -a -G www postgres
 # Move to /tmp to prevent a red herring error when running sudo with psql
 cwd=$(pwd)
 cd /tmp
-#sudo -u postgres psql -d fusionpbx -c "DROP SCHEMA public cascade;";
-#sudo -u postgres psql -d fusionpbx -c "CREATE SCHEMA public;";
-#sudo -u postgres psql -c "CREATE ROLE root WITH SUPERUSER LOGIN";
 sudo -u postgres psql -c "CREATE DATABASE fusionpbx";
 sudo -u postgres psql -c "CREATE DATABASE freeswitch";
 sudo -u postgres psql -c "CREATE ROLE fusionpbx WITH SUPERUSER LOGIN PASSWORD '$database_password';"
