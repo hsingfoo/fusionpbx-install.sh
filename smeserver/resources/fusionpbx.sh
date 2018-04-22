@@ -9,25 +9,17 @@ cd "$(dirname "$0")"
 . ./colors.sh
 . ./config.sh
 
-#Set parameters UID for the new 'fusionpbx' ibay
-#uid=`perl -Mesmith::AccountsDB -e 'my  $accountdb = esmith::AccountsDB->open(); print $accountdb->get_next_uid();'`
-
-#Populate the accounts db with the new iBay details (access public, cgi enabled no password, SSL enabled)
-#db accounts set $ibay_name ibay Name $ibay_name Group admin UserAccess wr-group-rd-everyone \
-#Uid $uid Gid $uid CgiBin enabled PasswordSet no SSL enabled PublicAccess global \
-#PHPBaseDir / \
-
 #Populate the accounts db with the new share details 
 db accounts set $share_name share Name $share_name DynamicContent enabled Encryption disabled \
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited \
-RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion '56' \
+RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version \
 
 #Create the fusionpbx share
 signal-event share-create $share_name
 
-#Configure the subdomain and point to above ibay
+#Configure the subdomain and point to above shared folder
 db domains set $sub_domain.$domain_name domain Description "FusionPBX" Content $share_name Nameservers localhost \
-DocumentRoot / Removable no \
+DocumentRoot /home/e-smith/files/shares/$share_name/files Removable no TemplatePath WebAppVirtualHost \
 
 #Create the domain
 signal-event domain-create $sub_domain.$domain_name
