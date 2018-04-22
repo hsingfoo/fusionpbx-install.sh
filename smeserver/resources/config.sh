@@ -6,7 +6,7 @@ system_branch=master            						# master, 4.2.2
 switch_version=1.6.20-1            						# full version
 
 # General Settings
-php_version=56                   						# PHP version 56, 70 or 71
+php_version=56                   						# PHP version 54, 55, 56, 70 or 71
 database_repo=official          						# PostgresSQL official
 database_backup=false           						# true or false
 web_server_name=apache          						# nginx, apache
