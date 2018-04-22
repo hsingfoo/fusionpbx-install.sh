@@ -1,6 +1,6 @@
 # Copyright H.F. Wang - hsingfoo@gmail.com.
 # FusionPBX Settings
-system_branch=master            						# master, 4.2.2 
+system_branch=4.4            						# master, e.g. 4.4, or master
 
 # FreeSWITCH Settings
 switch_version=1.6.20-1            						# full version
@@ -12,7 +12,7 @@ database_backup=false           						# true or false
 web_server_name=apache          						# nginx, apache
 
 # PostgreSQL details
-database_version=9.6									# 9.4, 9.6
+database_version=9.6									# 9.4 or 9.6
 database_host=127.0.0.1
 database_port=5432
 database_username=fusionpbx
