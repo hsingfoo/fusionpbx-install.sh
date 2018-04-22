@@ -106,4 +106,14 @@ GPGKey http://mirror.de-labrusse.fr/RPM-GPG-KEY \
 Visible no \
 status disabled
 
+#Define sogo3 repository
+db yum_repositories set sogo3 repository \
+BaseURL http://packages.inverse.ca/SOGo/nightly/3/rhel/6/\$basearch \
+EnableGroups yes \
+GPGCheck no \
+Name "Inverse SOGo Repository" \
+Visible yes \
+IncludePkgs gnustep-base,gnustep-make,libmemcached,libwbxml,sogo*,sope49* \
+status disabled
+
 signal-event yum-modify
