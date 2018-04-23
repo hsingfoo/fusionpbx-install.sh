@@ -117,3 +117,5 @@ IncludePkgs gnustep-base,gnustep-make,libmemcached,libwbxml,sogo*,sope49* \
 status disabled
 
 signal-event yum-modify
+sleep 4
+
