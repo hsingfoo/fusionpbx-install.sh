@@ -23,7 +23,7 @@ yum $AUTO update --enablerepo=smeupdates-testing
 resources/repos.sh
 
 # Installing PHP-SCL
-resource/php-scl.sh
+resources/php-scl.sh
 
 # Installing SME Server specifics
 resources/smeserver.sh
