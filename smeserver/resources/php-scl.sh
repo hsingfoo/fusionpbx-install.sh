@@ -13,4 +13,4 @@ verbose "Installing PHP software Collections"
 #Install and configure Remi PHP versions
 echo ""
 verbose "Installing and configuring php-fpm and SCL php versions"
-yum -$AUTO install smeserver-webapps-common *pdo_pgsql php*-php-pecl-redis php*-php-pecl-zip --enablerepo=smecontribs,fws,epel,remi-safe
+yum $AUTO install smeserver-webapps-common *pdo_pgsql php*-php-pecl-redis php*-php-pecl-zip --enablerepo=smecontribs,fws,epel,remi-safe
