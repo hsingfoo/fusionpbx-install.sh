@@ -50,6 +50,9 @@ verbose "Installing various contribs"
 #Affa
 ./affa.sh
 
+#PostgreSQL
+./postgres.sh
+
 # Freeswitch
 $script_path/smeserver/resources/switch/smeserver-freeswitch.sh
 
