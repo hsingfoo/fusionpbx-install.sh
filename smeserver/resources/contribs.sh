@@ -24,7 +24,7 @@ resources/haveged.sh
 resources/sngrep.sh
 
 # memcached
-rsources/memcached.sh
+resources/memcached.sh
 
 # Sogo3
 resources/sogo3.sh
