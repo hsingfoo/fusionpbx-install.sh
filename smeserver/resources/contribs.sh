@@ -13,7 +13,7 @@ verbose "Installing various contribs"
 pwd 
 
 # SharedFolders
-resources/sharedfolders.sh
+sharedfolders.sh
 
 # Redis
 resources/redis.sh
