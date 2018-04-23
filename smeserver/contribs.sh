@@ -11,11 +11,14 @@ cd "$(dirname "$0")"
 
 verbose "Installing various contribs"
 
-# Repos
-resources/repos.sh
+# SharedFolders
+resources/sharedfolders.sh
 
-# PHP-SCL
-resources/php-scl.sh
+# Redis
+resources/redis.sh
+
+# HTTP HSTS
+resources/hsts.sh
 
 # Haveged
 resources/haveged.sh
@@ -23,7 +26,7 @@ resources/haveged.sh
 # sngrep
 resources/sngrep.sh
 
-# memcached
+# memcached **MUST** be installed BEFORE Sogo
 resources/memcached.sh
 
 # Sogo3
@@ -46,6 +49,9 @@ resources/dokuwiki.sh
 
 #Fail2ban
 resources/fail2ban.sh
+
+#Affa
+resources/affa.sh
 
 # Freeswitch
 resources/switch/smeserver-freeswitch.sh
