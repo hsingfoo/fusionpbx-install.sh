@@ -13,7 +13,7 @@ verbose "Installing various contribs"
 pwd 
 
 # SharedFolders
-.sharedfolders.sh
+./sharedfolders.sh
 
 # Redis
 ./redis.sh
@@ -52,6 +52,7 @@ pwd
 ./affa.sh
 
 # Freeswitch
+pwd
 /switch/smeserver-freeswitch.sh
 
 
