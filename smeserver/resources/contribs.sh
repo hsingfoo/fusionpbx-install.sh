@@ -48,9 +48,6 @@ pwd
 # Dokuwiki
 ./dokuwiki.sh
 
-#Fail2ban
-./fail2ban.sh
-
 #Affa
 ./affa.sh
 
