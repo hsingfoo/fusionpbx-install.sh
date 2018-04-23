@@ -17,15 +17,20 @@ verbose "Installation of Freeswitch, FusionPBX, PostgreSQL, memcached, SCL and p
 # Update SME Server 
 echo ""
 verbose "Updating SME Server"
-yum -y update --enablerepo=smeupdates-testing
+yum $AUTO update --enablerepo=smeupdates-testing
 
 # Installing repositories
 resources/repos.sh
 
+# Installing PHP-SCL
+resource/php-scl.sh
+
 # Installing SME Server specifics
 resources/smeserver.sh
+
 # Adjusting IP Tables
 resources/iptables.sh
+
 #Installing SoGO
 resources/sogo3.sh
 

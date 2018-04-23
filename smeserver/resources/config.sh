@@ -1,6 +1,6 @@
 # Copyright H.F. Wang - hsingfoo@gmail.com.
 # FusionPBX Settings
-system_branch=4.4            						# master, e.g. 4.4, or master
+system_branch=4.4            							# master, e.g. 4.4, or master
 
 # FreeSWITCH Settings
 switch_version=1.6.20-1            						# full version
@@ -24,9 +24,12 @@ share_name=fusionpbx									# fusionpbx
 fusion_version=4.4
 sub_domain=tel											# tel, pbx or anything
 scl_enabled=true										# true or false
-www_path=/home/e-smith/files/shares/$share_name/files	# full path to ibay html directory
+www_path=/home/e-smith/files/shares/$share_name/files	# full path to share files directory
 
 #Get the FQDN
 domain_name=$(hostname -d)
+
+#Set YUM auto install vaiable
+AUTO=-y
 
  
