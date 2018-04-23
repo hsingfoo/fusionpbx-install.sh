@@ -10,6 +10,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 verbose "Installing various contribs"
+pwd 
 
 # SharedFolders
 resources/sharedfolders.sh

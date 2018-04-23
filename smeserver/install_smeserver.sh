@@ -26,7 +26,7 @@ resources/smeserver.sh
 resources/repos.sh
 
 # Installing PHP-SCL
-resources/php-scl.sh
+#resources/php-scl.sh
 
 # Adjusting IP Tables
 resources/iptables.sh
