@@ -31,5 +31,8 @@ resources/php-scl.sh
 # Adjusting IP Tables
 resources/iptables.sh
 
+# Install contribs
+resources/contribs.sh
+
 # switch to SCL enabled environment
 scl enable php$php_version 'bash install_scl_enabled.sh && exit'

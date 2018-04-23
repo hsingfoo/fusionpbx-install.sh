@@ -48,7 +48,6 @@ resources/dokuwiki.sh
 resources/fail2ban.sh
 
 # Freeswitch
-#FreeSWITCH
 resources/switch/smeserver-freeswitch.sh
 
 
