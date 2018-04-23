@@ -10,49 +10,47 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 verbose "Installing various contribs"
-pwd 
 
 # SharedFolders
-#./sharedfolders.sh
+./sharedfolders.sh
 
 # Redis
-#./redis.sh
+./redis.sh
 
 # HTTP HSTS
-#./hsts.sh
+./hsts.sh
 
 # Haveged
-#./haveged.sh
+./haveged.sh
 
 # sngrep
-#./sngrep.sh
+./sngrep.sh
 
 # memcached **MUST** be installed BEFORE Sogo
-#./memcached.sh
+./memcached.sh
 
 # Sogo3
-#./sogo3.sh
+./sogo3.sh
 
 # SoftetherVPN
-#./SoftetherVPN.sh
+./SoftetherVPN.sh
 
 # Fail2ban
-#./fail2ban.sh
+./fail2ban.sh
 
 # Clamav-unofficial Signatures
-#./clamav-unofficial-signatures.sh
+./clamav-unofficial-signatures.sh
 
 # user-panel, user-panels, dehydrated, wordpress, vacation, chec4updates, remote-useraccess
-#./misc.sh
+./misc.sh
 
 # Dokuwiki
-#./dokuwiki.sh
+./dokuwiki.sh
 
 #Affa
-#./affa.sh
+./affa.sh
 
 # Freeswitch
-pwd
 $script_path/smeserver/resources/switch/smeserver-freeswitch.sh
 
 
