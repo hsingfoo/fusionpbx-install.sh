@@ -10,6 +10,7 @@ php_version=71                   						# PHP version 54, 55, 56, 70 or 71
 database_repo=official          						# PostgresSQL official
 database_backup=false           						# true or false
 web_server_name=apache          						# nginx, apache
+script_path=/usr/src/fusionpbx-install.sh				# Root path to install script
 
 # PostgreSQL details
 database_version=9.6									# 9.4 or 9.6
