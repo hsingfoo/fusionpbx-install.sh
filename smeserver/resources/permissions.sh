@@ -14,10 +14,6 @@ mkdir -p /var/lib/php/session
 chown -R freeswitch:daemon /var/lib/php/session
 chmod -Rf 700 /var/lib/php/session
 
-#update config if source is being used
-#sed -ie 's/post_max_size = .*/post_max_size = 80M/g' /etc/php.ini
-#sed -ie 's/upload_max_filesize = .*/upload_max_filesize = 80M/g' /etc/php.ini
-
 # Set ownership to directories and files
 chown -R freeswitch:daemon /etc/freeswitch
 chown -R freeswitch:daemon /var/lib/freeswitch
