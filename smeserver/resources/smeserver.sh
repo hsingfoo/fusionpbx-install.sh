@@ -224,7 +224,7 @@ verbose "Installing and configuring sngrep"
 yum $AUTO install sngrep --enablerepo=irontec
 
 #Install SharedFolders
-yum $AUTO--enablerepo=smecontribs install smeserver-shared-folders
+yum $AUTO --enablerepo=smecontribs install smeserver-shared-folders
 yum $AUTO --enablerepo=smecontribs --enablerepo=epel install fuse-encfs
 
 #Restart Apache
