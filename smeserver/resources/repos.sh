@@ -45,7 +45,7 @@ Exclude perl-Razor-Agent \
 Visible no \
 status disabled
 
-#Define yum repository for REMI
+#Define yum repository for REMI-SAFE
 /sbin/e-smith/db yum_repositories set remi-safe repository \
 Name 'Remi - safe' \
 BaseURL 'http://rpms.famillecollet.com/enterprise/$releasever/safe/$basearch/' \

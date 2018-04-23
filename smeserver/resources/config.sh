@@ -6,7 +6,7 @@ system_branch=4.4            							# master, e.g. 4.4, or master
 switch_version=1.6.20-1            						# full version
 
 # General Settings
-php_version=56                   						# PHP version 54, 55, 56, 70 or 71
+php_version=71                   						# PHP version 54, 55, 56, 70 or 71
 database_repo=official          						# PostgresSQL official
 database_backup=false           						# true or false
 web_server_name=apache          						# nginx, apache
@@ -32,4 +32,6 @@ domain_name=$(hostname -d)
 #Set YUM auto install vaiable
 AUTO=-y
 
- 
+#Set DEBUG
+DEBUG=2>/dev/null
+#DEBUG="" 

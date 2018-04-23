@@ -11,9 +11,6 @@ cd "$(dirname "$0")"
 . ./resources/config.sh
 . ./resources/colors.sh
 
-#FreeSWITCH
-resources/switch/smeserver-freeswitch.sh
-
 #FusionPBX
 resources/fusionpbx.sh
 
@@ -23,9 +20,6 @@ resources/postgres.sh
 # FusionPBX to FreeSWITCH configs
 resources/switch/conf-copy.sh
 
-#Fail2ban
-#resources/fail2ban.sh
-
 #restart services
 echo ""
 verbose "Restarting packages for final configuration"
@@ -34,7 +28,6 @@ service postgresql-$database_version restart
 service freeswitch start
 service php$php_version-php-fpm start
 service httpd-e-smith restart
-#fail2ban
 
 resources/finish.sh
 resources/permissions.sh

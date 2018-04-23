@@ -19,20 +19,17 @@ echo ""
 verbose "Updating SME Server"
 yum $AUTO update --enablerepo=smeupdates-testing
 
+# Installing SME Server specifics
+resources/smeserver.sh
+
 # Installing repositories
 resources/repos.sh
 
 # Installing PHP-SCL
 resources/php-scl.sh
 
-# Installing SME Server specifics
-resources/smeserver.sh
-
 # Adjusting IP Tables
 resources/iptables.sh
-
-#Installing SoGO
-resources/sogo3.sh
 
 # switch to SCL enabled environment
 scl enable php$php_version 'bash install_scl_enabled.sh && exit'
