@@ -19,4 +19,4 @@ sed -i 's|# unixsocket.*|unixsocket /var/run/redis/redis.sock|' /etc/redis.conf
 sed -i 's/# unixsocketperm.*/unixsocketperm 777/' /etc/redis.conf
 /etc/rc.d/init.d/redis start
 
-# Note: phpxx-php-pecl-redis already installed by php-scl procedure
+# Note: phpxx-php-pecl-redis (for nextcloud) already installed by php-scl procedure

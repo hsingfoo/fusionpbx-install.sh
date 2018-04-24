@@ -47,8 +47,23 @@ verbose "Installing various contribs"
 # Dokuwiki
 ./dokuwiki.sh
 
-#Affa
+# Affa
 ./affa.sh
+
+# BackupPC
+./backuppc.sh
+
+# TFTP Server
+./tftpserver.sh
+
+# PHPList
+./phplist.sh
+
+# Crontab Manager
+./crontabmanager
+
+# Nextcloud
+#./nextcloud.sh
 
 #PostgreSQL
 ./postgres.sh

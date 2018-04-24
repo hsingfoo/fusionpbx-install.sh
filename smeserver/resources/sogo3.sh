@@ -17,3 +17,4 @@ config setprop sogod ActiveSync enabled
 signal-event sogo-modify; config set UnsavedChanges no
 db configuration setprop dovecot AdminIsMaster enabled
 signal-event email-update
+/etc/rc.d/init.d/sogod start

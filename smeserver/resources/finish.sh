@@ -84,6 +84,9 @@ config set fusionpbx configuration DomainName $domain_name DBName fusionpbx DBUs
 # Restart freeswitch with new settings
 service freeswitch restart
 
+# Clearing YUM cache
+yum clean all
+
 #welcome message
 echo ""
 echo ""
@@ -94,7 +97,7 @@ echo "           'config show fusionpbx'             "
 echo "                    and                        "
 echo "        'config show postgresql-$database_version'          "
 echo "                    and                        "
-echo "           'config show freeswitch             "
+echo "           'config show freeswitch'            "
 echo "            will show the details              "
 echo ""
 verbose "   Use a web browser to login."
