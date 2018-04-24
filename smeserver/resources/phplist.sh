@@ -10,5 +10,5 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 verbose "Installing PHPList"
-yum install --enablerepo=fws smeserver-phplist
+yum install $AUTO --enablerepo=fws smeserver-phplist $DEBUG
 signal-event webapps-update

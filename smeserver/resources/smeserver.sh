@@ -29,3 +29,9 @@ service pop3 stop
 config setprop pop3 status disabled
 signal-event email-update
 
+# Enable InnodeDB
+db configuration setprop mysqld InnoDB enabled
+expand-template /etc/my.cnf
+sv t /service/mysqld
+
+

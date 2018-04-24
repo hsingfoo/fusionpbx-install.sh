@@ -20,7 +20,7 @@ db portforward_udp set 1701 forward Comment 'SoftEther SoftEther L2TP/IPSec' Des
 db portforward_udp set 4500 forward Comment 'SoftEther SoftEther L2TP/IPSec' DestHost localhost DestPort 4500 AllowHosts ' ' DenyHosts ' '
 signal-event portforwarding-update
 
-yum $AUTO install gcc
+yum $AUTO install gcc $DEBUG
 cd /opt
 wget http://www.softether-download.com/files/softether/v4.25-9656-rtm-2018.01.15-tree/Linux/SoftEther_VPN_Server/64bit_-_Intel_x64_or_AMD64/softether-vpnserver-v4.25-9656-rtm-2018.01.15-linux-x64-64bit.tar.gz
 tar zxvf softether-vpnserver-v4.25-9656-rtm-2018.01.15-linux-x64-64bit.tar.gz
@@ -38,7 +38,7 @@ sleep 3
 # Starting and stopping vpnserver creates the initial config file automatically. After stopping we can adjust it.
 # sed command to disable port 433 (already in use by server-manager)in config file.
 sed -i '0,/bool Enabled/ s/true/false/' /opt/vpnserver/vpn_server.config
-yum $AUTO remove gcc cloog-ppl cpp libgomp mpfr ppl
+yum $AUTO remove gcc cloog-ppl cpp libgomp mpfr ppl $DEBUG
 
 cat <<HERE2 > /etc/rc.d/init.d/vpnserver
 #!/bin/sh

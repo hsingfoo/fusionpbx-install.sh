@@ -10,8 +10,8 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #Install SharedFolders
-yum $AUTO --enablerepo=smecontribs install smeserver-shared-folders
-yum $AUTO --enablerepo=smecontribs --enablerepo=epel install fuse-encfs
+yum $AUTO --enablerepo=smecontribs,epel install smeserver-shared-folders fuse-encfs $DEBUG
+
 #Restart Apache
 expand-template /etc/httpd/conf/httpd.conf
 service httpd-e-smith restart

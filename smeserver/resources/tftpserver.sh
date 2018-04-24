@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 verbose "Installing TFTP server"
-yum --enablerepo=smecontribs install smeserver-tftp-server
+yum --enablerepo=smecontribs install smeserver-tftp-server $DEBUG
 config setprop tftpd status enabled
 signal-event tftpd-conf
 service tftpd restart

@@ -10,19 +10,19 @@ cd "$(dirname "$0")"
 . ./config.sh
 
 #Populate the accounts db with the new share details 
-db accounts set $share_name share Name $share_name DynamicContent enabled Encryption disabled \
+db accounts set $fusionpbx_name share Name $fusionpbx_name DynamicContent enabled Encryption disabled \
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited \
 RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version \
 
 #Create the fusionpbx share
-signal-event share-create $share_name
+signal-event share-create $fusionpbx_name
 
 #Configure the subdomain and point to above shared folder
-db domains set $sub_domain.$domain_name domain Description "FusionPBX" Content $share_name Nameservers localhost \
-DocumentRoot $www_path Removable no TemplatePath WebAppVirtualHost \
+db domains set $fusionpbx_subdomain.$domain_name domain Description "FusionPBX" Content $fusionpbx_name Nameservers localhost \
+DocumentRoot $fusionpbx_path Removable no TemplatePath WebAppVirtualHost \
 
 #Create the domain
-signal-event domain-create $sub_domain.$domain_name
+signal-event domain-create $fusionpbx_subdomain.$domain_name
 
 #Install and configure FusionPBX
 echo ""
@@ -32,13 +32,13 @@ verbose "Installing and configuring FusionPBX"
 sleep 1
 
 #Use full system path for if www_path is empty, rm -Rf / will delete the whole server (been there, got the T-shirt ;) ) 
-rm -Rf /home/e-smith/files/shares/$share_name/*
+rm -Rf /home/e-smith/files/shares/$fusionpbx_name/*
 
 #git clone -b $fusion_version https://github.com/fusionpbx/fusionpbx.git $www_path
-git clone -b $system_branch https://github.com/fusionpbx/fusionpbx.git $www_path
-chown admin:shared $www_path
-chown -R www:www $www_path/*
-chmod -R 755 $www_path/secure
+git clone -b $fusionpbx_version https://github.com/fusionpbx/fusionpbx.git $fusionpbx_path
+chown admin:shared $fusionpbx_path
+chown -R www:www $fusionpbx_path/*
+chmod -R 755 $fusionpbx_path/secure
 
 # Adjust some Debian assumptions to Generic/CentOS
-sed -i 's/= "localhost"/= "127.0.0.1"/g' $www_path/core/install/resources/classes/install_fusionpbx.php
+sed -i 's/= "localhost"/= "127.0.0.1"/g' $fusionpbx_path/core/install/resources/classes/install_fusionpbx.php

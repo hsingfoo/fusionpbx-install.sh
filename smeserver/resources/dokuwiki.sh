@@ -11,5 +11,5 @@ cd "$(dirname "$0")"
 
 #
 echo Installing Dokuwiki
-yum $AUTO install --enablerepo=fws smeserver-dokuwiki dokuwiki-plugins
-signal-event webapps-update
+yum $AUTO install --enablerepo=fws smeserver-dokuwiki dokuwiki-plugins $DEBUG
+signal-event webapps-update $DEBUG
