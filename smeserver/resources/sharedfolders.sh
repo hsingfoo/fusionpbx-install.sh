@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 
 verbose "Installing Shared Folders"
 #Install SharedFolders
-yum $AUTO --enablerepo=smecontribs,epel install smeserver-shared-folders fuse-encfs $DEBUG
+yum $AUTO --enablerepo=smecontribs,epel install smeserver-shared-folders fuse-encfs
 
 #Restart Apache
 expand-template /etc/httpd/conf/httpd.conf

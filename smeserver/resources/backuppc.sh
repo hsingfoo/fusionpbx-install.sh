@@ -10,5 +10,5 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 verbose "Installing BackupPC"
-yum $AUTO --enablerepo=smecontribs install smeserver-BackupPC $DEBUG
+yum $AUTO --enablerepo=smecontribs install smeserver-BackupPC
 signal-event backuppc-update

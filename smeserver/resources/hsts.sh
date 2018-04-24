@@ -17,4 +17,4 @@ cat <<HERE1 > /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/VirtualHos
 Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload" env=HTTPS
 HERE1
 expand-template /etc/httpd/conf/httpd.conf
-service httpd-e-smith restart $DEBUG
+service httpd-e-smith restart
