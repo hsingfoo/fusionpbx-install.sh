@@ -2,6 +2,8 @@
 
 # Copyright H.F. Wang - hsingfoo@gmail.com
 
+clear
+
 verbose () {
 	echo "${green}$1${normal}"
 }
