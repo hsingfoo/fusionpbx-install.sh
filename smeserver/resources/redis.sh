@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #
-echo Installing Redis
+verbose "Installing Redis"
 yum $AUTO --enablerepo=epel install redis $DEBUG
 config set redis service status enabled
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S80redis

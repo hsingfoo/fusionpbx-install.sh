@@ -11,7 +11,7 @@ DEBUG=1																# 1 for verbose output, 0 for silence
 # Check if debugging is set to 1 for verbose output, otherwise silent
 if [ $DEBUG -eq 1 ]
 then
-	DEBUG=2>/dev/null											
+	DEBUG= 2>/dev/null											
 else
 	DEBUG=
 fi

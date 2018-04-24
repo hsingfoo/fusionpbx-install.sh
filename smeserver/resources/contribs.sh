@@ -60,7 +60,7 @@ verbose "Installing various contribs"
 ./phplist.sh
 
 # Crontab Manager
-./crontabmanager
+./crontabmanager.sh
 
 # Nextcloud
 #./nextcloud.sh

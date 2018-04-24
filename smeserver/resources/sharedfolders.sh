@@ -9,6 +9,7 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
+verbose "Installing Shared Folders"
 #Install SharedFolders
 yum $AUTO --enablerepo=smecontribs,epel install smeserver-shared-folders fuse-encfs $DEBUG
 

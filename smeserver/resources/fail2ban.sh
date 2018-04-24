@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #
-echo Installing fail2ban
+verbose "Installing fail2ban"
 yum $AUTO --enablerepo=fws --enablerepo=epel install smeserver-fail2ban $DEBUG
 db configuration setprop masq status enabled
 expand-template /etc/rc.d/init.d/masq

@@ -10,6 +10,6 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #
-echo Installing Dokuwiki
+verbose "Installing Dokuwiki"
 yum $AUTO install --enablerepo=fws smeserver-dokuwiki dokuwiki-plugins $DEBUG
 signal-event webapps-update $DEBUG

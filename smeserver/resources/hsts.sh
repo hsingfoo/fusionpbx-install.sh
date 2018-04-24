@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #
-echo creating custom template for HSTS
+verbose "creating custom template for HSTS"
 mkdir -p /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/VirtualHosts/
 cat <<HERE1 > /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/VirtualHosts/04StrictTransportSecurity
 ### Enable HTTP Strict Transport Security, lifetime 6 months  ###
