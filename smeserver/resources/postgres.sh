@@ -35,7 +35,7 @@ config setprop $service_name access private
 signal-event remoteaccess-update
 
 # Initialize PostgreSQL database
-/etc/rc.d/init.d/$service_name initdb
+/etc/rc.d/init.d/$service_name initdb $DEBUG
 verbose "Postgresql version: $database_version"
 
 verbose "Setting ident authentication to trust during installation"

@@ -35,7 +35,7 @@ sleep 1
 rm -Rf /home/e-smith/files/shares/$fusionpbx_name/*
 
 #git clone -b $fusion_version https://github.com/fusionpbx/fusionpbx.git $www_path
-git clone -b $fusionpbx_version https://github.com/fusionpbx/fusionpbx.git $fusionpbx_path
+git clone -b $fusionpbx_version https://github.com/fusionpbx/fusionpbx.git $fusionpbx_path $DEBUG
 chown admin:shared $fusionpbx_path
 chown -R www:www $fusionpbx_path/*
 chmod -R 755 $fusionpbx_path/secure
