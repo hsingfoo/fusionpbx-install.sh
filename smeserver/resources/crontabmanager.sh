@@ -10,5 +10,5 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 verbose "Installing Crontab Manager"
-yum install smeserver-crontab_manager --enablerepo=smecontribs
+yum $AUTO install smeserver-crontab_manager --enablerepo=smecontribs
 

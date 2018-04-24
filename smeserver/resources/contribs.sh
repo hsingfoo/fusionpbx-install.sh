@@ -63,7 +63,7 @@ verbose "Installing various contribs"
 ./crontabmanager.sh
 
 # Nextcloud
-#./nextcloud.sh
+./nextcloud.sh
 
 #PostgreSQL
 ./postgres.sh
