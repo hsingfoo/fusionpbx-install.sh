@@ -69,7 +69,7 @@ verbose "Installing various contribs"
 ./postgres.sh
 
 # Freeswitch
-$fusionpbx_path/smeserver/resources/switch/smeserver-freeswitch.sh
+. ./smeserver/resources/switch/smeserver-freeswitch.sh
 
 
 
