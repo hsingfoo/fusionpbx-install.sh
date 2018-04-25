@@ -12,4 +12,4 @@ cd "$(dirname "$0")"
 verbose "Copying default FusionPBX configuration"
 mv /etc/freeswitch /etc/freeswitch.orig
 mkdir /etc/freeswitch
-cp -R $www_path/resources/templates/conf/* /etc/freeswitch
+cp -R $fusionpbx_path/resources/templates/conf/* /etc/freeswitch
