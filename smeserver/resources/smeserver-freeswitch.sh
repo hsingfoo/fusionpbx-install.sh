@@ -6,12 +6,13 @@
 cd "$(dirname "$0")"
 
 #Includes
-. ../config.sh
-. ../colors.sh
+. ./config.sh
+. ./colors.sh
 
 echo ""
-verbose "Installing and configuring Freeswitch 1.6, please wait..."
+verbose "Installing and configuring ffmpeg"
 yum $AUTO install ffmpeg ghostscript ilbc2 --enablerepo=okay,epel
+verbose "Installing "and configuring Freeswitch 1.6, please wait...
 yum $AUTO install *$switch_version* freeswitch-sounds-en-us-callie-all freeswitch-sounds-music --enablerepo=okay,epel,remi-safe
 
 

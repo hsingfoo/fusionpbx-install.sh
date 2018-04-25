@@ -69,7 +69,7 @@ verbose "Installing various contribs"
 ./postgres.sh
 
 # Freeswitch
-. ./switch/smeserver-freeswitch.sh
+./smeserver-freeswitch.sh
 
 
 

@@ -14,9 +14,6 @@ cd "$(dirname "$0")"
 #FusionPBX
 resources/fusionpbx.sh
 
-#Postgres
-#resources/postgres.sh
-
 # FusionPBX to FreeSWITCH configs
 resources/switch/conf-copy.sh
 
