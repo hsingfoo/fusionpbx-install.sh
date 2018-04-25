@@ -12,7 +12,7 @@ cd "$(dirname "$0")"
 #Install memcached
 echo ""
 verbose "Installing and configuring memached"
-yum $AUTO install memcached
+yum $AUTO install memcached $DEBUG
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S90memcached
 config set memcached service status enabled
 /etc/rc.d/init.d/memcached start
