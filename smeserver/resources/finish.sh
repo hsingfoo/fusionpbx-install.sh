@@ -31,7 +31,7 @@ verbose "Populating FusionPBX database"
 cd $fusionpbx_path && php core/upgrade/upgrade_schema.php > /dev/null 2>&1
 
 #get the server FQDN which is used for the default FusionPBX domain and initial admin login
-domain_name=$sub_domain.$domain_name
+domain_name=$fusionpbx_subdomain.$domain_name
 
 #get a domain_uuid
 domain_uuid=$(php $fusionpbx_path/resources/uuid.php);

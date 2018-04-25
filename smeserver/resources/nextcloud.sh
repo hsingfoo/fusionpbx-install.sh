@@ -32,7 +32,9 @@ signal-event domain-create $cloud_subdomain.$domain_name
 rm -Rf /home/e-smith/files/shares/$cloud_name/*
 
 # Clone branch version of Nextcloud
-git clone -b $cloud_branch github.com/nextcloud/server.git $cloud_path
+git clone -b $cloud_branch https://github.com/nextcloud/server.git $cloud_path
+mv -n server/{.,}* .
+# rm -f server
 chown admin:shared $cloud_path
 chown -R www:www $cloud_path/*.*
 
@@ -43,5 +45,3 @@ mysql -e "flush privileges";
 
 # Store database credentials in Nextcloud db key
 config set nextcloud configuration DatabaseName $cloud_databasename DatabaseUsername DatabasePassword $cloud_password
-
-

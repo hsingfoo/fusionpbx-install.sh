@@ -8,10 +8,10 @@ domain_name=$(hostname -d)											# Get the hostname
 AUTO=-y																# Auto install all YUM commands
 DEBUG=1																# 1 for verbose output, 0 for silence
 
-# Check if debugging is set to 1 for verbose output, otherwise silent
+# Check if debugging is set to 1 for verbose output
 if [ $DEBUG -eq 1 ]
 then
-	DEBUG= 2>/dev/null											
+	DEBUG=>/dev/null 2>&1										
 else
 	DEBUG=
 fi
