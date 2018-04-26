@@ -12,6 +12,6 @@ cd "$(dirname "$0")"
 #Install and sngrep
 echo ""
 verbose "Installing and configuring Limesurvey"
-yum $AUTO install smeserver-limesurvey --enablerepo=fws,epel $DEBUG
+yum $AUTO install smeserver-limesurvey --enablerepo=fws,epel
 signal-event webapps-update
 

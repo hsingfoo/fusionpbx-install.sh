@@ -12,9 +12,8 @@ cd "$(dirname "$0")"
 #send a message
 verbose "Installing Sogo3"
 #yum install $AUTO libmemcached
-yum install $AUTO --enablerepo=stephdl,epel,sogo3,fws smeserver-sogo $DEBUG
+yum install $AUTO --enablerepo=stephdl,epel,sogo3,fws smeserver-sogo
 config setprop sogod ActiveSync enabled
 signal-event sogo-modify; config set UnsavedChanges no
 db configuration setprop dovecot AdminIsMaster enabled
 signal-event email-update
-/etc/rc.d/init.d/sogod start

@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 
 echo ""
 verbose "Installing and configuring ffmpeg"
-yum $AUTO install ffmpeg ghostscript ilbc2 --enablerepo=okay,epel $DEBUG
+yum $AUTO install ffmpeg ghostscript ilbc2 --enablerepo=okay,epel
 verbose "Installing "and configuring Freeswitch 1.6, please wait...
 yum $AUTO install *$switch_version* freeswitch-sounds-en-us-callie-all freeswitch-sounds-music --enablerepo=okay,epel,remi-safe
 

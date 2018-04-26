@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 
 #
 verbose "Installing fail2ban"
-yum $AUTO --enablerepo=fws --enablerepo=epel install smeserver-fail2ban $DEBUG
+yum $AUTO --enablerepo=fws --enablerepo=epel install smeserver-fail2ban
 db configuration setprop masq status enabled
 expand-template /etc/rc.d/init.d/masq
 /etc/init.d/masq restart

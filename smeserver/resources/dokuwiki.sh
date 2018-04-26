@@ -11,5 +11,5 @@ cd "$(dirname "$0")"
 
 #
 verbose "Installing Dokuwiki"
-yum $AUTO install --enablerepo=fws smeserver-dokuwiki dokuwiki-plugins $DEBUG
+yum $AUTO install --enablerepo=fws smeserver-dokuwiki dokuwiki-plugins
 signal-event webapps-update

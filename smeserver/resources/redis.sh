@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 
 #
 verbose "Installing Redis"
-yum $AUTO --enablerepo=epel install redis $DEBUG
+yum $AUTO --enablerepo=epel install redis
 config set redis service status enabled
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S80redis
 usermod -a -G redis www

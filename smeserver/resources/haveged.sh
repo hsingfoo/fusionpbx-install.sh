@@ -15,4 +15,4 @@ verbose "Installing and configuring haveged"
 yum $AUTO install haveged --enablerepo=epel $DEBUG
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S90haveged
 config set haveged service status enabled
-/etc/rc.d/init.d/haveged start $DEBUG
+/etc/rc.d/init.d/haveged start

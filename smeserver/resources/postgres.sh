@@ -21,7 +21,7 @@ if [ $database_version = "9.4" ]; then
 else
 	service_name=postgresql-9.6 ; version=96 ; dbbin_name=postgresql96
 fi
-yum $AUTO install $dbbin_name-server $dbbin_name-contrib $dbbin_name luapgsql --enablerepo=$dbbin_name $DEBUG
+yum $AUTO install $dbbin_name-server $dbbin_name-contrib $dbbin_name luapgsql --enablerepo=$dbbin_name
 if [ $database_version = "9.4" ]; then
 	mkdir -p /var/run/postgresql; chown postgres:postgres /var/run/postgresql
 fi

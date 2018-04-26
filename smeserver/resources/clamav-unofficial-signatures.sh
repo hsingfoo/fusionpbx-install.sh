@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 
 #
 echo Adding unoffcial calmav signatures
-yum $AUTO install smeserver-clamav-unofficial-sigs --enablerepo=fws,epel $DEBUG
+yum $AUTO install smeserver-clamav-unofficial-sigs --enablerepo=fws,epel
 config setprop clamd MemLimit 1500000000
 
 #
@@ -20,7 +20,7 @@ config delprop clamav-unofficial-sigs securiteinfo.hdb securiteinfobat.hdb \
 securiteinfodos.hdb securiteinfoelf.hdb securiteinfohtml.hdb securiteinfooffice.hdb \
 securiteinfopdf.hdb securiteinfosh.hdb honeynet.hdb mbl.ndb
 signal-event clamav-update
-clamav-unofficial-sigs.sh $DEBUG
+clamav-unofficial-sigs.sh
 
 # 
 echo Enabling Heuristic scanning

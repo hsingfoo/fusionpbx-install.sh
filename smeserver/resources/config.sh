@@ -5,16 +5,7 @@ php_version=71                   									# PHP version 54, 55, 56, 70 or 71
 script_path=/usr/src/fusionpbx-install.sh							# Root path to install script
 sme_version=9														# 9, 10
 domain_name=$(hostname -d)											# Get the hostname
-AUTO=-y																# Auto install all YUM commands
-DEBUG=1																# 1 for verbose output, 0 for silence
-
-# Check if debugging is set to 1 for verbose output
-if [ $DEBUG -eq 1 ]
-then
-	DEBUG=										
-else
-	DEBUG=>"/dev/null 2>&1"
-fi
+AUTO=-y -q															# Auto and quiet install
 
 # PostgreSQL details
 database_version=9.4												# 9.4 or 9.6

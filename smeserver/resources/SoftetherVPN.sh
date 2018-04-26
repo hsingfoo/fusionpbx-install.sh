@@ -38,7 +38,7 @@ sleep 3
 # Starting and stopping vpnserver creates the initial config file automatically. After stopping we can adjust it.
 # sed command to disable port 433 (already in use by server-manager)in config file.
 sed -i '0,/bool Enabled/ s/true/false/' /opt/vpnserver/vpn_server.config
-yum $AUTO remove gcc cloog-ppl cpp libgomp mpfr ppl $DEBUG
+yum $AUTO remove gcc cloog-ppl cpp libgomp mpfr ppl
 
 cat <<HERE2 > /etc/rc.d/init.d/vpnserver
 #!/bin/sh

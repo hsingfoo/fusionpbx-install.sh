@@ -12,4 +12,4 @@ cd "$(dirname "$0")"
 #Install and sngrep
 echo ""
 verbose "Installing and configuring sngrep"
-yum $AUTO install sngrep --enablerepo=irontec $DEBUG
+yum $AUTO install sngrep --enablerepo=irontec
