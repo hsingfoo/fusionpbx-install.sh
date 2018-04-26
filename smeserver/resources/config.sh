@@ -11,9 +11,9 @@ DEBUG=1																# 1 for verbose output, 0 for silence
 # Check if debugging is set to 1 for verbose output
 if [ $DEBUG -eq 1 ]
 then
-	DEBUG=>/dev/null 2>&1										
+	DEBUG=										
 else
-	DEBUG=
+	DEBUG=>/dev/null 2>&1
 fi
 
 # PostgreSQL details
@@ -25,7 +25,8 @@ database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 
 
 # Cloud settings
 cloud_name=cloud													# Nextcloud
-cloud_branch=stable13												# Nextcloud version
+cloud_version=13.0.1												# Nextcloud version
+cloud_branch=stable13
 cloud_path=/home/e-smith/files/shares/$cloud_name/files				# full path to Nextcloud directory
 cloud_subdomain=cloud
 cloud_databasename=nextcloud										# Nextcloud MySQL databasename
