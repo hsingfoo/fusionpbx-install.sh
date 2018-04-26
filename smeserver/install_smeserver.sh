@@ -35,4 +35,4 @@ resources/iptables.sh
 resources/contribs.sh
 
 # switch to SCL enabled environment
-#scl enable php$php_version 'bash install_scl_enabled.sh && exit'
+scl enable php$php_version 'bash install_scl_enabled.sh && exit'
