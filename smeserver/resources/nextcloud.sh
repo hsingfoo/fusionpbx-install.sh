@@ -38,10 +38,6 @@ rm -Rf /home/e-smith/files/shares/$cloud_name/*
 
 # Clone branch version of Nextcloud
 git clone -b $cloud_branch https://github.com/nextcloud/server.git $cloud_path
-#wget https://github.com/nextcloud/server/archive/v$cloud_version -P $cloud_path
-tar -zxvf v$cloud_version
-mv -n server-$cloud_version/{.,}* .
-# rm -f server-$cloud_version
 chown admin:shared $cloud_path
 chown -R www:www $cloud_path/*.*
 
