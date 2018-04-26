@@ -13,7 +13,7 @@ if [ $DEBUG -eq 1 ]
 then
 	DEBUG=										
 else
-	DEBUG=>/dev/null 2>&1
+	DEBUG=>"/dev/null 2>&1"
 fi
 
 # PostgreSQL details

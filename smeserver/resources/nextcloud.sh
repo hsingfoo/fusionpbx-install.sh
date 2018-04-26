@@ -47,4 +47,4 @@ mysql -e "grant all privileges on $cloud_databasename.* to $cloud_username@local
 mysql -e "flush privileges";
 
 # Store database credentials in Nextcloud db key
-config set nextcloud configuration DatabaseName $cloud_databasename DatabaseUsername DatabasePassword $cloud_password
+config set nextcloud configuration DatabaseName $cloud_databasename DatabaseUsername $cloud_username DatabasePassword $cloud_password
