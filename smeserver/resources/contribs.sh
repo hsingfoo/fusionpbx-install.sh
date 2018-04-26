@@ -59,6 +59,9 @@ verbose "Installing various contribs"
 # PHPList
 ./phplist.sh
 
+# LimeSurvey
+./limesurvey.sh
+
 # Crontab Manager
 ./crontabmanager.sh
 
