@@ -19,7 +19,8 @@ fusionpbx PHPBaseDir /
 signal-event share-create $fusionpbx_name
 
 #Configure the subdomain and point to above shared folder
-db domains set $fusionpbx_subdomain.$domain_name domain Description "FusionPBX" Content $fusionpbx_name Nameservers localhost \
+db domains set $fusionpbx_subdomain.$domain_name domain Description "FusionPBX" \
+Content $fusionpbx_name Nameservers localhost \
 DocumentRoot $fusionpbx_path Removable no TemplatePath WebAppVirtualHost \
 
 #Create the domain

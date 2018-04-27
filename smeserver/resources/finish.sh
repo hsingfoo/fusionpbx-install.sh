@@ -79,7 +79,9 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr
 cd $fusionpbx_path && php $fusionpbx_path/core/upgrade/upgrade_domains.php
 
 # Setting fusionpbx SME Server db keys
-config set fusionpbx configuration DomainName $domain_name DBName fusionpbx DBUser $user_name DBPassword $user_password XMLCDRUser $xml_cdr_username XMLCDRPassword $xml_cdr_password
+config set fusionpbx configuration DomainName $domain_name \
+DBName fusionpbx DBUser $user_name DBPassword $user_password \
+XMLCDRUser $xml_cdr_username XMLCDRPassword $xml_cdr_password
 
 # Restart freeswitch with new settings
 service freeswitch restart
