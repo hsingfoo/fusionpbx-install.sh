@@ -9,7 +9,6 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
-verbose "Installing PHP software Collections"
 #Install and configure Remi PHP versions
 echo ""
 verbose "Installing and configuring php-fpm and SCL php versions"

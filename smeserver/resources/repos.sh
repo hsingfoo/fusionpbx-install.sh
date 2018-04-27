@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 echo ""
-verbose "Configuring and updating repositories, please wait..."
+verbose "Configuring and updating repositories"
 #Define yum repository for 9.4
 /sbin/e-smith/db yum_repositories set postgresql94 repository \
 Name "PostgreSQL 9.4" \

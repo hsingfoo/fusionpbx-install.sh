@@ -13,15 +13,13 @@ cd "$(dirname "$0")"
 db accounts set $fusionpbx_name share Name $fusionpbx_name DynamicContent enabled Encryption disabled \
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited \
 RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version \
-fusionpbx PHPBaseDir / 
+fusionpbx PHPBaseDir '/' \ 
 
 #Create the fusionpbx share
 signal-event share-create $fusionpbx_name
 
 #Configure the subdomain and point to above shared folder
-db domains set $fusionpbx_subdomain.$domain_name domain Description "FusionPBX" \
-Content $fusionpbx_name Nameservers localhost \
-DocumentRoot $fusionpbx_path Removable no TemplatePath WebAppVirtualHost \
+db domains set $fusionpbx_subdomain.$domain_name domain Description FusionPBX Nameservers localhost DocumentRoot $fusionpbx_path Removable no TemplatePath WebAppVirtualHost
 
 #Create the domain
 signal-event domain-create $fusionpbx_subdomain.$domain_name

@@ -9,8 +9,6 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
-verbose "Installing various contribs"
-
 # SharedFolders
 ./sharedfolders.sh
 
