@@ -41,7 +41,7 @@ git clone -q -b $cloud_branch https://github.com/nextcloud/server.git $cloud_pat
 
 # get 3rdparty modules
 cd $cloud_path
-git submodule update --init
+git submodule -q update -q --init
 cd "$(dirname "$0")"
 
 # Set permissions
