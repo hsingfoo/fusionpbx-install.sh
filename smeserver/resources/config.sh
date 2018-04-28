@@ -9,7 +9,7 @@ AUTO=-y																# Auto and quiet install
 
 # Branding
 product_name=BogusProduct												
-vendor_name=BogusComapny
+vendor_name=BogusComapany
 copyright_label=2018
 support_email=support@boguscompany.org
 vendorlogo_name=BogusImage.png
