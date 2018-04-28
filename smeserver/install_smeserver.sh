@@ -19,6 +19,9 @@ echo ""
 verbose "Updating SME Server"
 yum $AUTO update --enablerepo=smeupdates-testing
 
+# Branding
+resources/branding.sh
+
 # Installing SME Server specifics
 resources/smeserver.sh
 

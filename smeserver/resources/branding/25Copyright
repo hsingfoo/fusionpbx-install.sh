@@ -1,0 +1,9 @@
+    $OUT .= "Copyright 2018 Skylocker<BR>";
+
+    use Locale::gettext;
+    use esmith::I18N;
+    my $i18n = esmith::I18N->new();
+    $i18n->setLocale('foot.tmpl', $i18n->preferredLanguage());
+    $OUT .= gettext("All rights reserved.");
+    $OUT;
+  \}

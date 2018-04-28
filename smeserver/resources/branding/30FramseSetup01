@@ -1,0 +1,45 @@
+\{
+  if ($NO_FRAMES)
+  \{
+    $OUT .= <<EOF;
+<frameset rows="68,*" cols="*" frameborder="NO" border="0" framespacing="0">
+  <frame src="/server-manager/header.htm" name="header" scrolling="NO" noresize >
+  <frameset rows="*" cols="192,*" framespacing="0" frameborder="NO" border="0">
+    <frame src="/server-manager/navigation" name="navigation" scrolling="auto" noresize>
+    <frame src="/server-manager/initial.cgi" name="main">
+  </frameset>
+</frameset>
+
+</FRAMESET>
+
+<NOFRAMES>
+EOF
+  \}
+  else
+  \{
+     my $panel = "Server manager";
+     my $img = "smeserver_logo.jpg";
+
+     $OUT .= <<EOF;
+<body>
+EOF
+  \}
+
+  if( $ENV\{REQUEST_URI\} =~ m/(server-manager)/) \{
+
+    $DB = esmith::ConfigDB->open();
+    $OUT .= qq(<div class="SkylockerOffice-error"><h5>
+      Warning: you have not yet changed the default system password.</h5></div>)
+      unless ($DB->get('PasswordSet')->value eq "yes");
+
+    $OUT .= qq(<div class="sme-error"><h5>
+      Warning: a reconfigure and reboot is required before proceeding! Failure to do so now
+      may leave your system in an unknown state!</h5></div>)
+      if ($DB->get('bootstrap-console') and $DB->get('bootstrap-console')->prop('Run') eq 'yes') ||
+         ($DB->get('UnsavedChanges') and $DB->get('UnsavedChanges')->value eq 'yes');
+
+    $OUT;
+
+  \}
+
+\}

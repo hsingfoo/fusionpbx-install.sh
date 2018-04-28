@@ -1,0 +1,2 @@
+	$OUT .= "SkylockerOffice $releaseVersion<BR>";
+	
