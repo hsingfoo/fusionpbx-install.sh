@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 
 # Populate the accounts db with the new cloud details 
 db accounts set $cloud_name share Name $cloud_name DynamicContent enabled Encryption disabled \
-Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited \
+Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
 RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version \
 AllowOverride All FollowSymLinks enabled Group www \
 PHPBaseDir $cloud_path:/tmp/:/dev/urandom \
