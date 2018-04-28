@@ -11,8 +11,8 @@ cd "$(dirname "$0")"
 
 #Populate the accounts db with the new share details 
 db accounts set $fusionpbx_name share Name $fusionpbx_name DynamicContent enabled Encryption disabled \
-Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited \
-RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version PHPBaseDir '/' \ 
+Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
+RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version PHPBaseDir \ / \
 
 #Create the fusionpbx share
 signal-event share-create $fusionpbx_name

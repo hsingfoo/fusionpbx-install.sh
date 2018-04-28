@@ -38,6 +38,14 @@ rm -Rf /home/e-smith/files/shares/$cloud_name/*
 
 # Clone branch version of Nextcloud
 git clone -b $cloud_branch https://github.com/nextcloud/server.git $cloud_path
+
+# get 3rdparty modules
+cd $cloud_path
+git submodule update --init
+cd "$(dirname "$0")"
+
+# Set permissions
+mkdir -p $cloud_path/data
 chown admin:shared $cloud_path
 chown -R www:www $cloud_path/*.*
 
