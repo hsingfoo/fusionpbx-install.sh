@@ -2,8 +2,8 @@
     unless ($NO_FRAMES)
     \{
        $OUT .= <<EOF;
-  <link rev="made" href="mailto:support%skylocker.nl">
-  <meta name="copyright" content="(head.tmpl)Copyright 2018 Skylocker">
+  <link rev="made" href="mailto:support_email">
+  <meta name="copyright" content="(head.tmpl)copyright_label vendor_name">
   <link rel="stylesheet" type="text/css" href="/server-common/css/sme_core.css">
   <style type="text/css"> 
   \@import url("/server-common/css/sme_main.css");

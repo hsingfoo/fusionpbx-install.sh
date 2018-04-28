@@ -7,6 +7,13 @@ sme_version=9														# 9, 10
 domain_name=$(hostname -d)											# Get the hostname
 AUTO=-y																# Auto and quiet install
 
+# Branding
+product_name=BogusProduct												
+vendor_name=BogusComapny
+copyright_label=2018
+support_email=support@boguscompany.org
+vendorlogo_name=BogusImage.png
+
 # PostgreSQL details
 database_version=9.4												# 9.4 or 9.6
 database_host=127.0.0.1												# Fixed setting

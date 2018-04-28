@@ -1,4 +1,4 @@
-    $OUT .= "Copyright 2018 Skylocker<BR>";
+    $OUT .= "Copyright copyright_label vendor_name<BR>";
 
     use Locale::gettext;
     use esmith::I18N;

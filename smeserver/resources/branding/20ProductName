@@ -1,2 +1,2 @@
-	$OUT .= "SkylockerOffice $releaseVersion<BR>";
+	$OUT .= "product_name $releaseVersion<BR>";
 	

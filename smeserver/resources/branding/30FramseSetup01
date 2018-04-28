@@ -17,8 +17,8 @@ EOF
   \}
   else
   \{
-     my $panel = "Server manager";
-     my $img = "smeserver_logo.jpg";
+     my $panel = "product_name manager";
+     my $img = "vendorlogo_name";
 
      $OUT .= <<EOF;
 <body>
@@ -28,7 +28,7 @@ EOF
   if( $ENV\{REQUEST_URI\} =~ m/(server-manager)/) \{
 
     $DB = esmith::ConfigDB->open();
-    $OUT .= qq(<div class="SkylockerOffice-error"><h5>
+    $OUT .= qq(<div class="Skyloproduct_name-error"><h5>
       Warning: you have not yet changed the default system password.</h5></div>)
       unless ($DB->get('PasswordSet')->value eq "yes");
 
