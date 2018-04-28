@@ -31,7 +31,6 @@ if test -t 1; then
         cyan="$(tput setaf 6)"
         white="$(tput setaf 7)"
     fi
-	verbose "Enabled color support"
 fi
 
 # check to confirm running as root.
@@ -59,7 +58,7 @@ verbose "Fetching Installer"
 yum -y -q install git
 if [ -d /usr/src/fusionpbx-install.sh ]; then
 	cd /usr/src/fusionpbx-install.sh
-	git pull
+	git -q pull
 else
 	git clone -q https://github.com/hsingfoo/fusionpbx-install.sh
 fi

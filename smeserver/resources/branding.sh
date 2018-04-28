@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 # Brand Server Manager
-verbose "Branding"
+# verbose "Branding"
 
 #Server manager
 mkdir -p /etc/e-smith/templates-custom/etc/e-smith/web/common/foot.tmpl
