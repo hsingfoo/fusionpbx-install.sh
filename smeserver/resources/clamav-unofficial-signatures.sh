@@ -10,7 +10,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #
-echo Adding unoffcial calmav signatures
+verboe "Adding unoffcial calmav signatures"
 yum $AUTO install smeserver-clamav-unofficial-sigs --enablerepo=fws,epel
 config setprop clamd MemLimit 1500000000
 

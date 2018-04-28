@@ -37,7 +37,7 @@ sleep 1
 rm -Rf /home/e-smith/files/shares/$cloud_name/*
 
 # Clone branch version of Nextcloud
-git clone -b $cloud_branch https://github.com/nextcloud/server.git $cloud_path
+git clone -q -b $cloud_branch https://github.com/nextcloud/server.git $cloud_path
 
 # get 3rdparty modules
 cd $cloud_path

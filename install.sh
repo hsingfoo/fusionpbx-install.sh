@@ -56,12 +56,12 @@ if [ ! -d /usr/src ]; then
 fi
 cd /usr/src
 verbose "Fetching Installer"
-yum -y install git
+yum -y -q install git
 if [ -d /usr/src/fusionpbx-install.sh ]; then
 	cd /usr/src/fusionpbx-install.sh
 	git pull
 else
-	git clone https://github.com/hsingfoo/fusionpbx-install.sh
+	git clone -q https://github.com/hsingfoo/fusionpbx-install.sh
 fi
 chmod -R 755 /usr/src/fusionpbx-install.sh
 cd /usr/src/fusionpbx-install.sh/smeserver

@@ -28,4 +28,3 @@ cp ./fail2ban/jail.local /etc/fail2ban/jail.local
 
 service fail2ban restart
 
-verbose "Fail2ban installed"

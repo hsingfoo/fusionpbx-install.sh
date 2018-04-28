@@ -87,7 +87,7 @@ XMLCDRUser $xml_cdr_username XMLCDRPassword $xml_cdr_password
 service freeswitch restart
 
 # Clearing YUM cache
-yum clean all
+yum -q clean all --enablerepo=*
 
 #welcome message
 echo ""
@@ -95,21 +95,18 @@ echo ""
 verbose "        Installation has completed."
 echo ""
 echo "Please note details below and reboot your system"
-echo "           'config show fusionpbx'             "
-echo "                    and                        "
-echo "        'config show postgresql-$database_version'          "
-echo "                    and                        "
-echo "           'config show freeswitch'            "
-echo "            will show the details              "
+echo "   'config show fusionpbx'"
+echo "   'config show postgresql-$database_version'"
+echo "   'config show freeswitch'"
+echo "will show the details"
 echo ""
-verbose "      Use a web browser to login."
+verbose "      Use a web browser to login at:"
 verbose "      domain name: https://$domain_name"
 verbose "      username: $user_name"
 verbose "      password: $user_password"
 echo ""
-echo "   The domain name in the browser is used by default as part of the authentication."
-echo "   If you need to login to a different domain then use username@domain."
-echo "         username: $user_name@https://$domain_name";
+echo "The domain name in the browser is used by default as part of the authentication."
+echo "If you need to login to a different domain then use username@domain."
 echo ""
 verbose "*----------------------------------------------- *"
 verbose "*    NOTE: Please save the above information.    *"
