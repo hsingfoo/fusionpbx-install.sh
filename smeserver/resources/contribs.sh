@@ -12,6 +12,9 @@ cd "$(dirname "$0")"
 # SharedFolders
 ./sharedfolders.sh
 
+# Lemon-LDAP-ng
+./lemon-ldap-ng.sh
+
 # Redis
 ./redis.sh
 
