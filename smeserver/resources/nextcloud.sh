@@ -46,7 +46,7 @@ cd "$(dirname "$0")"
 # Set permissions
 mkdir -p $cloud_path/data
 chown admin:shared $cloud_path
-chown -R www:www $cloud_path/*.*
+chown -R www:www $cloud_path *
 
 # create MySQL database
 mysql -e "create database $cloud_databasename";
