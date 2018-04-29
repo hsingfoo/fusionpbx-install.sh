@@ -16,6 +16,10 @@ echo Changing some system settings
 service smolt stop
 config setprop smolt status disabled
 
+# Disable statusreport
+config setprop statusreport status disabled
+expand-template /etc/crontab
+
 # Stop and disable Samba
 service smb stop
 config setprop smb status disabled

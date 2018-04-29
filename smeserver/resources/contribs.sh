@@ -33,9 +33,6 @@ cd "$(dirname "$0")"
 # SoftetherVPN
 ./SoftetherVPN.sh
 
-# Fail2ban
-./fail2ban.sh
-
 # Clamav-unofficial Signatures
 ./clamav-unofficial-signatures.sh
 
@@ -74,6 +71,10 @@ cd "$(dirname "$0")"
 
 # Freeswitch
 ./smeserver-freeswitch.sh
+
+# Fail2ban, needs to be installed after all other contribs due to dependencies on log files being present
+./fail2ban.sh
+
 
 
 
