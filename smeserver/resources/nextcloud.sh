@@ -20,7 +20,7 @@ PHPBaseDir $cloud_path:/tmp/:/dev/urandom \
 signal-event share-create $cloud_name
 
 #Configure the subdomain and point to above shared folder
-db domains set $cloud_subdomain.$domain_name domain Description "Nextcloud" Content $cloud_name Nameservers localhost \
+db domains set $cloud_subdomain.$domain_name domain Description "Nextcloud" Nameservers localhost \
 DocumentRoot $cloud_path Removable no TemplatePath WebAppVirtualHost \
 
 #Create the domain
