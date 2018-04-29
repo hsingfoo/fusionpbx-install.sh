@@ -10,6 +10,5 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #Install and sngrep
-echo ""
 verbose "Installing and configuring sngrep"
 yum $AUTO install sngrep --enablerepo=irontec

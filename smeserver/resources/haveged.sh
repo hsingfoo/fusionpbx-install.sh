@@ -10,7 +10,6 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #Install haveged"
-echo ""
 verbose "Installing and configuring haveged"
 yum $AUTO install haveged --enablerepo=epel $DEBUG
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S90haveged

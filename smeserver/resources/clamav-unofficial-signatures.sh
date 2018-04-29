@@ -23,13 +23,13 @@ signal-event clamav-update
 clamav-unofficial-sigs.sh
 
 # 
-echo Enabling Heuristic scanning
+verbose "Configuring Heuristic scanning"
 config setprop clamav HeuristicScanPrecedence yes
 expand-template /etc/clamd.conf
 sv t clamd
 
 #
-echo Enable Bayesian Autolearning
+verbose "Configuring Bayesian Autolearning"
 config setprop spamassassin UseBayes 1
 config setprop spamassassin BayesAutoLearnThresholdSpam 6.00
 config setprop spamassassin BayesAutoLearnThresholdNonspam 0.10

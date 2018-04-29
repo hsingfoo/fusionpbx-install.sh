@@ -27,7 +27,6 @@ DocumentRoot $cloud_path Removable no TemplatePath WebAppVirtualHost \
 signal-event domain-create $cloud_subdomain.$domain_name
 
 #Install and configure FusionPBX
-echo ""
 verbose "Installing and configuring Nextcloud"
 
 #Provide a little time for previous processes are finished and/or closed, otherwise git will fail!

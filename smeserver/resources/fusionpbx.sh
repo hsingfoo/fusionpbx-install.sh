@@ -9,6 +9,9 @@ cd "$(dirname "$0")"
 . ./colors.sh
 . ./config.sh
 
+#Install and configure FusionPBX
+verbose "Installing and configuring FusionPBX"
+
 #Populate the accounts db with the new share details 
 db accounts set $fusionpbx_name share Name $fusionpbx_name DynamicContent enabled Encryption disabled \
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
@@ -22,10 +25,6 @@ db domains set $fusionpbx_subdomain.$domain_name domain Description FusionPBX Na
 
 #Create the domain
 signal-event domain-create $fusionpbx_subdomain.$domain_name
-
-#Install and configure FusionPBX
-echo ""
-verbose "Installing and configuring FusionPBX"
 
 #Provide a little time for previous processes are finished and/or closed, otherwise git will fail!
 sleep 1

@@ -9,8 +9,7 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
-#Install and sngrep
-echo ""
+#Install Limesurvey
 verbose "Installing and configuring Limesurvey"
 yum $AUTO install smeserver-limesurvey --enablerepo=fws,epel
 signal-event webapps-update

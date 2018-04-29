@@ -9,7 +9,6 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
-echo ""
 verbose "Installing and configuring ffmpeg"
 yum $AUTO install ffmpeg ghostscript ilbc2 --enablerepo=okay,epel
 verbose "Installing and configuring Freeswitch $switch_version"

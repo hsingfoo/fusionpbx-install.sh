@@ -10,7 +10,6 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #Install memcached
-echo ""
 verbose "Installing and configuring memached"
 yum $AUTO install memcached
 ln -s /etc/rc.d/init.d/e-smith-service /etc/rc7.d/S90memcached

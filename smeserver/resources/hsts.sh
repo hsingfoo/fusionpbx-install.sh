@@ -9,7 +9,6 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
-#
 verbose "creating custom template for HSTS"
 mkdir -p /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/VirtualHosts/
 cat <<HERE1 > /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/VirtualHosts/04StrictTransportSecurity

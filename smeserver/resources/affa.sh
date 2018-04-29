@@ -10,6 +10,5 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #Install and Affa
-echo ""
 verbose "Installing and configuring Affa"
 yum $AUTO install smeserver-affa --enablerepo=smecontribs
