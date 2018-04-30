@@ -10,10 +10,7 @@ cd "$(dirname "$0")"
 . ./colors.sh
 
 #send a message
-echo ""
 verbose "Installing and configuring PostgreSQL $database_version"
-
-#echo $version | sed 's/[.,]//g'
 
 #Install and configure PostgreSQL
 if [ $database_version = "9.4" ]; then

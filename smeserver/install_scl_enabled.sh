@@ -17,6 +17,9 @@ resources/fusionpbx.sh
 # FusionPBX to FreeSWITCH configs
 resources/switch/conf-copy.sh
 
+# Setting permissions
+resources/permissions.sh
+
 #restart services
 echo ""
 verbose "Restarting packages for final configuration"
@@ -26,5 +29,6 @@ service freeswitch start
 service php$php_version-php-fpm start
 service httpd-e-smith restart
 
+# Warpping up!
 resources/finish.sh
-resources/permissions.sh
+
