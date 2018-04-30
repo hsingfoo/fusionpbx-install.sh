@@ -15,7 +15,7 @@ support_email=support@boguscompany.org
 vendorlogo_name=BogusImage.png
 
 # PostgreSQL details
-database_version=9.6												# 9.4 or 9.6
+database_version=9.4												# 9.4 or 9.6
 database_host=127.0.0.1												# Fixed setting
 database_port=5432													# Fixed setting
 database_username=fusionpbx											# FusionPBX PostgreSQL username
