@@ -76,7 +76,7 @@ cd "$(dirname "$0")"
 ./smeserver-freeswitch.sh
 
 # Fail2ban, needs to be installed after all other contribs due to dependencies on log files being present
-./fail2ban.sh
+#./fail2ban.sh
 
 
 

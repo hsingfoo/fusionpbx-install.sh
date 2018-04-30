@@ -17,6 +17,9 @@ db accounts set $fusionpbx_name share Name $fusionpbx_name DynamicContent enable
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
 RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version PHPBaseDir \ / \
 
+db accounts setprop $fusionpbx_name PHPDisableFunctions 'system,show_source,symlink,exec,dl,passthru,phpinfo'
+db accounts setprop $fusionpbx_name PHPAllowUrlFopen on
+
 #Create the fusionpbx share
 signal-event share-create $fusionpbx_name
 
