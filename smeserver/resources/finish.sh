@@ -75,6 +75,9 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_project_path}:
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_user}:$xml_cdr_username:"
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr_password:"
 
+# Setting permissions
+resources/permissions.sh
+
 #app defaults
 cd $fusionpbx_path && php $fusionpbx_path/core/upgrade/upgrade_domains.php
 

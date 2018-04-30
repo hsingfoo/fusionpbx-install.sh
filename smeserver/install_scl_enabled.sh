@@ -17,9 +17,6 @@ resources/fusionpbx.sh
 # FusionPBX to FreeSWITCH configs
 resources/switch/conf-copy.sh
 
-# Setting permissions
-resources/permissions.sh
-
 #restart services
 echo ""
 verbose "Restarting packages for final configuration"
