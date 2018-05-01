@@ -38,8 +38,13 @@ domain_uuid=$(php $fusionpbx_path/resources/uuid.php);
 
 #add the domain name
 verbose "Setting FsionPBX domain name"
+cwd=$(pwd)
 cd /tmp
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
+cd "$(dirname "$0")"
+
+# Setting permissions
+resources/permissions.sh
 
 #app defaults
 cd $fusionpbx_path && php $fusionpbx_path/core/upgrade/upgrade_domains.php
@@ -75,9 +80,6 @@ sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_project_path}:
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_user}:$xml_cdr_username:"
 sed -i /etc/freeswitch/autoload_configs/xml_cdr.conf.xml -e s:"{v_pass}:$xml_cdr_password:"
 
-# Setting permissions
-resources/permissions.sh
-
 #app defaults
 cd $fusionpbx_path && php $fusionpbx_path/core/upgrade/upgrade_domains.php
 
@@ -95,14 +97,14 @@ yum -q clean all --enablerepo=*
 #welcome message
 echo ""
 echo ""
-verbose "		Installation has completed."
+verbose "			Installation has completed."
 echo ""
 echo "			To see details see:"
-echo "   		config show fusionpbx"
-echo "   		config show postgresql-$database_version"
-echo "   		config show freeswitch"
+echo "			config show fusionpbx"
+echo "			config show postgresql-$database_version"
+echo "			config show freeswitch"
 echo ""
-verbose "     	Use a web browser to login your PBX at:"
+verbose "     	Use a web browser to login to your PBX at:"
 verbose "     	domain name: https://$domain_name"
 verbose "     	username: $user_name"
 verbose "     	password: $user_password"
