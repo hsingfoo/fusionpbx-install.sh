@@ -20,7 +20,7 @@ expand-template /etc/httpd/conf/httpd.conf
 service httpd-e-smith restart
 
 # Template for webapps virtual hosts
-/etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/WebAppVirtualHost
+mkdir -p /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/WebAppVirtualHost
 cat <<HERE2	> /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/WebAppVirtualHost/04StrictTransportSecurity
 	### Enable HTTP Strict Transport Security, lifetime 6 months  ###
 	Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload" env=HTTPS

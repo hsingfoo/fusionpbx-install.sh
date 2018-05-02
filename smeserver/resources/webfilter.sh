@@ -27,6 +27,7 @@ cp -a /etc/e-smith/templates/usr/share/squidGuard/conf.txt/10All /etc/e-smith/te
 db configuration setprop squid-db-logd Retention 180
 
 # Finish
+verbose "Updating initial filter databases, this can take quite a long time. Please wait..."
 signal-event http-proxy-update
 expand-template /etc/httpd/conf/httpd.conf
 sv t /service/httpd-e-smith

@@ -9,6 +9,8 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
+# PLEASE NOTE THAT THIS SCRIPT MUST BE RUN WHEN PHP SCL ENVIRONMENT IS ACTIVE
+
 # Populate the accounts db with the new cloud details 
 db accounts set $cloud_name share Name $cloud_name DynamicContent enabled Encryption disabled \
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
