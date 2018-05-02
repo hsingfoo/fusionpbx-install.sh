@@ -64,17 +64,14 @@ mysql -e "flush privileges";
 
 # Preconfigure Nextcloud
 cd $cloud_path
-sudo -u www scl enable php$php_version 'php occ maintenance:install --database
-"mysql" --database-name "$cloud_dbname"  --database-user "$cloud_dbusername" --database-pass
-"$cloud_password" --admin-user "$cloud_adminame" --admin-pass "$cloud_adminpass" --data-dir "$cloud_datapath"'
+php occ maintenance:install --database "mysql" --database-name "$cloud_dbname"  --database-user "$cloud_dbusername" --database-pass "$cloud_password" --admin-user "$cloud_adminame" --admin-pass "$cloud_adminpass" --data-dir "$cloud_datapath"
 cd "$(dirname "$0")"
 
 # Store Nextcloud credentials in nextcloud db key
-config set nextcloud configuration DatabaseName $cloud_dbasename DatabaseUsername $cloud_dbusername DatabasePassword $cloud_dbpassword \
-AdminName $cloud_adminname AdminPass $cloud_adminpass
+config set nextcloud configuration DatabaseName $cloud_dbasename DatabaseUsername $cloud_dbusername DatabasePassword $cloud_dbpassword AdminName $cloud_adminname AdminPass $cloud_adminpass
 
 # cache setting once the config.php is there....
-sed -i "$ i\  'memcache.local' => '\\\OC\\\Memcache\\\APCu'," $cloud_path\config\config.php
+sed -i "$ i\  'memcache.local' => '\\\OC\\\Memcache\\\APCu'," $cloud_path/config/config.php
 
 # Adjust .htaccess to remove index.php in the URL for cosmetic reasons
 sudo -u www scl enable php$php_version 'php occ maintenance:mode --on'

@@ -66,9 +66,6 @@ cd "$(dirname "$0")"
 # Webfilter
 ./webfilter.sh
 
-# Nextcloud
-./nextcloud.sh
-
 #PostgreSQL
 ./postgres.sh
 
