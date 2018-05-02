@@ -91,6 +91,8 @@ cat <<HERE3 > $cloud_path/config/rewrite.config.php
 HERE3
 
 # Adjust .htaccess to remove index.php in the URL for cosmetic reasons
+cd $cloud_path
 sudo -u www scl enable php$php_version 'php occ maintenance:mode --on'
 sudo -u www scl enable php$php_version 'php occ maintenance:update:htaccess'
 sudo -u www scl enable php$php_version 'php occ maintenance:mode --off'
+cd "$(dirname "$0")"
