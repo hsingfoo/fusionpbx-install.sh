@@ -81,9 +81,14 @@ mysql -e "flush privileges";
 # Store Nextcloud credentials in nextcloud db key
 config set nextcloud configuration DatabaseName $cloud_dbname DatabaseUsername $cloud_dbusername DatabasePassword $cloud_dbpassword AdminName $cloud_adminname AdminPass $cloud_adminpass
 
-# cache setting once the config.php is there....
-sed -i "$ i\  'memcache.local' => '\\\OC\\\Memcache\\\APCu'," $cloud_path/config/config.php
-sed -i "$ i\  'htaccess.RewriteBase' => $cloud_path," $cloud_path/config/config.php
+# Create seperate config files for additional parameters (xxx.config.php)
+cat <<HERE2 > $cloud_path/config/cache.config.php
+	'memcache.local' => '\OC\Memcache\APCu',
+HERE2
+
+cat <<HERE3 > $cloud_path/config/rewrite.config.php
+	'htaccess.RewriteBase' => '$cloud_path',
+HERE3
 
 # Adjust .htaccess to remove index.php in the URL for cosmetic reasons
 sudo -u www scl enable php$php_version 'php occ maintenance:mode --on'
