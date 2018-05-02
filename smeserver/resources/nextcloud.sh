@@ -46,7 +46,7 @@ cd "$(dirname "$0")"
 # Auto configure file for Nextcloud
 cat <<HERE1 > $cloud_path/config/autoconfig.php
 <?php
-$AUTOCONFIG = array(
+\$AUTOCONFIG = array(
   "dbtype"        => "$cloud_dbtype",
   "dbname"        => "$cloud_dbname",
   "dbuser"        => "$cloud_dbusername",

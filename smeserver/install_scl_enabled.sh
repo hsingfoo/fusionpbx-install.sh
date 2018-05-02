@@ -18,7 +18,6 @@ resources/fusionpbx.sh
 resources/switch/conf-copy.sh
 
 #restart services
-echo ""
 verbose "Restarting packages for final configuration"
 service memcached start
 service postgresql-$database_version restart
