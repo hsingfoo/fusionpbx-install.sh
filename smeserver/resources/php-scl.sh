@@ -11,4 +11,4 @@ cd "$(dirname "$0")"
 
 #Install and configure Remi PHP versions
 verbose "Installing and configuring php-fpm and SCL php versions"
-yum $AUTO install smeserver-webapps-common *pdo_pgsql php*-php-pecl-redis php*-php-pecl-zip php*-php-pecl-apcu --enablerepo=smecontribs,fws,epel,remi-safe
+yum $AUTO install smeserver-webapps-common *pdo_pgsql php*-php-pecl-redis php*-php-pecl-zip php*-php-pecl-apcu php*-php-smbclient --enablerepo=smecontribs,fws,epel,remi-safe

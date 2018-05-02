@@ -9,6 +9,8 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
+verbose "Installing and configuring Nextcloud"
+
 # Populate the accounts db with the new cloud details 
 db accounts set $cloud_name share Name $cloud_name DynamicContent enabled Encryption disabled \
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
@@ -25,9 +27,6 @@ DocumentRoot $cloud_path Removable no TemplatePath WebAppVirtualHost \
 
 # Create the domain
 signal-event domain-create $cloud_subdomain.$domain_name
-
-# Install and configure FusionPBX
-verbose "Installing and configuring Nextcloud"
 
 # Provide a little time for previous processes are finished and/or closed, otherwise git will fail!
 sleep 1
@@ -83,16 +82,15 @@ config set nextcloud configuration DatabaseName $cloud_dbname DatabaseUsername $
 
 # Create seperate config files for additional parameters (xxx.config.php)
 cat <<HERE2 > $cloud_path/config/cache.config.php
+<?php
+$CONFIG = array (
 	'memcache.local' => '\OC\Memcache\APCu',
+);
 HERE2
 
 cat <<HERE3 > $cloud_path/config/rewrite.config.php
+<?php
+$CONFIG = array (
 	'htaccess.RewriteBase' => '$cloud_path',
+);
 HERE3
-
-# Adjust .htaccess to remove index.php in the URL for cosmetic reasons
-#cd $cloud_path
-#sudo -u www scl enable php$php_version 'php occ maintenance:mode --on'
-#sudo -u www scl enable php$php_version 'php occ maintenance:update:htaccess'
-#sudo -u www scl enable php$php_version 'php occ maintenance:mode --off'
-#cd "$(dirname "$0")"
