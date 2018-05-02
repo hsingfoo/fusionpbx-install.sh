@@ -2,14 +2,12 @@
 
 # Copyright H.F. Wang - hsingfoo@gmail.com
 
-#move to script directory so all relative paths work
+# move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
-#includes
+# includes
 . ./config.sh
 . ./colors.sh
-
-# PLEASE NOTE THAT THIS SCRIPT MUST BE RUN WHEN PHP SCL ENVIRONMENT IS ACTIVE
 
 # Populate the accounts db with the new cloud details 
 db accounts set $cloud_name share Name $cloud_name DynamicContent enabled Encryption disabled \
@@ -21,20 +19,20 @@ PHPBaseDir $cloud_path:/tmp/:/dev/urandom \
 # Create the cloud share
 signal-event share-create $cloud_name
 
-#Configure the subdomain and point to above shared folder
+# Configure the subdomain and point to above shared folder
 db domains set $cloud_subdomain.$domain_name domain Description $cloud_name Nameservers localhost \
 DocumentRoot $cloud_path Removable no TemplatePath WebAppVirtualHost \
 
-#Create the domain
+# Create the domain
 signal-event domain-create $cloud_subdomain.$domain_name
 
-#Install and configure FusionPBX
+# Install and configure FusionPBX
 verbose "Installing and configuring Nextcloud"
 
-#Provide a little time for previous processes are finished and/or closed, otherwise git will fail!
+# Provide a little time for previous processes are finished and/or closed, otherwise git will fail!
 sleep 1
 
-#Use full system path for if cloud_path is empty, rm -Rf / will delete the whole server (been there, got the T-shirt ;) ) 
+# Use full system path for if cloud_path is empty, rm -Rf / will delete the whole server (been there, got the T-shirt ;) ) 
 rm -Rf /home/e-smith/files/shares/$cloud_name/*
 
 # Clone branch version of Nextcloud
@@ -42,8 +40,24 @@ git clone -q -b $cloud_branch https://github.com/nextcloud/server.git $cloud_pat
 
 # get 3rdparty modules
 cd $cloud_path
-git submodule -q update -q --init
+git submodule update --init -q
 cd "$(dirname "$0")"
+
+# Auto configure Nextcloud
+cat <<HERE1 > $cloud_path/config/autoconfig.php
+<?php
+$AUTOCONFIG = array(
+  "dbtype"        => "$cloud_dbtype",
+  "dbname"        => "$cloud_dbname",
+  "dbuser"        => "$cloud_dbusername",
+  "dbpass"        => "$cloud_dbpassword",
+  "dbhost"        => "$cloud_dbhost",
+  "dbtableprefix" => "nc_",
+  "adminlogin"    => "$cloud_adminname",
+  "adminpass"     => "$cloud_adminpass",
+  "directory"     => "$cloud_datapath",
+);
+HERE1
 
 # Set permissions
 mkdir -p $cloud_datapath
@@ -64,16 +78,12 @@ mysql -e "create database $cloud_dbname";
 mysql -e "grant all privileges on $cloud_dbname.* to $cloud_dbusername@localhost identified by '$cloud_dbpassword'";
 mysql -e "flush privileges";
 
-# Preconfigure Nextcloud
-cd $cloud_path
-php occ maintenance:install --database "mysql" --database-name "$cloud_dbname"  --database-user "$cloud_dbusername" --database-pass "$cloud_password" --admin-user "$cloud_adminame" --admin-pass "$cloud_adminpass" --data-dir "$cloud_datapath"
-cd "$(dirname "$0")"
-
 # Store Nextcloud credentials in nextcloud db key
-config set nextcloud configuration DatabaseName $cloud_dbasename DatabaseUsername $cloud_dbusername DatabasePassword $cloud_dbpassword AdminName $cloud_adminname AdminPass $cloud_adminpass
+config set nextcloud configuration DatabaseName $cloud_dbname DatabaseUsername $cloud_dbusername DatabasePassword $cloud_dbpassword AdminName $cloud_adminname AdminPass $cloud_adminpass
 
 # cache setting once the config.php is there....
 sed -i "$ i\  'memcache.local' => '\\\OC\\\Memcache\\\APCu'," $cloud_path/config/config.php
+sed -i "$ i\  'htaccess.RewriteBase' => $cloud_path," $cloud_path/config/config.php
 
 # Adjust .htaccess to remove index.php in the URL for cosmetic reasons
 sudo -u www scl enable php$php_version 'php occ maintenance:mode --on'

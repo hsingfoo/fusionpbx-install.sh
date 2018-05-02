@@ -11,9 +11,6 @@ cd "$(dirname "$0")"
 . ./resources/config.sh
 . ./resources/colors.sh
 
-# Nextcloud
-resources/nextcloud.sh
-
 #FusionPBX
 resources/fusionpbx.sh
 

@@ -27,8 +27,10 @@ cloud_version=13.0.2												# Nextcloud version
 cloud_branch=stable13
 cloud_path=/home/e-smith/files/shares/$cloud_name/files				# full path to Nextcloud directory
 cloud_datapath=$cloud_path/data
-cloud_subdomain=cloud
-cloud_dbname=nextcloud										# Nextcloud MySQL databasename
+cloud_subdomain=cloud												# Subdomain name
+cloud_dbtype=mysql
+cloud_dbhost=localhost
+cloud_dbname=nextcloud												# Nextcloud MySQL databasename
 cloud_dbusername=nextclouduser										# Nextcloud MySQL username
 cloud_dbpassword=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
 cloud_adminname=admin
