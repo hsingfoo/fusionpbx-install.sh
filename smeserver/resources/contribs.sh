@@ -64,7 +64,7 @@ cd "$(dirname "$0")"
 ./crontabmanager.sh
 
 # Webfilter
-#./webfilter.sh
+./webfilter.sh
 
 # Nextcloud
 ./nextcloud.sh

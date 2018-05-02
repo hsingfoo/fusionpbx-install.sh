@@ -58,7 +58,7 @@ verbose "Fetching Installer"
 yum -y -q install git
 if [ -d /usr/src/fusionpbx-install.sh ]; then
 	cd /usr/src/fusionpbx-install.sh
-	git -q pull
+	git pull
 else
 	git clone -q https://github.com/hsingfoo/fusionpbx-install.sh
 fi

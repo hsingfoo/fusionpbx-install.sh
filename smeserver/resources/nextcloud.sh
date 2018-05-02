@@ -44,7 +44,7 @@ git submodule -q update -q --init
 cd "$(dirname "$0")"
 
 # Set permissions
-mkdir -p $cloud_path/data
+mkdir -p $cloud_datapath
 chown admin:shared $cloud_path
 chown -R www:www $cloud_path *
 
@@ -58,17 +58,25 @@ sed -i "s|;apc.enable_cli=0|;apc.enable_cli=1|" /etc/opt/remi/php$php_version/ph
 service php$php_version-php-fpm restart
 
 # create MySQL database
-mysql -e "create database $cloud_databasename";
-mysql -e "grant all privileges on $cloud_databasename.* to $cloud_username@localhost identified by '$cloud_password'";
+mysql -e "create database $cloud_dbname";
+mysql -e "grant all privileges on $cloud_dbname.* to $cloud_dbusername@localhost identified by '$cloud_dbpassword'";
 mysql -e "flush privileges";
 
-# Store database credentials in nextcloud db key
-config set nextcloud configuration DatabaseName $cloud_databasename DatabaseUsername $cloud_username DatabasePassword $cloud_password
+# Preconfigure Nextcloud
+cd $cloud_path
+sudo -u www scl enable php$php_version 'php occ maintenance:install --database
+"mysql" --database-name "$cloud_dbname"  --database-user "$cloud_dbusername" --database-pass
+"$cloud_password" --admin-user "$cloud_adminame" --admin-pass "$cloud_adminpass" --data-dir "$cloud_datapath"'
+cd "$(dirname "$0")"
+
+# Store Nextcloud credentials in nextcloud db key
+config set nextcloud configuration DatabaseName $cloud_dbasename DatabaseUsername $cloud_dbusername DatabasePassword $cloud_dbpassword \
+AdminName $cloud_adminname AdminPass $cloud_adminpass
 
 # cache setting once the config.php is there....
-#  sed -i "$ i\  'memcache.local' => '/\OC/\Memcache/\APCu'," config.php
+sed -i "$ i\  'memcache.local' => '\\\OC\\\Memcache\\\APCu'," $cloud_path\config\config.php
 
 # Adjust .htaccess to remove index.php in the URL for cosmetic reasons
-# sudo -u www scl enable php71 'php occ maintenance:mode --on'
-# sudo -u www scl enable php71 'php occ maintenance:update:htaccess'
-# sudo -u www scl enable php71 'php occ maintenance:mode --off'
+sudo -u www scl enable php$php_version 'php occ maintenance:mode --on'
+sudo -u www scl enable php$php_version 'php occ maintenance:update:htaccess'
+sudo -u www scl enable php$php_version 'php occ maintenance:mode --off'
