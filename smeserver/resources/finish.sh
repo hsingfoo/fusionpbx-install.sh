@@ -41,10 +41,7 @@ verbose "Setting FsionPBX domain name"
 cwd=$(pwd)
 cd /tmp
 sudo -u postgres psql --host=$database_host --port=$database_port --username=$database_username -c "insert into v_domains (domain_uuid, domain_name, domain_enabled) values('$domain_uuid', '$domain_name', 'true');"
-cd "$(dirname "$0")"
 
-# Setting permissions
-resources/permissions.sh
 
 #app defaults
 cd $fusionpbx_path && php $fusionpbx_path/core/upgrade/upgrade_domains.php
@@ -93,6 +90,7 @@ service freeswitch restart
 
 # Clearing YUM cache
 yum -q clean all --enablerepo=*
+cd /
 
 #welcome message
 echo ""

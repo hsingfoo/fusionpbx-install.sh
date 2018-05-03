@@ -93,21 +93,15 @@ config set nextcloud configuration DatabaseName $cloud_dbname DatabaseUsername $
 
 cat <<HERE2 > $cloud_path/config/baserewrite.config.php
 <?php
-$CONFIG = array (
+\$CONFIG = array (
 	'htaccess.RewriteBase' => '$cloud_path',
 );
 HERE2
 
-cat <<HERE3 > $cloud_path/config/redis.config.php
+cat <<HERE3 > $cloud_path/config/apcucache.config.php
 <?php
-$CONFIG = array (
+\$CONFIG = array (
 	'memcache.local' => '\OC\Memcache\APCu',
-	'memcache.locking' => '\OC\Memcache\Redis',
-	'redis' => array(
-      'host' => '/var/run/redis/redis.sock',
-      'port' => 0,
-      'timeout' => 0,0,
-       ),
 );
 HERE3
 
@@ -115,9 +109,49 @@ HERE3
 chmod 0640 $cloud_path/config/*
 chown www:www $cloud_path/config/*
 
-# Adjust .htaccess
+# Adjust .htaccess and install and/or enable nextcloud apps
 cd $cloud_path
-sudo -u www php $cloud_path/occ maintenance:mode --on
-sudo -u www php $cloud_path/occ maintenance:update:htaccess
-sudo -u www php $cloud_path/occ maintenance:mode --off
+$app_command=sudo -u www scl enable php$php_version
+$app_command 'php occ maintenance:mode --on'
+$app_command 'php occ maintenance:update:htaccess'
+$app_command 'php occ app:install calendar'
+$app_command 'php occ app:enable calendar'
+$app_command 'php occ app:install files_downloadactivity'
+$app_command 'php occ app:enable files_downloadactivity'
+$app_command 'php occ app:install quota_warning'
+$app_command 'php occ app:enable quota_warning'
+$app_command 'php occ app:install ransomware_protection'
+$app_command 'php occ app:enable ransomware_protection'
+$app_command 'php occ app:install apporder'
+$app_command 'php occ app:enable apporder'
+$app_command 'php occ app:install themeing_customcss'
+$app_command 'php occ app:enable theming_customcss'
+$app_command 'php occ app:install groupfolders'
+$app_command 'php occ app:enable groupfolders'
+$app_command 'php occ app:install onlyoffice'
+$app_command 'php occ app:enable onlyoffice'
+$app_command 'php occ app:install files_pdfviewer'
+$app_command 'php occ app:enable files_pdfviewer'
+$app_command 'php occ app:install news'
+$app_command 'php occ app:enable news'
+$app_command 'php occ app:install previewgenerator'
+$app_command 'php occ app:enable previewgenerator'
+$app_command 'php occ app:install spreed'
+$app_command 'php occ app:enable spreed'
+$app_command 'php occ app:install mail'
+$app_command 'php occ app:enable mail'
+$app_command 'php occ app:install bruteforcesettings'
+$app_command 'php occ app:enable bruteforcesettings'
+$app_command 'php occ app:install passwords'
+$app_command 'php occ app:enable passwords'
+$app_command 'php occ app:install files_antivirus'
+$app_command 'php occ app:enable files_antivirus'
+$app_command 'php occ app:install quicknotes'
+$app_command 'php occ app:enable quicknotes'
+$app_command 'php occ app:install files_retention'
+$app_command 'php occ app:enable files_retention'
+$app_command 'php occ app:enable files_external'
+$app_command 'php occ app:enable admin_audit'
+$app_command 'php occ maintenance:mode --off'
+
 cd "$(dirname "$0")"
