@@ -30,7 +30,7 @@ resources/php-scl.sh
 
 # Shared Folders
 resources/sharedfolders.sh
-exit (0)
+
 # Nextcloud
 resources/nextcloud.sh
 
