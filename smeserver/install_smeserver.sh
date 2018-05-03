@@ -32,7 +32,7 @@ resources/php-scl.sh
 resources/sharedfolders.sh
 
 # Install contribs
-#resources/contribs.sh
+resources/contribs.sh
 
 # switch to SCL enabled environment
 scl enable php$php_version 'bash install_scl_enabled.sh && exit'
