@@ -38,4 +38,4 @@ resources/contribs.sh
 scl enable php$php_version 'bash install_scl_enabled.sh && exit'
 
 # set FusionPBX permissions
-resources/permissions.sh
+/usr/src/fusionpbx-install.sh/smeserver/resources/permissions.sh
