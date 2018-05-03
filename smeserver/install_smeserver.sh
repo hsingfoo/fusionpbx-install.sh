@@ -31,12 +31,6 @@ resources/php-scl.sh
 # Shared Folders
 resources/sharedfolders.sh
 
-# memcached
-resources/memcached.sh
-
-# Redis
-resources/redis.sh
-
 # Install contribs
 #resources/contribs.sh
 

@@ -2,12 +2,15 @@
 
 # Copyright H.F. Wang - hsingfoo@gmail.com
 
-#move to script directory so all relative paths work
+# move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
-#Includes
+# Includes
 . ./config.sh
 . ./colors.sh
+
+# Install and configure memcached (Nextcloud script does this too on-purpose!)
+./memcached.sh
 
 #send a message
 verbose "Installing Sogo3"

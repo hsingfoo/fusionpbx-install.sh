@@ -9,9 +9,14 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
-# HTTP HSTS
-resources/hsts.sh
+# Create templates for HTTP HSTS
+./hsts.sh
 
+# Install and configure Redis
+./redis.sh
+
+# Install and configure memcached
+./memcached.sh
 verbose "Installing and configuring Nextcloud"
 # Populate the accounts db with the new cloud details 
 db accounts set $cloud_name share Name $cloud_name DynamicContent enabled Encryption disabled \
@@ -41,7 +46,9 @@ rm -Rf /home/e-smith/files/shares/$cloud_name/*
 git clone -q -b $cloud_branch https://github.com/nextcloud/server.git $cloud_path
 
 # get 3rdparty modules
-git submodule --quiet update --init $cloud_path
+cd $cloud_path
+git submodule --quiet update --init
+cd "$(dirname "$0")"
 
 # Auto configure file for Nextcloud
 cat <<HERE1 > $cloud_path/config/autoconfig.php
@@ -71,7 +78,7 @@ sed -i "s|;opcache.revalidate_freq=2|opcache.revalidate_freq=1|" /etc/opt/remi/p
 sed -i "s|;opcache.save_comments=1|opcache.save_comments=1|" /etc/opt/remi/php$php_version/php.d/10-opcache.ini
 sed -i "s|;apc.enable_cli=0|;apc.enable_cli=1|" /etc/opt/remi/php$php_version/php.d/40-apcu.ini
 
-service php$php_version-php-fpm restart
+service php$php_version-php-fpm start
 
 # create MySQL database
 mysql -e "create database $cloud_dbname";
@@ -113,3 +120,4 @@ cd $cloud_path
 sudo -u www php $cloud_path/occ maintenance:mode --on
 sudo -u www php $cloud_path/occ maintenance:update:htaccess
 sudo -u www php $cloud_path/occ maintenance:mode --off
+cd "$(dirname "$0")"
