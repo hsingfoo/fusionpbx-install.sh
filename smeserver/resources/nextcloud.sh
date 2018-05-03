@@ -34,7 +34,6 @@ DocumentRoot $cloud_path Removable no TemplatePath WebAppVirtualHost \
 
 # Create the domain
 signal-event domain-create $cloud_subdomain.$domain_name
-echo Domain https://$cloud_subdomain.$domain_name created.
 
 # Provide a little time for previous processes are finished and/or closed, otherwise git will fail!
 sleep 1
@@ -110,13 +109,13 @@ chmod 0640 $cloud_path/config/*
 chown www:www $cloud_path/config/*
 
 # Initialize (install) Nextcloud for the first time in the background
+cd $cloud_path
 app_command="sudo -u www scl enable php$php_version"
 $app_command 'php occ maintenance:install --database "$cloud_dbtype" --database-host "$cloud_dbhost" \
 --database-name "$cloud_dbname" --database-user "$cloud_dbusername" --database-pass "$cloud_dbpassword" \
 --admin-user "$cloud_adminname" --admin-pass "$cloud_adminpass"'
 
 # Adjust .htaccess and install and/or enable nextcloud apps
-cd $cloud_path
 app_command="sudo -u www scl enable php$php_version"
 $app_command 'php occ app:install calendar'
 $app_command 'php occ app:enable calendar'
