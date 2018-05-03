@@ -110,10 +110,6 @@ chown www:www $cloud_path/config/*
 
 # Initialize (install) Nextcloud for the first time in the background
 cat <<HERE4 > $script_path/smeserver/resources/nextcloud_init.sh
-#!/bin/bash
-
-# Copyright H.F. Wang - hsingfoo@gmail.com
-
 # move to script directory so all relative paths work
 cd "$(dirname "$0")"
 
