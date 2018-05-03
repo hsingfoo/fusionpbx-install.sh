@@ -28,14 +28,17 @@ resources/repos.sh
 # Installing PHP-SCL
 resources/php-scl.sh
 
-# Adjusting IP Tables
-#resources/iptables.sh
+# Shared Folders
+resources/sharedfolders.sh
+
+# memcached
+resources/memcached.sh
+
+# Redis
+resources/redis.sh
 
 # Install contribs
 #resources/contribs.sh
-
-# Install Nextcloud
-#resources/nextcloud.sh
 
 # switch to SCL enabled environment
 scl enable php$php_version 'bash install_scl_enabled.sh && exit'

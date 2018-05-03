@@ -26,4 +26,4 @@ cat <<HERE2	> /etc/e-smith/templates-custom/etc/httpd/conf/httpd.conf/WebAppVirt
 	Header always add Strict-Transport-Security "max-age=15768000; includeSubDomains; preload" env=HTTPS
 HERE2
 signal-event webapps-update
-service php71-php-fpm restart
+service php71-php-fpm start

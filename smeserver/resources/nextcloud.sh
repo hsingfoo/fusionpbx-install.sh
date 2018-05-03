@@ -9,8 +9,10 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
-verbose "Installing and configuring Nextcloud"
+# HTTP HSTS
+resources/hsts.sh
 
+verbose "Installing and configuring Nextcloud"
 # Populate the accounts db with the new cloud details 
 db accounts set $cloud_name share Name $cloud_name DynamicContent enabled Encryption disabled \
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
@@ -80,7 +82,7 @@ mysql -e "flush privileges";
 config set nextcloud configuration DatabaseName $cloud_dbname DatabaseUsername $cloud_dbusername DatabasePassword $cloud_dbpassword AdminName $cloud_adminname AdminPass $cloud_adminpass
 
 # Create seperate config files for additional parameters (xxx.config.php).
-For Redis, setenforce 0 has to bet set, otherwise redis will die on file uploads.
+# For Redis, setenforce 0 has to bet set, otherwise redis will die on file uploads.
 
 cat <<HERE2 > $cloud_path/config/baserewrite.config.php
 <?php

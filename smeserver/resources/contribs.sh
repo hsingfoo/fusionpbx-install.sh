@@ -9,9 +9,6 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
-# SharedFolders
-./sharedfolders.sh
-
 # Lemon-LDAP-ng
 ./lemon-ldap-ng.sh
 
@@ -56,12 +53,6 @@ cd "$(dirname "$0")"
 
 # Webfilter
 #./webfilter.sh
-
-#PostgreSQL
-./postgres.sh
-
-# Freeswitch
-./smeserver-freeswitch.sh
 
 # Fail2ban, needs to be installed after all other contribs due to dependencies on log files being present
 #./fail2ban.sh
