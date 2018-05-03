@@ -112,8 +112,6 @@ chown www:www $cloud_path/config/*
 # Adjust .htaccess and install and/or enable nextcloud apps
 cd $cloud_path
 app_command="sudo -u www scl enable php$php_version"
-$app_command 'php occ maintenance:mode --on'
-$app_command 'php occ maintenance:update:htaccess'
 $app_command 'php occ app:install calendar'
 $app_command 'php occ app:enable calendar'
 $app_command 'php occ app:install files_downloadactivity'
@@ -152,6 +150,8 @@ $app_command 'php occ app:install files_retention'
 $app_command 'php occ app:enable files_retention'
 $app_command 'php occ app:enable files_external'
 $app_command 'php occ app:enable admin_audit'
+$app_command 'php occ maintenance:mode --on'
+$app_command 'php occ maintenance:update:htaccess'
 $app_command 'php occ maintenance:mode --off'
 
 cd "$(dirname "$0")"
