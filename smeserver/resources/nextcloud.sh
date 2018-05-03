@@ -110,17 +110,18 @@ chown www:www $cloud_path/config/*
 
 # Initialize (install) Nextcloud for the first time in the background
 cd $cloud_path
-app_command="sudo -u www scl enable php$php_version"
-$app_command 'php occ maintenance:install --database "$cloud_dbtype" --database-host "$cloud_dbhost" \
---database-name "$cloud_dbname" --database-user "$cloud_dbusername" --database-pass "$cloud_dbpassword" \
---admin-user "$cloud_adminname" --admin-pass "$cloud_adminpass"'
+sudo -u www scl enable php$php_version 'bash'
+#app_command="sudo -u www scl enable php$php_version"
+php occ maintenance:install --database $cloud_dbtype --database-host $cloud_dbhost \
+--database-name $cloud_dbname --database-user $cloud_dbusername --database-pass $cloud_dbpassword \
+--admin-user $cloud_adminname --admin-pass $cloud_adminpass
 
 # Adjust .htaccess and install and/or enable nextcloud apps
-app_command="sudo -u www scl enable php$php_version"
-$app_command 'php occ app:install calendar'
-$app_command 'php occ app:enable calendar'
-$app_command 'php occ app:install files_downloadactivity'
-$app_command 'php occ app:enable files_downloadactivity'
+#app_command="sudo -u www scl enable php$php_version"
+php occ app:install calendar
+php occ app:enable calendar
+php occ app:install files_downloadactivity
+php occ app:enable files_downloadactivity
 $app_command 'php occ app:install quota_warning'
 $app_command 'php occ app:enable quota_warning'
 $app_command 'php occ app:install ransomware_protection'
