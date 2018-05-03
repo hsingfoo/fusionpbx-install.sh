@@ -27,6 +27,7 @@ DocumentRoot $cloud_path Removable no TemplatePath WebAppVirtualHost \
 
 # Create the domain
 signal-event domain-create $cloud_subdomain.$domain_name
+echo Domain https://$cloud_subdomain.$domain_name created.
 
 # Provide a little time for previous processes are finished and/or closed, otherwise git will fail!
 sleep 1
@@ -38,9 +39,7 @@ rm -Rf /home/e-smith/files/shares/$cloud_name/*
 git clone -q -b $cloud_branch https://github.com/nextcloud/server.git $cloud_path
 
 # get 3rdparty modules
-cd $cloud_path
-git submodule update --init -q
-cd "$(dirname "$0")"
+git submodule --quiet update --init $cloud_path
 
 # Auto configure file for Nextcloud
 cat <<HERE1 > $cloud_path/config/autoconfig.php
@@ -80,17 +79,34 @@ mysql -e "flush privileges";
 # Store Nextcloud credentials in nextcloud db key
 config set nextcloud configuration DatabaseName $cloud_dbname DatabaseUsername $cloud_dbusername DatabasePassword $cloud_dbpassword AdminName $cloud_adminname AdminPass $cloud_adminpass
 
-# Create seperate config files for additional parameters (xxx.config.php)
-cat <<HERE2 > $cloud_path/config/cache.config.php
-<?php
-$CONFIG = array (
-	'memcache.local' => '\OC\Memcache\APCu',
-);
-HERE2
+# Create seperate config files for additional parameters (xxx.config.php).
+For Redis, setenforce 0 has to bet set, otherwise redis will die on file uploads.
 
-cat <<HERE3 > $cloud_path/config/rewrite.config.php
+cat <<HERE2 > $cloud_path/config/baserewrite.config.php
 <?php
 $CONFIG = array (
 	'htaccess.RewriteBase' => '$cloud_path',
 );
+HERE2
+
+cat <<HERE3 > $cloud_path/config/redis.config.php
+<?php
+$CONFIG = array (
+	'memcache.local' => '\OC\Memcache\APCu',
+	'memcache.locking' => '\OC\Memcache\Redis',
+	'redis' => array(
+      'host' => '/var/run/redis/redis.sock',
+      'port' => 0,
+      'timeout' => 0,0,
+       ),
+);
 HERE3
+
+# Set strict permissions on config files
+chmod 0640 $cloud_path/config/*
+chown www:www $cloud_path/config/*
+
+# Adjust .htaccess
+sudo -u www php $cloud_path/occ maintenance:mode --on
+sudo -u www php $cloud_path/occ maintenance:update:htaccess
+sudo -u www php $cloud_path/occ maintenance:mode --off
