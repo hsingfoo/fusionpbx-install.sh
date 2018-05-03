@@ -52,10 +52,10 @@ cd "$(dirname "$0")"
 ./crontabmanager.sh
 
 # Webfilter
-#./webfilter.sh
+./webfilter.sh
 
 # Fail2ban, needs to be installed after all other contribs due to dependencies on log files being present
-#./fail2ban.sh
+./fail2ban.sh
 
 
 
