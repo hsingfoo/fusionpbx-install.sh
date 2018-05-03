@@ -109,6 +109,12 @@ HERE3
 chmod 0640 $cloud_path/config/*
 chown www:www $cloud_path/config/*
 
+# Initialize (install) Nextcloud for the first time in the background
+app_command="sudo -u www scl enable php$php_version"
+$app_command 'php occ maintenance:install --database "$cloud_dbtype" --database-host "$cloud_dbhost" \
+--database-name "$cloud_dbname" --database-user "$cloud_dbusername" --database-pass "$cloud_dbpassword" \
+--admin-user "$cloud_adminname" --admin-pass "$cloud_adminpass"'
+
 # Adjust .htaccess and install and/or enable nextcloud apps
 cd $cloud_path
 app_command="sudo -u www scl enable php$php_version"
