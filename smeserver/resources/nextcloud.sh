@@ -107,19 +107,28 @@ HERE3
 # Set strict permissions on config files
 chmod 0640 $cloud_path/config/*
 chown www:www $cloud_path/config/*
-cdw=pwd
+
 # Initialize (install) Nextcloud for the first time in the background
 cat <<HERE4 > $script_path/smeserver/resources/nextcloud_init.sh
+#!/bin/bash
+
+# Copyright H.F. Wang - hsingfoo@gmail.com
+
+# move to script directory so all relative paths work
+cd "$(dirname "$0")"
+
+# includes
+. ./config.sh
+. ./colors.sh
+
 cd $cloud_path
 php occ maintenance:install --database $cloud_dbtype --database-host $cloud_dbhost \
 --database-name $cloud_dbname --database-user $cloud_dbusername --database-pass $cloud_dbpassword \
 --admin-user $cloud_adminname --admin-pass $cloud_adminpass
 HERE4
-cd $cdw
-chmod 755 nextcloud_init.sh
+chmod 755 $script_path/smeserver/resources/nextcloud_init.sh
 sudo -u www scl enable php$php_version './nextcloud_init.sh'
 
 # Install the Nextcloud apps under SCL PHP environment
-cd $cloud_path
 sudo -u www scl enable php$php_version "./nextcloud_apps.sh"
-cd $cdw
+
