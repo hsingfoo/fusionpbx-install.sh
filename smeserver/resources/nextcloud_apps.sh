@@ -10,10 +10,6 @@ cd "$(dirname "$0")"
 . ./colors.sh
 cd $cloud_path
 
-php occ maintenance:install --database $cloud_dbtype --database-host $cloud_dbhost \
---database-name $cloud_dbname --database-user $cloud_dbusername --database-pass $cloud_dbpassword \
---admin-user $cloud_adminname --admin-pass $cloud_adminpass
-
 # Adjust .htaccess and install and/or enable nextcloud apps
 php occ app:install calendar
 php occ app:enable calendar
