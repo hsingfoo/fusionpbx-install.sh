@@ -24,7 +24,7 @@ database_password=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 
 # Cloud settings
 cloud_name=cloud													# Nextcloud
 cloud_version=13.0.2												# Nextcloud version
-cloud_branch=stable13
+cloud_branch=master
 cloud_path=/home/e-smith/files/shares/$cloud_name/files				# full path to Nextcloud directory
 cloud_datapath=$cloud_path/data
 cloud_subdomain=cloud												# Subdomain name

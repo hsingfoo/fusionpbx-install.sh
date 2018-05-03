@@ -85,9 +85,6 @@ config set fusionpbx configuration DomainName $domain_name \
 DBName fusionpbx DBUser $user_name DBPassword $user_password \
 XMLCDRUser $xml_cdr_username XMLCDRPassword $xml_cdr_password
 
-# Set permissions
-./permissions.sh
-
 # Restart freeswitch with new settings
 service freeswitch restart
 

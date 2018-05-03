@@ -36,3 +36,6 @@ resources/sharedfolders.sh
 
 # switch to SCL enabled environment
 scl enable php$php_version 'bash install_scl_enabled.sh && exit'
+
+# set FusionPBX permissions
+resources/permissions.sh
