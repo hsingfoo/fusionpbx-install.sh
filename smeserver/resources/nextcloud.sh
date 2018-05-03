@@ -111,11 +111,11 @@ cdw=pwd
 # Initialize (install) Nextcloud for the first time in the background
 cat <<HERE4 > $script_path/smeserver/resources/nextcloud_init.sh
 cd $cloud_path
-#php occ maintenance:install --database $cloud_dbtype --database-host $cloud_dbhost \
-#--database-name $cloud_dbname --database-user $cloud_dbusername --database-pass $cloud_dbpassword \
-#--admin-user $cloud_adminname --admin-pass $cloud_adminpass
-php occ maintenance:install
+php occ maintenance:install --database $cloud_dbtype --database-host $cloud_dbhost \
+--database-name $cloud_dbname --database-user $cloud_dbusername --database-pass $cloud_dbpassword \
+--admin-user $cloud_adminname --admin-pass $cloud_adminpass
 HERE4
+cd $cdw
 chmod 755 nextcloud_init.sh
 sudo -u www scl enable php$php_version './nextcloud_init.sh'
 
