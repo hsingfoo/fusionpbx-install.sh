@@ -12,12 +12,6 @@ cd "$(dirname "$0")"
 # Lemon-LDAP-ng
 ./lemon-ldap-ng.sh
 
-# Haveged
-./haveged.sh
-
-# sngrep
-./sngrep.sh
-
 # Sogo3
 ./sogo3.sh
 

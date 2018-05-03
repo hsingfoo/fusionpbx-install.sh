@@ -19,6 +19,8 @@ resources/nextcloud_apps.sh
 chmod 0640 $cloud_path/config/*
 chown -R www:www $cloud_path/*
 
+# sngrep
+resources/sngrep.sh
 
 # Freeswitch
 resources/smeserver-freeswitch.sh

@@ -17,6 +17,10 @@ cd "$(dirname "$0")"
 
 # Install and configure memcached
 ./memcached.sh
+
+# Haveged
+./haveged.sh
+
 verbose "Installing and configuring Nextcloud"
 # Populate the accounts db with the new cloud details 
 db accounts set $cloud_name share Name $cloud_name DynamicContent enabled Encryption disabled \
