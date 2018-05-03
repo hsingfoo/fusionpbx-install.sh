@@ -104,16 +104,27 @@ cat <<HERE3 > $cloud_path/config/apcucache.config.php
 );
 HERE3
 
+# Add subdomain to trusted domains. Only cloud_dbhost will get listed by default
+cat <<HERE4 > $cloud_path/config/trusteddomains.config.php
+<?php
+\$CONFIG = array (
+	'trusted_domains' => 
+	array (
+    '$cloud_subdomain.$domain_name',
+	),
+);
+HERE4
+
 # Set strict permissions on config files
 chmod 0640 $cloud_path/config/*
 chown www:www $cloud_path/config/*
 
 # Initialize (install) Nextcloud for the first time in the background
-cat <<HERE4 > $script_path/smeserver/resources/nextcloud_init.sh
+cat <<HERE5 > $script_path/smeserver/resources/nextcloud_init.sh
 cd $cloud_path
 php occ maintenance:install --database $cloud_dbtype --database-host $cloud_dbhost \
 --database-name $cloud_dbname --database-user $cloud_dbusername --database-pass $cloud_dbpassword \
 --admin-user $cloud_adminname --admin-pass $cloud_adminpass
-HERE4
+HERE5
 chmod 755 $script_path/smeserver/resources/nextcloud_init.sh
 

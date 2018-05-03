@@ -15,6 +15,10 @@ cd "$(dirname "$0")"
 resources/nextcloud.sh
 resources/nextcloud_init.sh
 resources/nextcloud_apps.sh
+# Set strict permissions on config files
+chmod 0640 $cloud_path/config/*
+chown -R www:www $cloud_path/*
+
 
 # Freeswitch
 resources/smeserver-freeswitch.sh
@@ -35,4 +39,7 @@ service httpd-e-smith restart
 
 # Warpping up!
 resources/finish.sh
+
+# Setting permissions
+resources/permissions.sh
 
