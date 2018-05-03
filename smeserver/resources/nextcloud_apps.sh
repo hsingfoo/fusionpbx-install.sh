@@ -15,6 +15,12 @@ php occ app:install calendar
 php occ app:enable calendar
 php occ app:install files_downloadactivity
 php occ app:enable files_downloadactivity
+php occ app:install files_accesscontrol
+php occ app:enable files_accesscontrol
+php occ app:install files_rightclick
+php occ app:enable files_rightclick
+php occ app:install external
+php occ app:enable external
 php occ app:install quota_warning
 php occ app:enable quota_warning
 php occ app:install ransomware_protection
