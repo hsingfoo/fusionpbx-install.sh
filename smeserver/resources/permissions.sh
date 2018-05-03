@@ -9,11 +9,6 @@ cd "$(dirname "$0")"
 . ./config.sh
 . ./colors.sh
 
-# Set ownership and permission
-mkdir -p /var/lib/php/session
-chown -R freeswitch:daemon /var/lib/php/session
-chmod -Rf 700 /var/lib/php/session
-
 # Set ownership to directories and files
 chown -R freeswitch:daemon /etc/freeswitch
 chown -R freeswitch:daemon /var/lib/freeswitch
