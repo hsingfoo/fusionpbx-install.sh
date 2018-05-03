@@ -13,7 +13,6 @@ cd "$(dirname "$0")"
 
 # SME Server 9.2 64-bit install
 # Update SME Server 
-echo ""
 verbose "Updating platform"
 yum $AUTO update --enablerepo=smeupdates-testing
 

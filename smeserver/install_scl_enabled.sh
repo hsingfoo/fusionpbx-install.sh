@@ -11,14 +11,23 @@ cd "$(dirname "$0")"
 . ./resources/config.sh
 . ./resources/colors.sh
 
+# HTTP HSTS
+resources/hsts.sh
+
+# memcached
+resources/memcached.sh
+
+# Redis
+resources/redis.sh
+
 # Nextcloud
 resources/nextcloud.sh
 
 # FusionPBX
-resources/fusionpbx.sh
+#resources/fusionpbx.sh
 
 # FusionPBX to FreeSWITCH configs
-resources/switch/conf-copy.sh
+#resources/switch/conf-copy.sh
 
 # restart services
 verbose "Restarting packages for final configuration"

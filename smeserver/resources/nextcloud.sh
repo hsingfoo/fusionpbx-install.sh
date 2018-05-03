@@ -107,6 +107,7 @@ chmod 0640 $cloud_path/config/*
 chown www:www $cloud_path/config/*
 
 # Adjust .htaccess
+cd $cloud_path
 sudo -u www php $cloud_path/occ maintenance:mode --on
 sudo -u www php $cloud_path/occ maintenance:update:htaccess
 sudo -u www php $cloud_path/occ maintenance:mode --off

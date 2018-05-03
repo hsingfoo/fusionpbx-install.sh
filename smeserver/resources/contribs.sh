@@ -15,20 +15,11 @@ cd "$(dirname "$0")"
 # Lemon-LDAP-ng
 ./lemon-ldap-ng.sh
 
-# Redis
-./redis.sh
-
-# HTTP HSTS
-./hsts.sh
-
 # Haveged
 ./haveged.sh
 
 # sngrep
 ./sngrep.sh
-
-# memcached **MUST** be installed BEFORE Sogo
-./memcached.sh
 
 # Sogo3
 ./sogo3.sh
