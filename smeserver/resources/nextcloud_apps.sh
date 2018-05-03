@@ -25,7 +25,7 @@ php occ app:install ransomware_protection
 php occ app:enable ransomware_protection
 php occ app:install apporder
 php occ app:enable apporder
-php occ app:install themeing_customcss
+php occ app:install theming_customcss
 php occ app:enable theming_customcss
 php occ app:install groupfolders
 php occ app:enable groupfolders
@@ -33,8 +33,6 @@ php occ app:install onlyoffice
 php occ app:enable onlyoffice
 php occ app:install files_pdfviewer
 php occ app:enable files_pdfviewer
-php occ app:install news
-php occ app:enable news
 php occ app:install previewgenerator
 php occ app:enable previewgenerator
 php occ app:install spreed

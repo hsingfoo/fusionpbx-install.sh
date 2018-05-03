@@ -113,8 +113,6 @@ cat <<HERE4 > $script_path/smeserver/resources/install_nc_apps.sh
 sudo -u www scl enable php$php_version "$script_path/smeserver/resources/nextcloud_apps.sh"
 HERE4
 chmod 755 $script_path/smeserver/resources/install_nc_apps.sh
-
+pwd
 # Activate SCL PHP environment
-./install_nc_apps
-
-cd "$(dirname "$0")"
+./install_nc_apps.sh
