@@ -110,54 +110,57 @@ chown www:www $cloud_path/config/*
 
 # Initialize (install) Nextcloud for the first time in the background
 cd $cloud_path
+
+# Activate SCL PHP environment
 sudo -u www scl enable php$php_version 'bash'
-#app_command="sudo -u www scl enable php$php_version"
 php occ maintenance:install --database $cloud_dbtype --database-host $cloud_dbhost \
 --database-name $cloud_dbname --database-user $cloud_dbusername --database-pass $cloud_dbpassword \
 --admin-user $cloud_adminname --admin-pass $cloud_adminpass
 
 # Adjust .htaccess and install and/or enable nextcloud apps
-#app_command="sudo -u www scl enable php$php_version"
 php occ app:install calendar
 php occ app:enable calendar
 php occ app:install files_downloadactivity
 php occ app:enable files_downloadactivity
-$app_command 'php occ app:install quota_warning'
-$app_command 'php occ app:enable quota_warning'
-$app_command 'php occ app:install ransomware_protection'
-$app_command 'php occ app:enable ransomware_protection'
-$app_command 'php occ app:install apporder'
-$app_command 'php occ app:enable apporder'
-$app_command 'php occ app:install themeing_customcss'
-$app_command 'php occ app:enable theming_customcss'
-$app_command 'php occ app:install groupfolders'
-$app_command 'php occ app:enable groupfolders'
-$app_command 'php occ app:install onlyoffice'
-$app_command 'php occ app:enable onlyoffice'
-$app_command 'php occ app:install files_pdfviewer'
-$app_command 'php occ app:enable files_pdfviewer'
-$app_command 'php occ app:install news'
-$app_command 'php occ app:enable news'
-$app_command 'php occ app:install previewgenerator'
-$app_command 'php occ app:enable previewgenerator'
-$app_command 'php occ app:install spreed'
-$app_command 'php occ app:enable spreed'
-$app_command 'php occ app:install mail'
-$app_command 'php occ app:enable mail'
-$app_command 'php occ app:install bruteforcesettings'
-$app_command 'php occ app:enable bruteforcesettings'
-$app_command 'php occ app:install passwords'
-$app_command 'php occ app:enable passwords'
-$app_command 'php occ app:install files_antivirus'
-$app_command 'php occ app:enable files_antivirus'
-$app_command 'php occ app:install quicknotes'
-$app_command 'php occ app:enable quicknotes'
-$app_command 'php occ app:install files_retention'
-$app_command 'php occ app:enable files_retention'
-$app_command 'php occ app:enable files_external'
-$app_command 'php occ app:enable admin_audit'
-$app_command 'php occ maintenance:mode --on'
-$app_command 'php occ maintenance:update:htaccess'
-$app_command 'php occ maintenance:mode --off'
+php occ app:install quota_warning
+php occ app:enable quota_warning
+php occ app:install ransomware_protection
+php occ app:enable ransomware_protection
+php occ app:install apporder
+php occ app:enable apporder
+php occ app:install themeing_customcss
+php occ app:enable theming_customcss
+php occ app:install groupfolders
+php occ app:enable groupfolders
+php occ app:install onlyoffice
+php occ app:enable onlyoffice
+php occ app:install files_pdfviewer
+php occ app:enable files_pdfviewer
+php occ app:install news
+php occ app:enable news
+php occ app:install previewgenerator
+php occ app:enable previewgenerator
+php occ app:install spreed
+php occ app:enable spreed
+php occ app:install mail
+php occ app:enable mail
+php occ app:install bruteforcesettings
+php occ app:enable bruteforcesettings
+php occ app:install passwords
+php occ app:enable passwords
+php occ app:install files_antivirus
+php occ app:enable files_antivirus
+php occ app:install quicknotes
+php occ app:enable quicknotes
+php occ app:install files_retention
+php occ app:enable files_retention
+php occ app:enable files_external
+php occ app:enable admin_audit
+php occ maintenance:mode --on
+php occ maintenance:update:htaccess
+php occ maintenance:mode --off
+
+# Exit SCL PHP environment
+exit
 
 cd "$(dirname "$0")"
