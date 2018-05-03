@@ -31,12 +31,6 @@ resources/php-scl.sh
 # Shared Folders
 resources/sharedfolders.sh
 
-# Nextcloud
-resources/nextcloud.sh
-
-# Freeswitch
-resources/smeserver-freeswitch.sh
-
 # Install contribs
 #resources/contribs.sh
 

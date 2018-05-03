@@ -110,13 +110,6 @@ chown www:www $cloud_path/config/*
 
 # Initialize (install) Nextcloud for the first time in the background
 cat <<HERE4 > $script_path/smeserver/resources/nextcloud_init.sh
-# move to script directory so all relative paths work
-cd "$(dirname "$0")"
-
-# includes
-. ./config.sh
-. ./colors.sh
-
 cd $cloud_path
 php occ maintenance:install --database $cloud_dbtype --database-host $cloud_dbhost \
 --database-name $cloud_dbname --database-user $cloud_dbusername --database-pass $cloud_dbpassword \
@@ -124,8 +117,10 @@ php occ maintenance:install --database $cloud_dbtype --database-host $cloud_dbho
 HERE4
 
 chmod 755 $script_path/smeserver/resources/nextcloud_init.sh
-sudo -u www scl enable php$php_version 'bash ./nextcloud_init.sh'
+#sudo -u www scl enable php$php_version 'bash ./nextcloud_init.sh'
+./nextcloud.sh
 
 # Install the Nextcloud apps under SCL PHP environment
-sudo -u www scl enable php$php_version "bash ./nextcloud_apps.sh"
+#sudo -u www scl enable php$php_version "bash ./nextcloud_apps.sh"
+./nextcloud_apps.sh
 
