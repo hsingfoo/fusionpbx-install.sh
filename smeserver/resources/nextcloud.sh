@@ -115,13 +115,5 @@ php occ maintenance:install --database $cloud_dbtype --database-host $cloud_dbho
 --database-name $cloud_dbname --database-user $cloud_dbusername --database-pass $cloud_dbpassword \
 --admin-user $cloud_adminname --admin-pass $cloud_adminpass
 HERE4
-
-cd "$(dirname "$0")"
 chmod 755 $script_path/smeserver/resources/nextcloud_init.sh
-#sudo -u www scl enable php$php_version 'sh ./nextcloud_init.sh'
-./nextcloud.sh
-
-# Install the Nextcloud apps under SCL PHP environment
-#sudo -u www scl enable php$php_version "sh ./nextcloud_apps.sh"
-./nextcloud_apps.sh
 

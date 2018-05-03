@@ -9,10 +9,6 @@ cd "$(dirname "$0")"
 . ./colors.sh
 . ./config.sh
 
-
-# Freeswitch
-resources/smeserver-freeswitch.sh
-
 #Install and configure FusionPBX
 verbose "Installing and configuring FusionPBX"
 

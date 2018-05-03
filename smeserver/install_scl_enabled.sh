@@ -13,6 +13,11 @@ cd "$(dirname "$0")"
 
 # Nextcloud
 resources/nextcloud.sh
+resources/nextcloud_init.sh
+resources/nextcloud_apps.sh
+
+# Freeswitch
+resources/smeserver-freeswitch.sh
 
 # FusionPBX
 resources/fusionpbx.sh
