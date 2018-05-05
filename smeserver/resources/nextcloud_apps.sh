@@ -10,9 +10,15 @@ cd "$(dirname "$0")"
 . ./colors.sh
 cd $cloud_path
 
-# Adjust .htaccess and install and/or enable nextcloud apps
+#  Install and enable nextcloud apps
 php occ app:install calendar
 php occ app:enable calendar
+php occ app:install files_retention
+php occ app:enable files_retention
+php occ app:install files_antivirus
+php occ app:enable files_antivirus
+php occ app:install files_pdfviewer
+php occ app:enable files_pdfviewer
 php occ app:install files_downloadactivity
 php occ app:enable files_downloadactivity
 php occ app:install files_accesscontrol
@@ -33,8 +39,6 @@ php occ app:install groupfolders
 php occ app:enable groupfolders
 php occ app:install onlyoffice
 php occ app:enable onlyoffice
-php occ app:install files_pdfviewer
-php occ app:enable files_pdfviewer
 php occ app:install previewgenerator
 php occ app:enable previewgenerator
 php occ app:install spreed
@@ -45,14 +49,24 @@ php occ app:install bruteforcesettings
 php occ app:enable bruteforcesettings
 php occ app:install passwords
 php occ app:enable passwords
-php occ app:install files_antivirus
-php occ app:enable files_antivirus
 php occ app:install quicknotes
 php occ app:enable quicknotes
-php occ app:install files_retention
-php occ app:enable files_retention
+php occ app:install ownbackup
+php occ app:enable ownbackup
+php occ app:install user_ldap
+php occ app:enable user_ldap
+php occ app:install announcementcenter
+php occ app:enable announcementcenter
+php occ app:install flowupload
+php occ app:enable flowupload
+php occ app:install impersonate
+php occ app:enable impersonate
+
+# Enable already available apps
 php occ app:enable files_external
 php occ app:enable admin_audit
+
+# Adjust .htaccess for clean URL's wothout index.php
 php occ maintenance:mode --on
 php occ maintenance:update:htaccess
 php occ maintenance:mode --off

@@ -27,7 +27,7 @@ db accounts set $cloud_name share Name $cloud_name DynamicContent enabled Encryp
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
 RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version \
 AllowOverride All FollowSymLinks enabled Group www \
-PHPBaseDir $cloud_path:/tmp/:/dev/urandom \
+PHPBaseDir $cloud_path:/tmp/:/dev/urandom:/var/lib/php\$cloud_name \
 
 # Create the cloud share
 signal-event share-create $cloud_name
