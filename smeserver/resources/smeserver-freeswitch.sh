@@ -13,7 +13,7 @@ cd "$(dirname "$0")"
 ./postgres.sh
 
 verbose "Installing and configuring ffmpeg"
-yum $AUTO install ffmpeg ghostscript ilbc2 --enablerepo=okay,epel
+yum $AUTO install ffmpeg ghostscript ilbc2 sox --enablerepo=okay,epel
 verbose "Installing and configuring Freeswitch $switch_version"
 yum $AUTO install *$switch_version* freeswitch-sounds-en-us-callie-all freeswitch-sounds-music --enablerepo=okay,epel,remi-safe
 

@@ -25,3 +25,4 @@ tar -zvcf /var/backups/fusionpbx/backup_$now.tgz /var/backups/fusionpbx/postgres
 #tar -zvcf /var/backups/fusionpbx/backup_$now.tgz /var/backups/fusionpbx/postgresql/fusionpbx_pgsql_$now.sql /var/www/fusionpbx /usr/local/freeswitch/scripts /usr/local/freeswitch/storage /usr/local/freeswitch/recordings /etc/fusionpbx /usr/local/freeswitch/conf
 
 echo "Backup Completed"
+
