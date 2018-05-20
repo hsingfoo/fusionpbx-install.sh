@@ -15,9 +15,9 @@ verbose "Installing and configuring FusionPBX"
 #Populate the accounts db with the new share details 
 db accounts set $fusionpbx_name share Name $fusionpbx_name DynamicContent enabled Encryption disabled \
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
-RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version PHPBaseDir \ / \
+RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPBaseDir \ / \
 
-db accounts setprop $fusionpbx_name PHPDisableFunctions 'system,show_source,symlink,exec,dl,passthru,phpinfo'
+db accounts setprop $fusionpbx_name PHPDisabledFunctions 'system,show_source,symlink,exec,dl,passthru,phpinfo'
 db accounts setprop $fusionpbx_name PHPAllowUrlFopen on
 
 #Create the fusionpbx share

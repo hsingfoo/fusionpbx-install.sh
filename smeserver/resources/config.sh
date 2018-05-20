@@ -1,7 +1,7 @@
 # Copyright H.F. Wang - hsingfoo@gmail.com.
 
 # General Settings
-php_version=71                   									# PHP version 54, 55, 56, 70 or 71
+php_version=71                   									# PHP version 56, 70 or 71
 script_path=/usr/src/fusionpbx-install.sh							# Root path to install script
 sme_version=9														# 9, 10
 domain_name=$(hostname -d)											# Get the hostname
