@@ -43,3 +43,4 @@ chmod -R 755 $fusionpbx_path/secure
 
 # Adjust some Debian assumptions to Generic/CentOS
 sed -i 's/= "localhost"/= "127.0.0.1"/g' $fusionpbx_path/core/install/resources/classes/install_fusionpbx.php
+

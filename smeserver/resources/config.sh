@@ -42,3 +42,15 @@ fusionpbx_version=4.4												# FusionPBX branch version
 fusionpbx_subdomain=tel												# FusionPBX sub domain. tel, pbx or anything
 fusionpbx_path=/home/e-smith/files/shares/$fusionpbx_name/files		# full path to share files directory
 switch_version=1.6.20-1            									# FreeSWITCH full version
+
+# OsTicket settings
+osticket_name=osticket
+osticket_version=1.10.x
+osticket_subdomain=support
+osticket_path=/home/e-smith/files/shares/$osticket_name/files
+osticket_dbname=osticket
+osticket_dbpassword=$(dd if=/dev/urandom bs=1 count=20 2>/dev/null | base64 | sed 's/[=\+//]//g')
+osticket_dbusername=osticketuser
+
+# Wordpress setting
+wp_document_root=/usr/share/wordpress

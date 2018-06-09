@@ -54,5 +54,7 @@ HERE2
 /sbin/e-smith/expand-template /etc/rc.d/init.d/masq
 /etc/init.d/masq restart
 
-#Add user freeswitch to the www group
+#Add user freeswitch to the www group and www to daemon group
 usermod -a -G www freeswitch
+usermod -a -G daemon www
+
