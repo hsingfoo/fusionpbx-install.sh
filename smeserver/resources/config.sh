@@ -41,7 +41,7 @@ fusionpbx_name=fusionpbx											# Fusionpbx
 fusionpbx_version=4.4												# FusionPBX branch version
 fusionpbx_subdomain=tel												# FusionPBX sub domain. tel, pbx or anything
 fusionpbx_path=/home/e-smith/files/shares/$fusionpbx_name/files		# full path to share files directory
-switch_version=1.6.20-1            									# FreeSWITCH full version
+switch_version=1.6.20-2            									# FreeSWITCH full version
 
 # OsTicket settings
 osticket_name=osticket
@@ -54,3 +54,6 @@ osticket_dbusername=osticketuser
 
 # Wordpress setting
 wp_document_root=/usr/share/wordpress
+wp_name=wordpress
+wp_path=/home/e-smith/files/shares/$wp_name/files
+

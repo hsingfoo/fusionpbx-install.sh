@@ -18,6 +18,15 @@ config setprop wordpress AllowOverrideAll All
 signal-event wordpress-update
 signal-event conf-userpanel
 
+# Populate the accounts db with the new wordpress details 
+db accounts set $wp_name share Name $wp_name DynamicContent enabled Encryption disabled \
+Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
+RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version \
+AllowOverride All FollowSymLinks enabled Group www \
+PHPBaseDir $wp_path:/tmp/:/dev/urandom:/var/lib/php/$wp_name \
+
+signal-event share-create $wp_name
+
 # Have main domain point to wordpress
 db domains setprop $domain_name TemplatePath WebAppVirtualHost DocumentRoot $wp_document_root
 db domains delprop $domain_name Content

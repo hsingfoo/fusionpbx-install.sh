@@ -15,7 +15,7 @@ verbose "Installing and configuring FusionPBX"
 #Populate the accounts db with the new share details 
 db accounts set $fusionpbx_name share Name $fusionpbx_name DynamicContent enabled Encryption disabled \
 Indexes disabled Pydio disabled RecycleBin disabled RecycleBinRetention unlimited Removable no \
-RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPBaseDir \ / \
+RequireSSL enabled WebDav disabled httpAccess local smbAccess none PHPVersion $php_version PHPBaseDir \ / \
 
 db accounts setprop $fusionpbx_name PHPDisabledFunctions 'system,show_source,symlink,exec,dl,passthru,phpinfo'
 db accounts setprop $fusionpbx_name PHPAllowUrlFopen on
@@ -28,6 +28,10 @@ db domains set $fusionpbx_subdomain.$domain_name domain Description FusionPBX Na
 
 #Create the domain
 signal-event domain-create $fusionpbx_subdomain.$domain_name
+
+#Create FusionPBX config sirectory
+mkdir -p /etc/fusionpbx
+chown -R www:www /etc/fusionpbx
 
 #Provide a little time for previous processes are finished and/or closed, otherwise git will fail!
 sleep 1
@@ -42,5 +46,5 @@ chown -R www:www $fusionpbx_path/*
 chmod -R 755 $fusionpbx_path/secure
 
 # Adjust some Debian assumptions to Generic/CentOS
-sed -i 's/= "localhost"/= "127.0.0.1"/g' $fusionpbx_path/core/install/resources/classes/install_fusionpbx.php
+# sed -i 's/= "localhost"/= "127.0.0.1"/g' $fusionpbx_path/core/install/resources/classes/install_fusionpbx.php
 
